@@ -1,0 +1,68 @@
+nav{
+
+
+    background-color: #3F475F;
+}
+/* .ortala{
+    
+    justify-content: center;
+    
+} */
+
+
+body{
+
+    background-color: black;
+}
+.renk{
+
+
+    color: black;
+}
+.yumusak{
+
+
+    border-radius: 20px;
+}
+.buyuk{
+    width: 750px !important;
+}
+.wrapper{
+    background-color: azure;
+    border:1px solid #000;
+    border-radius: 20px;
+    display: inline-block;
+
+
+}
+.seffaf{
+    background-color:transparent;
+    border:0;
+     
+
+
+}
+.logo{
+    position: fixed;
+    left: 0;
+}
+
+
+.navbuton{
+
+    position: relative;
+    list-style: none;
+    top: 7px;
+}
+
+.navbuton li{
+
+    display: inline;
+    margin-left: 0.7rem;
+    color: white;
+
+}
+.navbuton li:first-child{
+    padding-right: 1rem;
+    border-right: solid 2px;
+}
