@@ -1,14 +1,14 @@
 import { Helmet} from "react-helmet"
 
-function Kayit() {
+function Profile() {
   return (
     <div>
       <Helmet>
-        <title>Kayıt</title>
+        <title> Profile</title>
       </Helmet>
-      Kayit
+      ASD
     </div>
   )
 }
 
-export default Kayit
+export default Profile

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
 
-export default function AuthLayout() {
+export default function GeneralAuth() {
   return <Outlet/>
 
 }

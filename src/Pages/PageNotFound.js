@@ -1,6 +1,6 @@
 import { Helmet} from "react-helmet"
 
-function Pages404() {
+function PageNotFound() {
   return (
     <div>
       <Helmet>
@@ -13,4 +13,4 @@ function Pages404() {
   )
 }
 
-export default Pages404
+export default PageNotFound

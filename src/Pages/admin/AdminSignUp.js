@@ -1,14 +1,14 @@
 import { Helmet} from "react-helmet"
 
-function KurumKayit() {
+function AdminSignUp() {
   return (
     <div>
       <Helmet>
-        <title>Kurum Kayıt</title>
+        <title> AdminSignUp</title>
       </Helmet>
-      KurumKayit
+      AdminSignUp
     </div>
   )
 }
 
-export default KurumKayit
+export default AdminSignUp
