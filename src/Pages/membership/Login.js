@@ -12,7 +12,7 @@ function Login() {
         email:'', 
         password:''
       }}
-      onSubmit={handleSubmit}
+      
       >
        {({ isSubmitting }) => (
          <Form>
