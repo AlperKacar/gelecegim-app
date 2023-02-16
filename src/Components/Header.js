@@ -1,4 +1,5 @@
 import React from "react";
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import logosrc from "../images/Gelecegim_Logo.png";
 import { IoSearchSharp } from "react-icons/io5";
@@ -58,9 +59,9 @@ function Header() {
         </Searchicon>
 
         <ul>
-          <Li>Giriş Yap</Li>
+        <Link to="auth/login">Hesap Aç</Link>
 
-          <Li>Hesap Aç</Li>
+        <Link to="auth/signup">Hesap Aç</Link>
         </ul>
       </Navbar>
     </Head>
