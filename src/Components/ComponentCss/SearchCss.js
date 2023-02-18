@@ -7,7 +7,7 @@ export const Searchdiv = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  top: 3px;
+  
 
   .Search {
     padding-left: 10px;
