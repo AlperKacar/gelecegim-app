@@ -8,6 +8,7 @@ import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 import RequireAuth from "../Shared/auth/RequireAuth";
 import LayoutPrivate from "../Shared/layout/LayoutPrivate";
 
+
 const RouterPrivate = () => {
   return (
     <Suspense fallback={<LoadingTruck />}>

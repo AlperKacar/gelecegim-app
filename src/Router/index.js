@@ -9,8 +9,12 @@ import {
   RouterPrivate,
   PageNotFound,
 } from "./routerComponents";
+import PrivateRoute from "../Components/PrivateRoute"
 
 const Router = () => {
+
+
+  
 
   const { pathname } = useLocation();
 
@@ -31,6 +35,7 @@ const Router = () => {
         <Route
           path="/500"
           element={
+            
             <LayoutMembership childrenActive>
               <PageNotFound
                 title="Beklenmeyen hata"
@@ -41,20 +46,23 @@ const Router = () => {
                 }
               />
             </LayoutMembership>
+            
           }
         />
 
         {/* user login... */}
-        <Route path="/auth/*" element={<RouterMembership />} />
+        <Route  path="/auth/*"  element={<RouterMembership />} />
         {/* login sonrası private */}
-        <Route path="/*" element={<RouterGeneral />} />
-        {/* auth/ sonrası private */}
+        <Route path="/*"  element={<RouterGeneral />} />
+        {/* auth/admin sonrası private */}
         <Route path="/auth/admin/*" element={<RouterAdminPrivate />} />
-        {/* auth/ sonrası private */}
-        <Route path="/profile/*" element={<RouterPrivate />} />
+        {/* profile/ sonrası private */}
+        <Route path="/profile/*" authre={true} element={<PrivateRoute><RouterPrivate /></PrivateRoute>} />
       </Routes> 
     </Suspense>
-  );
-};
+  )
+  
+}
+
 
 export default Router;

@@ -20,11 +20,11 @@ export default function Input({label, type = 'text', ...props}) {
                 <input  required={true} type={inputType} className='input-tasarım' {...props}/>
                 <small className="input-text">{label}</small>
                 {type == 'password' && props?.value &&  (
-                    <a type="button" onClick={() => setShow(show =>!show)}>
+                    <div type="button" className="show-hide-button " onClick={() => setShow(show =>!show)}>
                        {
                         show? <a className="hide-show-trigger"></a> : <a className="show-hide-trigger"></a>
                        } 
-                    </a>
+                    </div>
                 )
                 }        
             </div>

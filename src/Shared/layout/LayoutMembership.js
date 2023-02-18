@@ -1,12 +1,13 @@
 import { Helmet} from "react-helmet"
+import { Outlet } from 'react-router-dom'
 
 function LayoutMembership() {
   return (
     <div>
       <Helmet>
-        <title>LayoutMembership</title>
+        <title>Login</title>
       </Helmet>
-      LayoutMembership
+      <Outlet/>
     </div>
   )
 }
