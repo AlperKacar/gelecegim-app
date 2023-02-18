@@ -16,7 +16,7 @@ border: 1px solid #dbdbdb;
 .Login-boyut{
     display: grid;
     place-items: center;
-}
+} 
 .img-logo{
     margin: 30px;
     background-image: url(https://s0.shbdn.com/assets/images/header_2x:e128c32e6c3632344852d5d52f683bba.png);
