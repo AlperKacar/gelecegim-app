@@ -40,7 +40,8 @@ function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-          <div className="Login" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+          <div className="Login" >
             <div className="Login-boyut">
               <a href="login" className="img-logo"/>
               <div className="Input-div">
@@ -65,7 +66,7 @@ function Login() {
             </div>
           </div>
           <div className="Sign-up-boyut">
-            <div className="">
+            <div >
               <p>Don't have an account?
                 <a href="signup" className="signup-login">
                   Sign Up
@@ -73,6 +74,7 @@ function Login() {
               </p>
             </div>
           </div>
+          </form>    
     </LoginDiv>
   )
 }

@@ -17,6 +17,11 @@ border: 1px solid #dbdbdb;
     display: grid;
     place-items: center;
 }
+.Singup-boyut{
+    margin: 10px;
+    display: grid;
+    place-items: center;
+}
 .img-logo{
     margin: 30px;
     background-image: url(https://cdn.discordapp.com/attachments/1028416158874992760/1076499650678370304/Gelecegim-Deneme.png);
@@ -116,7 +121,7 @@ border: 1px solid #dbdbdb;
     text-decoration: none;
 }
 .Forgot-password{
-    margin: 10px 0;
+    margin: 10px 0; 
     text-decoration: none;
     font-size: small;
 }

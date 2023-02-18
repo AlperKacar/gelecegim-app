@@ -1,9 +1,8 @@
 import { Helmet} from "react-helmet"
-import { Formik, Form} from 'formik';
 import Input from "../../Components/Input";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
-import {AiFillFacebook} from "react-icons/ai"
+
 
 function BusinessLogin() {
 
@@ -22,15 +21,7 @@ function BusinessLogin() {
       <Helmet>
         <title>KurumLogin</title>
       </Helmet>
-      <Formik
-      initialValues={{
-        email:'', 
-        password:''
-      }}
-
-      >
-       {({}) => (
-         <Form>
+      <form>
           <div className="Login" >
             <div className="Login-boyut">
               <a href="login" className="img-logo"/>
@@ -53,9 +44,7 @@ function BusinessLogin() {
               </p>
             </div>
           </div>
-         </Form>
-       )}
-      </Formik>
+          </form>
     </LoginDiv>
   )
 }
