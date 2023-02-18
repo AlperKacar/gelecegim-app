@@ -1,5 +1,6 @@
 import React from "react";
 import { Link} from "react-router-dom";
+<<<<<<< HEAD
 import styled from "styled-components";
 import logosrc from "../images/Gelecegim_Logo.png";
 import { IoSearchSharp } from "react-icons/io5";
@@ -44,27 +45,29 @@ const Searchicon = styled.div`
   position: relative;
   right:310px;
 `;
+=======
+import logosrc from "../images/revize3.png";
+import HeaderCss from "./ComponentCss/HeaderCss"
+import Search from "./Search"
+
+>>>>>>> 7418af7301762ea31d1375162631c9073150263b
 function Header() {
   return (
-    <Head>
-      <Navbar>
-        <Logom src={logosrc} alt="selam" />
-
-        <Search
-          id="searchText"
-          placeholder="Kelime, ilan no veya kurum adı ile ara"
-        />
-        <Searchicon>
-          <IoSearchSharp />
-        </Searchicon>
-
+    <HeaderCss.Head>
+      <HeaderCss.Navbar>
+        
+        <HeaderCss.Logom src={logosrc} alt="selam" />
+        
+        <Search/>
         <ul>
-        <Link to="auth/login">Giriş Yap</Link>
+        <Link className="navLink" to="auth/login">Giriş Yap</Link>
 
-        <Link to="auth/signup">Hesap Aç</Link>
+        <Link className="navLink"to="auth/signup">Hesap Aç</Link>
         </ul>
-      </Navbar>
-    </Head>
+      </HeaderCss.Navbar>
+    </HeaderCss.Head>
+    
+    
   );
 }
 export default Header;

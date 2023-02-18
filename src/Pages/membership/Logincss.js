@@ -16,12 +16,16 @@ border: 1px solid #dbdbdb;
 .Login-boyut{
     display: grid;
     place-items: center;
+<<<<<<< HEAD
 }
 .Singup-boyut{
     margin: 10px;
     display: grid;
     place-items: center;
 }
+=======
+} 
+>>>>>>> 7418af7301762ea31d1375162631c9073150263b
 .img-logo{
     margin: 30px;
     background-image: url(https://cdn.discordapp.com/attachments/1028416158874992760/1076499650678370304/Gelecegim-Deneme.png);
