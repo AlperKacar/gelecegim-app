@@ -40,16 +40,7 @@ function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <Formik
-      initialValues={{
-        email:'', 
-        password:''
-      }}
-
-      >
-       {({}) => (
-         <Form>
-          <div className="Login">
+          <div className="Login" onSubmit={handleSubmit}>
             <div className="Login-boyut">
               <a href="login" className="img-logo"/>
               <div className="Input-div">

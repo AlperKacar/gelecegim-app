@@ -1,7 +1,5 @@
 import React from "react";
 import { Link} from "react-router-dom";
-<<<<<<< HEAD
-<<<<<<< HEAD
 import styled from "styled-components";
 import logosrc from "../images/Gelecegim_Logo.png";
 import { IoSearchSharp } from "react-icons/io5";
@@ -46,17 +44,11 @@ const Searchicon = styled.div`
   position: relative;
   right:310px;
 `;
-=======
-=======
->>>>>>> 7418af7301762ea31d1375162631c9073150263b
+
 import logosrc from "../images/revize3.png";
 import HeaderCss from "./ComponentCss/HeaderCss"
 import Search from "./Search"
 
-<<<<<<< HEAD
->>>>>>> 7418af7301762ea31d1375162631c9073150263b
-=======
->>>>>>> 7418af7301762ea31d1375162631c9073150263b
 function Header() {
   return (
     <HeaderCss.Head>
