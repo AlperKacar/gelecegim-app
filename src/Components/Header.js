@@ -6,15 +6,15 @@ import { IoSearchSharp } from "react-icons/io5";
 const Head = styled.div`
   width: 100%;
   height: 57.9px;
-
+  display: grid;
   background-color: #3f475f;
 `;
 const Navbar = styled.div`
+  margin: 0 auto;
+  width: 1115px;
   display: flex;
   align-items: center;
-  flex-direction: row;
-  list-style: none;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Search = styled.input`

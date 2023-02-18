@@ -17,7 +17,7 @@ const RouterMembership = lazy(() => import("./routerMembership"));
 const Login = lazy(() => import("../Pages/membership/Login"));
 const ForgotPassword = lazy(() => import("../Pages/membership/ForgotPassword"));
 const ResetPassword = lazy(() => import("../Pages/membership/ResetPassword"));
-const SignUp = lazy(() => import("../Pages/membership/Singup"));
+const SignUp = lazy(() => import("../Pages/membership/Signup"));
 const BusinessLogin = lazy(() => import("../Pages/membership/BusinessLogin"));
 const BusinessSignup = lazy(() => import("../Pages/membership/BusinessSignup"));
 
