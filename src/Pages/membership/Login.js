@@ -33,8 +33,6 @@ function Login() {
   } 
 
 
-
-
   return (
     <LoginDiv>
       <Helmet>
@@ -48,9 +46,7 @@ function Login() {
                 <Input value={email} label="Email" onChange={e => setEmail(e.target.value)}/>
                 <Input type="password" value={password} label="Password" onChange={e => setPassword(e.target.value)}/>
                 <button type="submit" disabled={!enable} className="Button">Login</button>
-
               </div>
-              
               <div className="Or-div">
                 <div className="Or-div-div"/>
                   <span className="Or-span">OR</span>

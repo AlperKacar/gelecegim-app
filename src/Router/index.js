@@ -10,6 +10,7 @@ import {
   PageNotFound,
 } from "./routerComponents";
 import PrivateRoute from "../Components/PrivateRoute"
+import MembershipRoute from "../Components/MembershipRoute";
 
 const Router = () => {
 
@@ -51,7 +52,8 @@ const Router = () => {
         />
 
         {/* user login... */}
-        <Route  path="/auth/*"  element={<RouterMembership />} />
+        <Route  path="/auth/*"  element={<MembershipRoute><RouterMembership /></MembershipRoute>} />
+        <Route  path="/auth/business/*"  element={<RouterMembership />} />
         {/* login sonrası private */}
         <Route path="/*"  element={<RouterGeneral />} />
         {/* auth/admin sonrası private */}

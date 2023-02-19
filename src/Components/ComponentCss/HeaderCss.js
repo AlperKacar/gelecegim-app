@@ -46,6 +46,8 @@ export const Head = styled.div`
 }
 
 .kurum-kayit{
+  //margin-left:20px ben verdim sen düzenlersin
+  margin-left: 20px;
   font-family: "Lucida Grande","Lucida Sans","Lucida Sans Unicode",Roboto,sans-serif;
   font-size: 12px;
   font-weight: bold;
