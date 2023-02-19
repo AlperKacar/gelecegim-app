@@ -1,17 +1,33 @@
 import { Helmet} from "react-helmet"
 import Input from "../../Components/Input";
 import { useState } from "react";
-import { LoginDiv } from "./Logincss";
+import { LoginDiv } from "../membership/Logincss";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/auth";
+import {useNavigate, useLocation} from "react-router-dom"
 
 
 function BusinessLogin() {
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
   
   
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
   const enable = email && password
- 
+  const handleSubmit = e => {
+    e.preventDefault()
+    dispatch(setUser({
+      email,
+      password
+    }))
+    navigate(location.state?.return_url || '/', {
+      replace: true
+    })
+  } 
+
  
 
 
@@ -21,7 +37,7 @@ function BusinessLogin() {
       <Helmet>
         <title>KurumLogin</title>
       </Helmet>
-      <form>
+      <form onSubmit={handleSubmit}>
           <div className="Login" >
             <div className="Login-boyut">
               <a href="login" className="img-logo"/>
