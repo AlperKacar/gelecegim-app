@@ -26,6 +26,7 @@ export const Searchdiv = styled.div`
   }
 
   .Search-icon {
+    color: gray;
     width: 38px;
     height: 36px;
     text-align: center;
