@@ -1,5 +1,4 @@
 
-
 import styled from "styled-components"
 
 
@@ -9,6 +8,7 @@ export const Head = styled.div`
   background-color: #3f475f;
   display: grid;
   
+
   .Navbar{
   width:1115px;
   display: flex;

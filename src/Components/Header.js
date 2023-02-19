@@ -18,6 +18,7 @@ function Header() {
         <Link className="navLink border"to="auth/signup">Hesap Aç</Link>
         </ul>
         <button className="kurum-kayit" name="Kurum Kaydı" href="/">Kurum Kaydı</button>
+        
       </div>
     </Head>
     
