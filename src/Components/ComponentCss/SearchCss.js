@@ -33,6 +33,7 @@ export const Searchdiv = styled.div`
     line-height: 43px;
     position: relative;
     right: 32px;
+    cursor: pointer;
   }
   .Search:focus + .Search-icon {
     background-color: #5490f0;
