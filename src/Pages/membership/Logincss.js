@@ -6,21 +6,25 @@ height: 100%;
 position: fixed;
 display: grid;
 place-items: center;
+background-color: #081229;
 
 .Login{
 width: 350px;
-max-height: 475px;
+max-height: 455px;
 background-color: #fff;
 border: 1px solid #dbdbdb;
+border-radius: 10px;
 }
 .Login-boyut{
+
     display: grid;
     place-items: center;
 }
 .Singup-boyut{
-    margin: 10px;
+    margin: -93px -5px 5px -5px;
     display: grid;
     place-items: center;
+
 }
 .img-logo{
     margin: 30px;
@@ -31,7 +35,7 @@ border: 1px solid #dbdbdb;
     text-indent: -9999px;
 }
 .Input-div{
-    margin: 30px 30px 15px ;
+    margin: 30px 30px -5px ;
     position: relative;
 }
 .Input-div-row{
@@ -40,63 +44,39 @@ border: 1px solid #dbdbdb;
 }
 .input-tasarım{
     width: 100%;
-    height: 35px;
-    font-size: 12px;
+    height: 31.45px;
+    font-size: 15px;
     padding: 3px 35px 0 18px; 
-    border: 1px solid #ccc;
-    border-radius: 4px;
     outline: none;
-    :focus {
-      border: 1px solid black
-    }
-    :valid{
-    padding: 3px 35px 0 18px;
-    }
-   
+    margin-right: 45px;
 }
 .input-text{
-    position: relative;
-    bottom: 28px;
-    left: 18px;
-    font-size: 15px;
-    color: #8e8e8e;
-    pointer-events: none;
-    background-color: transparent;
-
-}
-.input-tasarım:valid + .input-text{
-    bottom: 48px;
+    bottom: 25px;
     background-color: white;
     left: 13px;
     padding: 0 5px;
     margin: -5px;
-  }
-  .input-tasarım:focus + .input-text{
+    position: absolute;
+    pointer-events: none;
     color: black;
-  }
-.Button{
-    width: 100%;
-    height: 25px;
-    border-radius: 5px;
-    font-size: large;
-    border: 1px solid #ccc;
-    background: lightyellow;
-    color: gray;
-    :enabled{
-        color: black;
-        background-color: yellow;
-        border: 1px solid #ccc;
-    }
-    :enabled:hover{
-        
-        box-shadow: 0 0 4px #7f8500;
-        
-    }
+    font-size: 15px;   
+
 }
+.form-input{
+    margin-top: 15px;
+}
+.Form-button{
+    display: grid;
+    place-items: center;
+    
+}
+.Button{
+    margin-top: 15px;
+}
+
 .Or-div{
     display: flex;
     align-items: center;
-    margin: 10px;
     width: 90%;
 }
 .Or-div-div{
@@ -126,6 +106,7 @@ border: 1px solid #dbdbdb;
     font-size: small;
 }
 .Sign-up-boyut{
+    border-radius: 10px;
     margin-top: 20px;
     width: 350px;
     height: 60px;
@@ -153,7 +134,7 @@ border: 1px solid #dbdbdb;
     height: 18px;
     display: block;
     right: -262px;
-    top: -49px;
+    top: -25px;
     background: url(https://s0.shbdn.com/assets/images/password_hide:4e3854c839e1974448171eaef3866837.png) no-repeat;
     -webkit-background-size: 21px 18px;
     -moz-background-size: 21px 18px;
@@ -165,7 +146,7 @@ border: 1px solid #dbdbdb;
     height: 18px;
     display: block;
     right: -262px;
-    top: -49px;
+    top: -25px;
     background: url(https://s0.shbdn.com/assets/images/password_show:893e09be95762713a91c214a7514aacf.png) no-repeat;
     -webkit-background-size: 21px 16px;
     -moz-background-size: 21px 16px;

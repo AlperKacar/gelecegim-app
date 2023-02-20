@@ -5,8 +5,8 @@ import {
   BusinessLogin,
   BusinessSignup
 } from "./routerComponents";
-import LayoutMembership from "../Shared/layout/LayoutMembership";
-import MembershipAuth from "../Shared/auth/MembershipAuth";
+import LayoutBusinessShip from "../Shared/layout/LayoutMembership";
+import BusinessShipAuth from "../Shared/auth/MembershipAuth";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 
 
@@ -17,9 +17,9 @@ const RouterMembership = () => {
       <Routes>
         <Route
           element={
-            <MembershipAuth>
-              <LayoutMembership />
-            </MembershipAuth>
+            <BusinessShipAuth>
+              <LayoutBusinessShip />
+            </BusinessShipAuth>
           }
         >
           <Route path="login" element={<BusinessLogin />} />

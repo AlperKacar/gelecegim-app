@@ -6,8 +6,6 @@ import {
   ForgotPassword,
   ResetPassword,
   SignUp,
-  BusinessLogin,
-  BusinessSignup
 } from "./routerComponents";
 import LayoutMembership from "../Shared/layout/LayoutMembership";
 import MembershipAuth from "../Shared/auth/MembershipAuth";
@@ -30,8 +28,6 @@ const RouterMembership = () => {
           <Route path="forgotPassword" element={<ForgotPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="signUp" element={<SignUp />} />
-          <Route path="businessLogin" element={<BusinessLogin />} />
-          <Route path="businessSignup" element={<BusinessSignup />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

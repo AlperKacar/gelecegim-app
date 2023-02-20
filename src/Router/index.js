@@ -9,8 +9,6 @@ import {
   RouterPrivate,
   PageNotFound,
 } from "./routerComponents";
-import PrivateRoute from "../Components/PrivateRoute"
-import MembershipRoute from "../Components/MembershipRoute";
 
 const Router = () => {
 
@@ -52,14 +50,14 @@ const Router = () => {
         />
 
         {/* user login... */}
-        <Route  path="/auth/*"  element={<MembershipRoute><RouterMembership /></MembershipRoute>} />
+        <Route  path="/auth/*"  element={<RouterMembership />} />
         <Route  path="/auth/business/*"  element={<RouterMembership />} />
         {/* login sonrası private */}
         <Route path="/*"  element={<RouterGeneral />} />
         {/* auth/admin sonrası private */}
         <Route path="/auth/admin/*" element={<RouterAdminPrivate />} />
         {/* profile/ sonrası private */}
-        <Route path="/profile/*" authre={true} element={<PrivateRoute><RouterPrivate /></PrivateRoute>} />
+        <Route path="/profile/*" authre={true} element={<RouterPrivate />} />
       </Routes> 
     </Suspense>
   )

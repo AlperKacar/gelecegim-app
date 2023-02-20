@@ -6,31 +6,28 @@ import {AiFillFacebook} from "react-icons/ai"
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/auth";
 import {useNavigate, useLocation} from "react-router-dom"
+import { Form,Button} from 'antd';
 
 function Login() {
-
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  
+  const [form] = Form.useForm();
   
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
-  const enable = email && password
- 
- 
- 
-  const handleSubmit = e => {
-    e.preventDefault()
+
+  
+
+ const handleSubmit = e => 
+ {e.preventDefault()
     dispatch(setUser({
-      email,
-      password
+      email,password
     }))
     navigate(location.state?.return_url || '/', {
       replace: true
-    })
-  } 
+    })}
 
 
   return (
@@ -38,14 +35,59 @@ function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <form onSubmit={handleSubmit}>
-          <div className="Login" >
+      <Form 
+      form={form}
+        name="normal_login"
+        initialValues={{ remember: true }} 
+        >
+          <div className="Login">
             <div className="Login-boyut">
-              <a href="login" className="img-logo"/>
+              <a href="/" className="img-logo"/>
               <div className="Input-div">
-                <Input value={email} label="Email" onChange={e => setEmail(e.target.value)}/>
-                <Input type="password" value={password} label="Password" onChange={e => setPassword(e.target.value)}/>
-                <button type="submit" disabled={!enable} className="Button">Login</button>
+                 <Form.Item
+                    name="email"
+                    rules={[
+                      {
+                        type: 'email',
+                        message: 'Geçerli E-posta giriniz!',
+                      },
+                      {
+                        required: true,
+                        message: 'Lütfen E-postanızı giriniz!',
+                      },
+                    ]}
+                  >
+                    <Input value={email} label="E-posta" onChange={e => setEmail(e.target.value)}/>
+                  </Form.Item>
+                  <Form.Item
+                  name="password"
+                   rules={[
+                  {
+                    required: true,
+                    message: 'Please input your password!',
+                  },
+                ]}
+              >
+                <Input className="form-input" type="password" value={password} label="Password" onChange={e => setPassword(e.target.value)}/>
+        
+                </Form.Item>
+                <Form.Item 
+                className="Form-button"
+                shouldUpdate>
+                  {() => (
+                    <Button
+                    className="Button"
+                    onClick={handleSubmit}
+                      type="primary"
+                      disabled={
+                        !form.isFieldsTouched(true) ||
+                        !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                      }
+                    >
+                      <a>Log in</a>
+                    </Button>
+                  )}
+                </Form.Item>
               </div>
               <div className="Or-div">
                 <div className="Or-div-div"/>
@@ -54,7 +96,7 @@ function Login() {
               </div>
               <a href="#" className="Facebook-login">
                 <AiFillFacebook size={20}/>
-                Log in with Facebook
+                Login with Facebook
               </a>
               <a href="forgotPassword" className="Forgot-password">
                 Forgot password?
@@ -70,7 +112,7 @@ function Login() {
               </p>
             </div>
           </div>
-          </form>    
+          </Form>    
     </LoginDiv>
   )
 }
