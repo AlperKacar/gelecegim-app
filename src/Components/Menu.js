@@ -1,5 +1,4 @@
 import React from "react";
-import { DownOutlined } from "@ant-design/icons";
 import {Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/auth";
@@ -47,7 +46,7 @@ export function Menu() {
       <a onClick={(e) => e.preventDefault()}>
         <Space className="namesurname">
           Ad Soyad
-          <DownOutlined className="down-arrow" />
+          <a className="down-arrow" />
         </Space>
       </a>
     </Dropdown>

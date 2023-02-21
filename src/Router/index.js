@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 import LayoutMembership from "../Shared/layout/LayoutMembership";
 import {
+  RouterBusinessShip,
   RouterMembership,
   RouterAdminPrivate,
   RouterGeneral,
@@ -51,7 +52,7 @@ const Router = () => {
 
         {/* user login... */}
         <Route  path="/auth/*"  element={<RouterMembership />} />
-        <Route  path="/auth/business/*"  element={<RouterMembership />} />
+        <Route  path="/business/*"  element={<RouterBusinessShip />} />
         {/* login sonrası private */}
         <Route path="/*"  element={<RouterGeneral />} />
         {/* auth/admin sonrası private */}

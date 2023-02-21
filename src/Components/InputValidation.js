@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { Button, Checkbox, Form, Input } from 'antd';
+import {  Input } from 'antd';
 
 
-export default function InputValidion({message,name,label,email,password, type = '', ...props}) {
+export default function InputValidation({label, type = '', ...props}) {
 
     
     const [show, setShow] = useState(false)

@@ -5,12 +5,12 @@ import {
   BusinessLogin,
   BusinessSignup
 } from "./routerComponents";
-import LayoutBusinessShip from "../Shared/layout/LayoutMembership";
-import BusinessShipAuth from "../Shared/auth/MembershipAuth";
+import LayoutBusinessShip from "../Shared/layout/LayoutBusinessShip";
+import BusinessShipAuth from "../Shared/auth/BusinessShipAuth";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 
 
-const RouterMembership = () => {
+const RouterBusinessShip = () => {
  
   return (
     <Suspense fallback={<LoadingTruck />}>
@@ -31,4 +31,4 @@ const RouterMembership = () => {
   );
 };
 
-export default RouterMembership;
+export default RouterBusinessShip;

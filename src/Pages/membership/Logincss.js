@@ -21,18 +21,16 @@ border-radius: 10px;
     place-items: center;
 }
 .Singup-boyut{
-    margin: -93px -5px 5px -5px;
+    margin: -96px 5px 5px ;
     display: grid;
     place-items: center;
 
 }
 .img-logo{
-    margin: 30px;
-    background-image: url(https://cdn.discordapp.com/attachments/1028416158874992760/1076499650678370304/Gelecegim-Deneme.png);
-    height: 20px;
-    width: 100px;
-    background-color: black;
-    text-indent: -9999px;
+    margin: 20px;   
+    background-color: yellow;
+    width: 160px;
+    height: 34px;
 }
 .Input-div{
     margin: 30px 30px -5px ;
