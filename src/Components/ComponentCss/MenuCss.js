@@ -58,17 +58,6 @@ export const KullaniciMenu = styled.div`
   .namesurname:hover {
     text-decoration: underline;
   }
-<<<<<<< Updated upstream
-  .down-arrow{
-    position: relative;
-    display: flex;
-    font-size: 12px;
-    right: 11px;
-    width: 20px;
-    height: 18px;
-    background-image: url(https://s0.shbdn.com/assets/images/header:39e12e04bf244e27d5cb57b38c2a46ec.png);
-    background-position: -866px -175px;
-=======
   .down-arrow {
     color: #b5c9ff;
     display: flex;
@@ -77,7 +66,6 @@ export const KullaniciMenu = styled.div`
     position: relative;
     right: 7px;
     
->>>>>>> Stashed changes
   }
   .alt-li {
     font-size: 17px;

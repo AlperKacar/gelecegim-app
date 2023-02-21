@@ -1,5 +1,6 @@
 import React from "react";
-import {Dropdown, Space } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/auth";
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -42,21 +43,17 @@ export function Menu() {
     },
   ];
   return (
-      <KullaniciMenu>
-
-    {user ? (
-        
-      <Dropdown className="alt-li"
-      menu={{items}}trigger={["click"]}>
-      <a onClick={(e) => e.preventDefault()}>
-        <Space className="namesurname">
-          Ad Soyad
-          <a className="down-arrow" />
-        </Space>
-      </a>
-    </Dropdown>
-      
-       ) : (
+    <KullaniciMenu>
+      {user ? (
+        <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
+          <a onClick={(e) => e.preventDefault()}>
+            <Space className="namesurname">
+              Ad Soyad
+              <BiChevronDown className="down-arrow" />
+            </Space>
+          </a>
+        </Dropdown>
+      ) : (
         <div className="ul-div">
           <ul>
             <Link className="navLink pr-10" to="auth/login">
@@ -74,3 +71,6 @@ export function Menu() {
     </KullaniciMenu>
   );
 }
+
+
+
