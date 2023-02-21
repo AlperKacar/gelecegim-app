@@ -54,11 +54,11 @@ export const KullaniciMenu = styled.div`
     cursor: pointer;
     font-size: 11px;
     font-weight: bold;
-    
   }
   .namesurname:hover {
     text-decoration: underline;
   }
+<<<<<<< Updated upstream
   .down-arrow{
     position: relative;
     display: flex;
@@ -68,8 +68,18 @@ export const KullaniciMenu = styled.div`
     height: 18px;
     background-image: url(https://s0.shbdn.com/assets/images/header:39e12e04bf244e27d5cb57b38c2a46ec.png);
     background-position: -866px -175px;
+=======
+  .down-arrow {
+    color: #b5c9ff;
+    display: flex;
+    width: 20px;
+    height: 22px;
+    position: relative;
+    right: 7px;
+    
+>>>>>>> Stashed changes
   }
-  .alt-li{
-    font-size:17px;
+  .alt-li {
+    font-size: 17px;
   }
 `;

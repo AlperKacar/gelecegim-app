@@ -3,7 +3,8 @@ import {Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/auth";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import {KullaniciMenu} from "./ComponentCss/MenuCss"
+import { KullaniciMenu } from "./ComponentCss/MenuCss";
+import { BiChevronDown } from "react-icons/bi";
 export function Menu() {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -32,7 +33,11 @@ export function Menu() {
       type: "divider",
     },
     {
-      label:<a className="alt-li" onClick={logoutHandle}>Çıkış Yap</a>,
+      label: (
+        <a className="alt-li" onClick={logoutHandle}>
+          Çıkış Yap
+        </a>
+      ),
       key: "3",
     },
   ];
@@ -53,19 +58,19 @@ export function Menu() {
       
        ) : (
         <div className="ul-div">
-        <ul>
-          <Link className="navLink pr-10" to="auth/login">
-            Giriş Yap
-          </Link>
-          <Link className="navLink border pl-10" to="auth/signup">
-            Hesap Aç
-          </Link>
-        </ul>
-        <button className="kurum-kayit" name="Kurum Kaydı" href="/">
-          Kurum Kaydı
-        </button>
-      </div>
-    )}
-      </KullaniciMenu>
+          <ul>
+            <Link className="navLink pr-10" to="auth/login">
+              Giriş Yap
+            </Link>
+            <Link className="navLink border pl-10" to="auth/signup">
+              Hesap Aç
+            </Link>
+          </ul>
+          <button className="kurum-kayit" name="Kurum Kaydı" href="/">
+            Kurum Kaydı
+          </button>
+        </div>
+      )}
+    </KullaniciMenu>
   );
 }
