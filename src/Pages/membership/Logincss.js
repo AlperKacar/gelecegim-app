@@ -29,7 +29,7 @@ border-radius: 10px;
 .img-logo{
     margin: 20px;   
     background-color: yellow;
-    width: 160px;
+    width: 136px;
     height: 34px;
 }
 .Input-div{
