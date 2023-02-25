@@ -50,9 +50,9 @@ function BusinessSignup() {
     </Helmet>
     <BusinessSignupDiv>
     <div className="header-container-without-background">
-      <a  href="/">
-        <img src={logosrc} className="img-logo"/>
-      </a>
+      <Link  to="/">
+        <img src={logosrc} alt="icon" className="img-logo"/>
+      </Link>
       <div className="corporate-info">
       <span >Kurumsal Çağrı Merkezi
       </span>
@@ -219,7 +219,7 @@ function BusinessSignup() {
                                     !!!disabled
                                   }
                                 > 
-                                <a>Hesap Aç</a>
+                                <Link>Hesap Aç</Link>
                               </Button>
                             )}
                         </Form.Item>

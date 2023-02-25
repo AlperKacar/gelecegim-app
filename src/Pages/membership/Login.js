@@ -90,7 +90,7 @@ function Login() {
                             !!form.getFieldsError().filter(({ errors }) => errors.length).length
                           }
                         >
-                          <a>Log in</a>
+                          <Link>Log in</Link>
                       </Button>
                     )}
                 </Form.Item>

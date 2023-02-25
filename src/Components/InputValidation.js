@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {  Input } from 'antd';
+import { Link } from "react-router-dom";
 
 
 export default function InputValidation({label, type = '', ...props}) {
@@ -12,7 +13,8 @@ export default function InputValidation({label, type = '', ...props}) {
         if (show) {
             setInputType('')
         }
-        else if (type == 'password') {
+        
+        else if (type === 'password') {
             setInputType('password')
         }
     }, [show])
@@ -25,7 +27,7 @@ export default function InputValidation({label, type = '', ...props}) {
                 {type == 'password' &&  (
                     <div type="button" className="show-hide-button " onClick={() => setShow(show =>!show)}>
                        {
-                        show? <a className="hide-show-trigger"></a> : <a className="show-hide-trigger"></a>
+                        show? <Link className="hide-show-trigger" ></Link> : <Link className="show-hide-trigger" ></Link>
                        } 
                     </div>
                 )

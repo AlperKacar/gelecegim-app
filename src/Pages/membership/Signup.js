@@ -132,7 +132,7 @@ function Signup() {
                                 !!!disabled
                               }
                             > 
-                            <a>Kayıt Ol</a>
+                            <Link>Kayıt Ol</Link>
                           </Button>
                         )}
                     </Form.Item>

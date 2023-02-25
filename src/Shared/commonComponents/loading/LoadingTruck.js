@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import {Icon} from "./Loadingcss"
 
 
@@ -5,7 +6,7 @@ import {Icon} from "./Loadingcss"
 function LoadingTruck() {
   return (
     <Icon>
-        <a className="img" alt="icon"/>
+        <Link className="img"  alt="icon"/>
     </Icon>
   )
 }

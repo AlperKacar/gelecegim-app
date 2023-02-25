@@ -1,5 +1,4 @@
 import React from "react";
-import { DownOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/auth";
@@ -24,7 +23,7 @@ export function Menu() {
       key: "0",
     },
     {
-      label: <a href="https://www.aliyun.com">Profili Düzenle</a>,
+      label: <Link to="/">Profili Düzenle</Link>,
       key: "1",
     },
     {
@@ -35,9 +34,9 @@ export function Menu() {
     },
     {
       label: (
-        <a className="alt-li" onClick={logoutHandle}>
+        <Link className="alt-li" onClick={logoutHandle}>
           Çıkış Yap
-        </a>
+        </Link>
       ),
       key: "3",
     },
@@ -46,12 +45,12 @@ export function Menu() {
     <KullaniciMenu>
       {user ? (
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
-          <a onClick={(e) => e.preventDefault()}>
+          <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">
               Ad Soyad
               <BiChevronDown className="down-arrow" />
             </Space>
-          </a>
+          </Link>
         </Dropdown>
       ) : (
         <div className="ul-div">
@@ -63,8 +62,8 @@ export function Menu() {
               Hesap Aç
             </Link>
           </ul>
-          <button className="kurum-kayit" name="Kurum Kaydı" href="/">
-            Kurum Kaydı
+          <button className="kurum-kayit" name="Kurum Kaydı" >
+             <Link to="/auth/kayit/kurumsal">Kurum Kaydı</Link>
           </button>
         </div>
       )}

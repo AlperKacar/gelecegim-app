@@ -5,11 +5,8 @@ export const Foot = styled.div`
     padding-top: 28px;
     padding-bottom:28px;
     background-color: #f9f9f9;
-<<<<<<< HEAD
     
   
-=======
->>>>>>> c24ec644b496fdddd5223f1a3749f89d7ca4ec71
   .container{
 
     width: 1115px;
