@@ -5,8 +5,13 @@
 }
 
 body {
+<<<<<<< HEAD
   background-color: #081229;
   /* background-color: #fff; */
+=======
+  /* background-color: #081229; */
+  background-color: #f8f8f8;
+>>>>>>> c24ec644b496fdddd5223f1a3749f89d7ca4ec71
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

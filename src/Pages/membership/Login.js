@@ -5,7 +5,7 @@ import { LoginDiv } from "./Logincss";
 import {AiFillFacebook} from "react-icons/ai"
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/auth";
-import {useNavigate, useLocation} from "react-router-dom"
+import {useNavigate, useLocation, Link} from "react-router-dom"
 import { Form,Button} from 'antd';
 import logosrc from "../../images/revize3.png";
 
@@ -43,8 +43,10 @@ function Login() {
         initialValues={{ remember: true }} 
         >
         <div className="Login">
-          <div className="Login-boyut">
-            <img src={logosrc} href="/" className="img-logo"/>
+          <div className="Login-boyut"> 
+            <Link  to="/">
+              <img src={logosrc} className="img-logo" alt="logo"/>
+            </Link>
             <div className="Input-div">
               <Form.Item
                 name="email"
@@ -70,7 +72,7 @@ function Login() {
                 },
                 ]}
                 >
-                  <InputValidation className="form-input" type="password" value={password} label="Password" onChange={e => setPassword(e.target.value)}/>
+                  <InputValidation className="form-input" type="password" value={password} label="Şifre" onChange={e => setPassword(e.target.value)}/>
         
               </Form.Item>
                 <Form.Item 
@@ -98,25 +100,25 @@ function Login() {
                       <span className="Or-span">OR</span>
                     <div className="Or-div-div"/>
                   </div>
-                  <a href="#" className="Facebook-login">
+                  <Link to="/" className="Facebook-login">
                     <AiFillFacebook size={20}/>
                     Login with Facebook
-                  </a>
-                  <a href="forgotPassword" className="Forgot-password">
+                  </Link>
+                  <Link to="/auth/forgotPassword" className="Forgot-password">
                     Forgot password?
-                  </a>
+                  </Link>
           </div>
         </div>
             <div className="Sign-up-boyut">
               <div >
                 <p>Don't have an account?
-                  <a href="signup" className="signup-login">
+                  <Link to="/auth/signup" className="signup-login">
                     Sign Up
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
-      </Form>    
+      </Form>
     </LoginDiv>
   )
 }

@@ -5,6 +5,7 @@ import {
   PageNotFound,
   ForgotPassword,
   ResetPassword,
+  BusinessSignup,
   SignUp,
 } from "./routerComponents";
 import LayoutMembership from "../Shared/layout/LayoutMembership";
@@ -27,6 +28,7 @@ const RouterMembership = () => {
           <Route path="login" element={<Login />} />
           <Route path="forgotPassword" element={<ForgotPassword />} />
           <Route path="resetPassword" element={<ResetPassword />} />
+          <Route path="kayit/kurumsal" element={<BusinessSignup />} />
           <Route path="signUp" element={<SignUp />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>

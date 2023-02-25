@@ -56,10 +56,10 @@ export function Menu() {
       ) : (
         <div className="ul-div">
           <ul>
-            <Link className="navLink pr-10" to="auth/login">
+            <Link className="navLink pr-10" to="/auth/login">
               Giriş Yap
             </Link>
-            <Link className="navLink border pl-10" to="auth/signup">
+            <Link className="navLink border pl-10" to="/auth/signup">
               Hesap Aç
             </Link>
           </ul>

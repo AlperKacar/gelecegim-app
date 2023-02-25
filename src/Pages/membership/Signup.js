@@ -9,6 +9,7 @@ import {
   Form,
   Checkbox
 } from 'antd';
+import { Link } from "react-router-dom";
 
 
 function Signup() {
@@ -37,7 +38,9 @@ function Signup() {
         <div className="Login" >
           <div className="Login-boyut">
             <div className="Singup-boyut">
-              <img src={logosrc} href="/" className="img-logo"/>
+              <Link  to="/">
+                <img src={logosrc} className="img-logo" alt="logo"/>
+              </Link>
                 <div className="Input-div">
                   <div className="Input-div-row">
                     <Form.Item
@@ -87,7 +90,7 @@ function Signup() {
                         },
                       ]}
                       >
-                      <InputValidation className="form-input" type="password" value={passwordone} label="Password" onChange={e => setPasswordone(e.target.value)}/>
+                      <InputValidation className="form-input" type="password" value={passwordone} label="Şifre" onChange={e => setPasswordone(e.target.value)}/>
                     </Form.Item>
                     <Form.Item
                       name="confirm"
@@ -134,20 +137,27 @@ function Signup() {
                         )}
                     </Form.Item>
               </div>
-                <a href="#" className="Facebook-login">
+                <Link to="/" className="Facebook-login">
                   <AiFillFacebook size={20}/>
                   Login with Facebook
-                </a>
+                </Link>
             </div>
           </div>
           <div className="Sign-up-boyut">
-          <div >
-            <p>Do you have an account? 
-              <a href="login" className="signup-login">
-                Login
-              </a>
+            <div className="displaycentercenter">
+            <p>Hesabın var mı? 
+              <Link to="/auth/login" className="signup-login">
+               Giriş Yap
+              </Link>
             </p>
-          </div>
+            </div>
+            <div className="displaycentercenter">
+            <p>İşletme sahibi misin? 
+              <Link to="/auth/kayit/kurumsal" className="signup-login">
+               Kurumsal Hesap Aç
+              </Link>
+            </p>
+            </div>
           </div>
         </div>
       </Form>
