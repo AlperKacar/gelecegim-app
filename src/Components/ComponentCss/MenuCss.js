@@ -65,9 +65,15 @@ export const KullaniciMenu = styled.div`
     height: 22px;
     position: relative;
     right: 7px;
-    
   }
   .alt-li {
     font-size: 17px;
   }
+  @media screen and (max-width: 720px) {
+
+    
+    display: none;
+   }
+
+
 `;

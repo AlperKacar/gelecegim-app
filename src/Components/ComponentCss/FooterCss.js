@@ -5,14 +5,11 @@ export const Foot = styled.div`
     padding-top: 28px;
     padding-bottom:28px;
     background-color: #f9f9f9;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    
   
   .container{
 
-    width: 1000px;
+    width: 1115px;
     
     margin: auto;
   }
@@ -21,17 +18,18 @@ export const Foot = styled.div`
   }
   .row{
     display: flex;
-    
+    justify-content:space-between ;
   }
   .footer-ul{
-   width:250px;
-    padding: 0 15px;
+    
+   // padding: 0 15px;
   }
   .footer-kategori{
     color: #555;
     font-size:14px;
     text-transform: capitalize;
     margin-bottom: 30px;
+    
   }
 
   a{
@@ -47,4 +45,13 @@ export const Foot = styled.div`
     text-decoration: underline;
 
   }
+  @media screen and (max-width:720px){
+     display: none;
+    .container{
+      display:none
+    } 
+
+    
+  }
+  
 `;
