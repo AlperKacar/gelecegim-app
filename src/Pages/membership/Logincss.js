@@ -7,7 +7,6 @@ position: fixed;
 display: grid;
 place-items: center;
 background-color: #081229;
-
 .Login{
 width: 350px;
 max-height: 455px;
@@ -21,7 +20,7 @@ border-radius: 10px;
     place-items: center;
 }
 .Singup-boyut{
-    margin: -96px 5px 5px ;
+    margin: -106px 5px 5px ;
     display: grid;
     place-items: center;
 
@@ -40,26 +39,30 @@ border-radius: 10px;
     display: flex;
     gap: 10px;
 }
-.input-tasarım{
+
+
+.ant-input{
     width: 100%;
-    height: 31.45px;
     font-size: 15px;
     padding: 3px 35px 0 18px; 
     outline: none;
     margin-right: 45px;
+    height: 35px !important;
+    padding: 3px 35px 0 18px !important; 
 }
 .input-text{
-    bottom: 25px;
+    bottom: 29px;
     background-color: white;
     left: 13px;
     padding: 0 5px;
-    margin: -5px;
+     margin: -5px; 
     position: absolute;
     pointer-events: none;
     color: black;
-    font-size: 15px;   
-
+    font-size: 15px;
 }
+
+
 .form-input{
     margin-top: 15px;
 }
@@ -113,6 +116,7 @@ border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 .signup-login{
     text-decoration: none;
@@ -159,5 +163,10 @@ border-radius: 10px;
     font-size: small;
     margin-left: 10px;
     pointer-events: none;
+}
+.displaycentercenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 `

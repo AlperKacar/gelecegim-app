@@ -18,11 +18,8 @@ const Login = lazy(() => import("../Pages/membership/Login"));
 const ForgotPassword = lazy(() => import("../Pages/membership/ForgotPassword"));
 const ResetPassword = lazy(() => import("../Pages/membership/ResetPassword"));
 const SignUp = lazy(() => import("../Pages/membership/Signup"));
+const BusinessSignup = lazy(() => import("../Pages/membership/BusinessSignup"));
 
-//BusinessShip
-const RouterBusinessShip = lazy(() => import("./routerBusinessShip"))
-const BusinessLogin = lazy(() => import("../Pages/BusinessShip/BusinessLogin"));
-const BusinessSignup = lazy(() => import("../Pages/BusinessShip/BusinessSignup"));
 
 //general
 const RouterGeneral = lazy(() => import("./routerGeneral"));
@@ -38,6 +35,7 @@ export {
   ForgotPassword,
   ResetPassword,
   SignUp,
+  BusinessSignup,
 
   RouterGeneral,
   OzelDers,
@@ -54,9 +52,6 @@ export {
   AdminResetPassword,
   AdminSignUp,
 
-  BusinessLogin,
-  BusinessSignup,
-  RouterBusinessShip,
   
   PageNotFound,
 };

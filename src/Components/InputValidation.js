@@ -11,28 +11,25 @@ export default function InputValidation({label, type = '', ...props}) {
     useEffect(() => {
         if (show) {
             setInputType('')
-
         }
         else if (type == 'password') {
             setInputType('password')
         }
     }, [show])
         
-        
-
     return(
         
         <>
                 <Input  type={inputType} className='input-tasarım' {...props} />
                 <small className="input-text">{label}</small>
-                {type == 'password' && props?.value &&  (
+                {type == 'password' &&  (
                     <div type="button" className="show-hide-button " onClick={() => setShow(show =>!show)}>
                        {
                         show? <a className="hide-show-trigger"></a> : <a className="show-hide-trigger"></a>
                        } 
                     </div>
                 )
-                }                  
+                }            
         </>
     )
     

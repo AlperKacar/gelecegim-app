@@ -5,11 +5,6 @@ export const Foot = styled.div`
     padding-top: 28px;
     padding-bottom:28px;
     background-color: #f9f9f9;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  
   .container{
 
     width: 1000px;

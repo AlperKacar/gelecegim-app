@@ -27,8 +27,8 @@ export default function Footer() {
         </ul>
         <ul className="footer-ul">
           <h5 className="footer-kategori">Kurumlar</h5>
-          <li><a className="footer-links">Neden Kurumlar?</a></li>
-          <li><a className="footer-links">Kurum Hesabı Açmak İstiyorum</a></li>
+          <li><a className="footer-links" href="">Neden Kurumlar?</a></li>
+          <li><a className="footer-links" href="/auth/kayit/kurumsal">Kurum Hesabı Açmak İstiyorum</a></li>
         </ul>
         <ul className="footer-ul">
           <h5 className="footer-kategori">Gizlilik Ve Kullanım</h5>
