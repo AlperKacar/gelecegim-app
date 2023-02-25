@@ -2,10 +2,16 @@ import styled from "styled-components";
 
 export const BusinessSignupDiv = styled.div`
 width: 100%;
-height: auto;
+height: 100%;
+position: fixed;
 display: flex;
 align-items: center;
+justify-content: center;
+.business-center-colum{
+display: flex;
 flex-direction: column;
+align-items: center;
+}
 .header-container-without-background{
 display: flex;
 justify-content: space-between;
