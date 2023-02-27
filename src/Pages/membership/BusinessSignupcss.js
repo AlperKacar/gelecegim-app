@@ -107,7 +107,6 @@ margin: 30px auto 15px;
     margin-top: 15px;
 }
 .show-hide-button{
-    position: absolute;
     cursor: pointer;
     user-select: none;
 
@@ -117,8 +116,8 @@ margin: 30px auto 15px;
     width: 21px;
     height: 18px;
     display: block;
-    right: -340px;
-    top: -25px;
+    top: 24px;
+    right: 16px;
     background: url(https://s0.shbdn.com/assets/images/password_hide:4e3854c839e1974448171eaef3866837.png) no-repeat;
     -webkit-background-size: 21px 18px;
     -moz-background-size: 21px 18px;
@@ -126,8 +125,8 @@ margin: 30px auto 15px;
 }
 .hide-show-trigger{
     position: absolute;
-    right: -340px;
-    top: -25px;
+    top: 24px;
+    right: 16px;
     width: 21px;
     height: 18px;
     display: block;
@@ -159,8 +158,11 @@ margin: 30px auto 15px;
 .eula-area{
     font-size: 12px;
 }
-@media screen and (max-width: 720px) {
-position: unset;
+@media screen and (max-width: 900px) {
+    display: flex;
+    position: unset;
+    align-items: unset;
+    justify-content: unset;
 
 .corporate-info{
     display: none;
@@ -169,9 +171,10 @@ position: unset;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 .form-corporate{
-    max-width: 400px;
+    width: 90%;
 }   
 .form-container{
     display: flex;
@@ -208,6 +211,7 @@ position: unset;
     width: auto;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .redirect-to-login-register{
 
@@ -215,28 +219,16 @@ position: unset;
     margin-left: 0;
 }
 .show-hide-trigger{
-    position: absolute;
-    width: 21px;
-    height: 18px;
-    display: block;
-    right: -290px;
-    top: -25px;
-    background: url(https://s0.shbdn.com/assets/images/password_hide:4e3854c839e1974448171eaef3866837.png) no-repeat;
-    -webkit-background-size: 21px 18px;
-    -moz-background-size: 21px 18px;
-    background-size: 21px 18px;
+    top: 24px;
+    right: 16px;
 }
 .hide-show-trigger{
-    position: absolute;
-    right: -290px;
-    top: -25px;
-    width: 21px;
-    height: 18px;
-    display: block;
-    background: url(https://s0.shbdn.com/assets/images/password_show:893e09be95762713a91c214a7514aacf.png) no-repeat;
-    -webkit-background-size: 21px 16px;
-    -moz-background-size: 21px 16px;
-    background-size: 21px 16px;
+    top: 24px;  
+    right: 16px;
 }
+.ant-form-item{
+    width: 100%;
+}
+
 }
 `

@@ -41,6 +41,7 @@ function Login() {
         <title>Login</title>
       </Helmet>
       <Form 
+      className="Form-boyut"
         form={form}
         name="normal_login"
         initialValues={{ remember: true }} 

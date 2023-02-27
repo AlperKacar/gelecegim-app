@@ -32,6 +32,7 @@ function Signup() {
         <title>Signup</title>
       </Helmet>
       <Form
+      className="Form-boyut"
         form={form}
         name="dynamic_rule"
         >

@@ -7,6 +7,7 @@ position: fixed;
 display: grid;
 place-items: center;
 background-color: #081229;
+
 .Login{
 width: 350px;
 max-height: 455px;
@@ -124,19 +125,13 @@ border-radius: 10px;
     color: blue;
     margin-left: 5px;
 }
-.show-hide-button{
-    position: absolute;
-    cursor: pointer;
-    user-select: none;
-
-}
 .show-hide-trigger{
     position: absolute;
     width: 21px;
     height: 18px;
     display: block;
-    right: -262px;
-    top: -25px;
+    top: 24px;
+    right: 9px;
     background: url(https://s0.shbdn.com/assets/images/password_hide:4e3854c839e1974448171eaef3866837.png) no-repeat;
     -webkit-background-size: 21px 18px;
     -moz-background-size: 21px 18px;
@@ -144,11 +139,11 @@ border-radius: 10px;
 }
 .hide-show-trigger{
     position: absolute;
+    top: 24px;
+    right: 9px;
     width: 21px;
     height: 18px;
     display: block;
-    right: -262px;
-    top: -25px;
     background: url(https://s0.shbdn.com/assets/images/password_show:893e09be95762713a91c214a7514aacf.png) no-repeat;
     -webkit-background-size: 21px 16px;
     -moz-background-size: 21px 16px;
@@ -170,6 +165,20 @@ border-radius: 10px;
     justify-content: center;
 }
 @media screen and (max-width: 720px) {
-height: 100vh;
+    overflow: scroll;
+    .Sign-up-boyut{
+    margin-bottom:50px;
+    width: 100%;
 }
+.Login{
+    width: 100%;
+}  
+.Form-boyut{
+    width: 90%;
+}
+.Input-div{
+    width: 90%;
+} 
+}
+
 `
