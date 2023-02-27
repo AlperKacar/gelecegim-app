@@ -169,4 +169,7 @@ border-radius: 10px;
     align-items: center;
     justify-content: center;
 }
+@media screen and (max-width: 720px) {
+height: 100vh;
+}
 `

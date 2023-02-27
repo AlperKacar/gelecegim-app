@@ -159,4 +159,84 @@ margin: 30px auto 15px;
 .eula-area{
     font-size: 12px;
 }
+@media screen and (max-width: 720px) {
+position: unset;
+
+.corporate-info{
+    display: none;
+}
+.header-container-without-background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-corporate{
+    max-width: 400px;
+}   
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.right-section{
+    padding: 0;
+
+}
+.left-section{
+    padding: 0;
+}
+.section-border{
+    width: 100%;
+    border:none;
+} 
+.extra-text-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.kvkk{
+    width: auto;
+}
+.sign-up-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eula-and-button {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+.redirect-to-login-register{
+
+    margin-top: 50px;
+    margin-left: 0;
+}
+.show-hide-trigger{
+    position: absolute;
+    width: 21px;
+    height: 18px;
+    display: block;
+    right: -290px;
+    top: -25px;
+    background: url(https://s0.shbdn.com/assets/images/password_hide:4e3854c839e1974448171eaef3866837.png) no-repeat;
+    -webkit-background-size: 21px 18px;
+    -moz-background-size: 21px 18px;
+    background-size: 21px 18px;
+}
+.hide-show-trigger{
+    position: absolute;
+    right: -290px;
+    top: -25px;
+    width: 21px;
+    height: 18px;
+    display: block;
+    background: url(https://s0.shbdn.com/assets/images/password_show:893e09be95762713a91c214a7514aacf.png) no-repeat;
+    -webkit-background-size: 21px 16px;
+    -moz-background-size: 21px 16px;
+    background-size: 21px 16px;
+}
+}
 `

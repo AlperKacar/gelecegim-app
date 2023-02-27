@@ -23,13 +23,16 @@ function Login() {
 
  const handleSubmit = e => 
     {
-      e.preventDefault()
+      const response= e.preventDefault()
       dispatch(setUser({
       email,password
       }))
+      if (response){
       navigate(location.state?.return_url || '/', {
       replace: true
-    })}
+    })
+    }
+  }
 
 
   return (
@@ -59,6 +62,9 @@ function Login() {
                   required: true,
                   message: 'Lütfen E-postanızı giriniz!',
                 },
+                {
+                  whitespace:true
+                }
                 ]}
                 >
                 <InputValidation value={email} label="E-posta" onChange={e => setEmail(e.target.value)}/>
@@ -70,6 +76,9 @@ function Login() {
                   required: true,
                   message: 'Lütfen şifrenizi girin!',
                 },
+                {
+                  whitespace:true
+                }
                 ]}
                 >
                   <InputValidation className="form-input" type="password" value={password} label="Şifre" onChange={e => setPassword(e.target.value)}/>

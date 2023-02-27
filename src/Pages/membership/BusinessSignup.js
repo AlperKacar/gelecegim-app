@@ -65,6 +65,7 @@ function BusinessSignup() {
         <div className="registration-corporate">
           <h3>Kurumsal Hesap Aç</h3>
           <Form
+            // autoComplete="off"
             form={form}
             name="dynamic_rule"
             >
@@ -77,6 +78,9 @@ function BusinessSignup() {
                             { 
                               required: true, 
                               message: 'Lütfen adınızı giriniz!', whitespace: true 
+                            },
+                            {
+                              whitespace:true
                             }
                           ]}
                         >
@@ -88,6 +92,9 @@ function BusinessSignup() {
                           { 
                             required: true, 
                             message: 'Lütfen soyisim giriniz!', whitespace: true 
+                          },
+                          {
+                            whitespace:true
                           }
                         ]}
                         >
@@ -105,6 +112,9 @@ function BusinessSignup() {
                               required: true,
                               message: 'Lütfen E-postanızı giriniz!',
                             },
+                            {
+                              whitespace:true
+                            }
                           ]}
                         >
                           <InputValidation value={email} className="form-input"  label="E-posta" onChange={e => setEmail(e.target.value)}/>
@@ -116,6 +126,9 @@ function BusinessSignup() {
                             required: true,
                             message: 'Lütfen şifrenizi girin!',
                           },
+                          {
+                            whitespace:true
+                          }
                         ]}
                         >
                         <InputValidation className="form-input" type="password" value={password} label="Password" onChange={e => setPassword(e.target.value)}/>
@@ -127,6 +140,9 @@ function BusinessSignup() {
                             required: true,
                             message: 'Lütfen telefon numaranızı girin!',
                           },
+                          {
+                            whitespace:true
+                          }
                         ]}
                         >
                         <InputValidation className="form-input" value={phone} label="Sabit Telefon" />
@@ -174,6 +190,9 @@ function BusinessSignup() {
                             { 
                               required: true, 
                               message: 'Lütfen adınızı giriniz!', whitespace: true 
+                            },
+                            {
+                              whitespace:true
                             }
                           ]}
                         >
@@ -185,6 +204,9 @@ function BusinessSignup() {
                           { 
                             required: true, 
                             message: 'Lütfen soyisim giriniz!', whitespace: true 
+                          },
+                          {
+                            whitespace:true
                           }
                         ]}
                         >
@@ -196,7 +218,7 @@ function BusinessSignup() {
               <div className="form-extra-container">
                 <div className="extra-text-wrapper">
                   <div className="kvkk">
-                    <p>Bu sayfadaki bilgiler sahibinden.com hesabı ve fatura gönderimi dahil olmak üzere tüm bilgilendirmelerimiz için alınmaktadır.
+                    <p>Bu sayfadaki bilgiler geleceğim.com hesabı ve fatura gönderimi dahil olmak üzere tüm bilgilendirmelerimiz için alınmaktadır.
                       Kişisel verilerin korunması hakkında detaylı bilgiye buradan ulaşabilirsiniz.</p>
                   </div>
                   <div className="eula-and-button">
