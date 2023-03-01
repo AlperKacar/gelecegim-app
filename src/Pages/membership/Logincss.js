@@ -27,7 +27,7 @@ border-radius: 10px;
 
 }
 .img-logo{
-    margin: 20px;   
+    margin:30px 0 10px 0; 
     background-color: yellow;
     width: 136px;
     height: 34px;
@@ -165,9 +165,8 @@ border-radius: 10px;
     justify-content: center;
 }
 @media screen and (max-width: 720px) {
-    overflow: scroll;
+    overflow: hidden;
     .Sign-up-boyut{
-    margin-bottom:50px;
     width: 100%;
 }
 .Login{

@@ -1,14 +1,5 @@
-import { Helmet} from "react-helmet"
+import { Outlet } from "react-router-dom"
 
-function LayoutAdminPrivate() {
-  return (
-    <div>
-      <Helmet>
-        <title>LayoutAdminPrivate</title>
-      </Helmet>
-      LayoutAdminPrivate
-    </div>
-  )
+export default  function LayoutAdminPrivate() {
+  return <Outlet/>
 }
-
-export default LayoutAdminPrivate

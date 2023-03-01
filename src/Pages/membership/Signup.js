@@ -50,6 +50,10 @@ function Signup() {
                           { 
                             required: true, 
                             message: 'Lütfen adınızı giriniz!', whitespace: true 
+                          },
+                          {
+                            whitespace:true,
+                            message:"Boşluk içeremez!"
                           }
                         ]}
                       >
@@ -61,6 +65,10 @@ function Signup() {
                         { 
                           required: true, 
                           message: 'Lütfen soyisim giriniz!', whitespace: true 
+                        },
+                        {
+                          whitespace:true,
+                          message:"Boşluk içeremez!"
                         }
                       ]}
                       >
@@ -89,6 +97,10 @@ function Signup() {
                           required: true,
                           message: 'Lütfen şifrenizi girin!',
                         },
+                        {
+                          whitespace:true,
+                          message:"Boşluk içeremez!"
+                        }
                       ]}
                       >
                       <InputValidation className="form-input" type="password" value={passwordone} label="Şifre" onChange={e => setPasswordone(e.target.value)}/>

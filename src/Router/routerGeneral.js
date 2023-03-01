@@ -8,7 +8,7 @@ import {
   Home
 } from "./routerComponents";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
-import GeneralAuth from "../Shared/auth/GeneralAuth";
+//import GeneralAuth from "../Shared/auth/GeneralAuth";
 import LayoutGeneral from "../Shared/layout/LayoutGeneral";
 
 const RouterGeneral = () => {
@@ -17,9 +17,7 @@ const RouterGeneral = () => {
       <Routes>
         <Route
           element={
-            <GeneralAuth>
-              <LayoutGeneral />
-            </GeneralAuth>
+              <LayoutGeneral/>
           }
         >
           <Route path="/" element={<Home />} />

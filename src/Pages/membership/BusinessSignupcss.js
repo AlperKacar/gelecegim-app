@@ -57,7 +57,7 @@ margin: 30px auto 15px;
 }
 .split-form{
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }
 .right-section{
     border-width: 0 0 0 1px;
@@ -76,6 +76,7 @@ margin: 30px auto 15px;
     padding: 3px 35px 0 18px !important; 
     border-radius: 1px!important;
 }
+
 .input-text{
     bottom: 29px;
     background-color: white;
@@ -148,7 +149,7 @@ margin: 30px auto 15px;
     display: flex;
 }
 .captcha-disclaimer {
-    margin-top: 20px;
+    margin-top: 50px;
     font-size:10px;
 }
 .redirect-to-login-register{
@@ -174,7 +175,7 @@ margin: 30px auto 15px;
     width: 100%;
 }
 .form-corporate{
-    width: 90%;
+    width: 95%;
 }   
 .form-container{
     display: flex;
@@ -203,6 +204,7 @@ margin: 30px auto 15px;
     width: auto;
 }
 .sign-up-container {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +230,15 @@ margin: 30px auto 15px;
 }
 .ant-form-item{
     width: 100%;
-}
 
+}
+.Form-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.registration-corporate{
+    padding: 20px;
+}
 }
 `

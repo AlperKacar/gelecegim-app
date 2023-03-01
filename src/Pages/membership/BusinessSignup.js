@@ -57,7 +57,7 @@ function BusinessSignup() {
         <div className="corporate-info">
         <span >Kurumsal Çağrı Merkezi
         </span>
-        <strong>0850 222 44 45</strong>
+        <strong className="phone">0850 *** ** **</strong>
 
         </div>  
       </div>
@@ -74,17 +74,19 @@ function BusinessSignup() {
                   <div className="split-form ">
                   <Form.Item
                         name="name"
+                        onChange={e => setName(e.target.value)}
                         rules={[
                             { 
                               required: true, 
                               message: 'Lütfen adınızı giriniz!', whitespace: true 
                             },
                             {
-                              whitespace:true
+                              whitespace:true,
+                              message:"Boşluk içeremez!"
                             }
                           ]}
                         >
-                        <InputValidation type="text" className="form-input"  value={name} label="İsim" onChange={e => setName(e.target.value)}/>
+                        <InputValidation type="text" className="form-input" maxLength={10} value={name} label="İsim" />
                       </Form.Item>
                       <Form.Item
                         name="surname"
@@ -94,7 +96,8 @@ function BusinessSignup() {
                             message: 'Lütfen soyisim giriniz!', whitespace: true 
                           },
                           {
-                            whitespace:true
+                            whitespace:true,
+                            message:"Boşluk içeremez!"
                           }
                         ]}
                         >
@@ -103,17 +106,16 @@ function BusinessSignup() {
                   </div>
                   <Form.Item
                           name="email"
+                          addonAfter='0('
                           rules={[
                             {
+                              
                               type: 'email',
                               message: 'Geçerli E-posta giriniz!',
                             },
                             {
                               required: true,
                               message: 'Lütfen E-postanızı giriniz!',
-                            },
-                            {
-                              whitespace:true
                             }
                           ]}
                         >
@@ -127,7 +129,8 @@ function BusinessSignup() {
                             message: 'Lütfen şifrenizi girin!',
                           },
                           {
-                            whitespace:true
+                            whitespace:true,
+                            message:"Boşluk içeremez!"
                           }
                         ]}
                         >
@@ -141,14 +144,21 @@ function BusinessSignup() {
                             message: 'Lütfen telefon numaranızı girin!',
                           },
                           {
-                            whitespace:true
+                            whitespace:true,
+                            message:"Boşluk içeremez!"
                           }
                         ]}
                         >
-                        <InputValidation className="form-input" value={phone} label="Sabit Telefon" />
+                        <InputValidation className="form-input phone" value={phone} label="Sabit Telefon" />
                       </Form.Item>
 
-                      <Form.Item>
+                      <Form.Item 
+                      rules={[
+                        {
+                          required: true
+                        }
+                      ]}
+                      >
                     
                         <SelectValidation value={select}   label="Kurum Alanınız" onChange={e => setSelect(e.target.value)} />
 
@@ -192,7 +202,8 @@ function BusinessSignup() {
                               message: 'Lütfen adınızı giriniz!', whitespace: true 
                             },
                             {
-                              whitespace:true
+                              whitespace:true,
+                              message:"Boşluk içeremez!"
                             }
                           ]}
                         >
@@ -206,7 +217,8 @@ function BusinessSignup() {
                             message: 'Lütfen soyisim giriniz!', whitespace: true 
                           },
                           {
-                            whitespace:true
+                            whitespace:true,
+                            message:"Boşluk içeremez!"
                           }
                         ]}
                         >

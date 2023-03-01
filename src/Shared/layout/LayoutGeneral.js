@@ -1,14 +1,15 @@
-import { Helmet} from "react-helmet"
 
-function LayoutGeneral() {
+import Footer from "../../Components/Footer"
+import Header from "../../Components/Header"
+import { Outlet } from 'react-router-dom'
+export default function LayoutGeneral() {
   return (
-    <div>
-      <Helmet>
-        <title>LayoutGeneral</title>
-      </Helmet>
-      LayoutGeneral
-    </div>
+    <>
+    <Header/>
+    <Outlet/>
+    <Footer/>
+    </>
+
+
   )
 }
-
-export default LayoutGeneral

@@ -5,14 +5,16 @@ import { Head } from "./ComponentCss/HeaderCss";
 import Search from "./Search";
 
 import { Menu } from "./Menu";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <Head>
       <div className="Navbar">
-        
+        <Link to="/">
         <img className="reslog" src={reslog} alt="responsive logo" />
         <img className="Logom" src={logosrc} alt="selam" />
+        </Link>
         <Search />
         <Menu />
       </div>

@@ -23,16 +23,16 @@ function Login() {
 
  const handleSubmit = e => 
     {
-      const response= e.preventDefault()
+       e.preventDefault()
       dispatch(setUser({
       email,password
       }))
-      if (response){
+      
       navigate(location.state?.return_url || '/', {
       replace: true
     })
     }
-  }
+  
 
 
   return (
@@ -63,9 +63,6 @@ function Login() {
                   required: true,
                   message: 'Lütfen E-postanızı giriniz!',
                 },
-                {
-                  whitespace:true
-                }
                 ]}
                 >
                 <InputValidation value={email} label="E-posta" onChange={e => setEmail(e.target.value)}/>
@@ -76,13 +73,16 @@ function Login() {
                 {
                   required: true,
                   message: 'Lütfen şifrenizi girin!',
+                  
                 },
                 {
-                  whitespace:true
-                }
+                  whitespace:true,
+                  message:"Boşluk içeremez!"
+                },
+                { min: 6, message: 'Şifre en az 6 karakter olmalıdır.' }
                 ]}
                 >
-                  <InputValidation className="form-input" type="password" value={password} label="Şifre" onChange={e => setPassword(e.target.value)}/>
+                  <InputValidation  className="form-input" type="password" value={password} label="Şifre" onChange={e => setPassword(e.target.value)}/>
         
               </Form.Item>
                 <Form.Item 

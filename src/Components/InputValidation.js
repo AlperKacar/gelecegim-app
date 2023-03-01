@@ -22,7 +22,7 @@ export default function InputValidation({label, type = '', ...props}) {
     return(
         
         <>
-                <Input  type={inputType} className='input-tasarım' {...props} />
+                <Input  type={inputType} {...props}  />
                 <small className="input-text">{label}</small>
                 {type == 'password' &&  (
                     <div type="button" className="show-hide-button " onClick={() => setShow(show =>!show)}>
