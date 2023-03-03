@@ -22,10 +22,10 @@ export function Menu() {
       label: <Link to="/profile">Profili Görüntüle</Link>,
       key: "0",
     },
-    {
+    /* {
       label: <Link to="/">Profili Düzenle</Link>,
       key: "1",
-    },
+    }, */
     {
       type: "divider",
     },

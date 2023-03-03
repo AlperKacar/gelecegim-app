@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const Head = styled.div`
-  width: 100%;
-  height: 57.9px;
-  background-color: #3f475f;
-  display: grid;
+
+  
+background-color: #3f475f;
   
   .reslog {
     display: none;
   }
 
   .Navbar {
+    
     width: 1115px;
+    height: 57.9px;
     display: flex;
     align-items: center;
     list-style: none;
@@ -38,12 +39,14 @@ export const Head = styled.div`
       display: none;
     }
     .reslog {
+      width: 30px;
+      height: 30px;
       background-color: #ffe800;
       display: block;
       position: absolute;
-      left: 16px;
-      width: 30px;
-      height: 30px;
+      left: 5px;
+      top: 11px;
+      
       border-radius: 5px;
     }
   }
