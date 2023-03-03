@@ -17,7 +17,6 @@ export function Menu() {
       replace: true,
     });
   };
-  console.log(isLoggedIn)
   const items = [
     {
       label: <Link to="/profile">Profili Görüntüle</Link>,
