@@ -1,6 +1,6 @@
 import { Helmet} from "react-helmet"
 import Body from "../Components/Body"
-
+import ResSubBar from "../Components/ResSubBar"
 
 function Home() {
 
@@ -12,6 +12,7 @@ function Home() {
       <meta name="description" content="anasayfa description"/>
     </Helmet>
       <Body/>
+      <ResSubBar/>
     </>
   )
 }

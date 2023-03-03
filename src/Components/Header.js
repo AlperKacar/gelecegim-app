@@ -13,7 +13,7 @@ function Header() {
       <div className="Navbar">
         <Link to="/">
         <img className="reslog" src={reslog} alt="responsive logo" />
-        <img className="Logom" src={logosrc} alt="selam" />
+        <img className="Logom" src={logosrc} alt="gelecegim" />
         </Link>
         <Search />
         <Menu />
