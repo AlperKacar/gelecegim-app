@@ -38,7 +38,7 @@ border-radius: 10px;
 }
 .Input-div-row{
     display: flex;
-    gap: 10px;
+    gap: 25px;
 }
 
 
