@@ -23,7 +23,7 @@ export const ResSub = styled.div`
         list-style: none;
     }
     .sub-li{
-        height:   
+        height:45px;
         align-items: center;
         display: grid;
         font-size: 12px;
@@ -47,6 +47,9 @@ export const ResSub = styled.div`
       font-size: 12px;
       justify-content: center;
       align-items: center;
+    }
+    .sub-li:last-child{
+      border-right: none;
     }
   }
 `;

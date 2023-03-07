@@ -7,7 +7,7 @@ import { GrAchievement } from "react-icons/gr";
 import { useDispatch} from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { setUser } from "../store/auth";
-function ResSubBar() {
+const ResSubBar=() => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
