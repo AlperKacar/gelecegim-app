@@ -1,18 +1,18 @@
 import React from "react";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../store/auth";
+import { userInformationData } from "../store/private/userInformationSlice";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
 import { BiChevronDown } from "react-icons/bi";
 export function Menu() {
-  const user = useSelector((state) => state.auth.user);
+  const {isLoggedIn} = useSelector(userInformationData)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const logoutHandle = () => {
-    dispatch(setUser(false));
+    dispatch(isLoggedIn());
     navigate(location.state?.return_url || "/", {
       replace: true,
     });
@@ -43,7 +43,7 @@ export function Menu() {
   ];
   return (
     <KullaniciMenu>
-      {user ? (
+      {isLoggedIn ? (
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">

@@ -4,17 +4,23 @@ import { IoSearchSharp } from "react-icons/io5";
 import {RiMessage2Line} from "react-icons/ri";
 import {CgProfile} from "react-icons/cg";
 import { GrAchievement } from "react-icons/gr";
-import { useDispatch} from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+<<<<<<< HEAD
 import { setUser } from "../store/auth";
 const ResSubBar=() => {
   
+=======
+import { userInformationData } from "../store/private/userInformationSlice";
+function ResSubBar() {
+  const {isLoggedIn} = useSelector(userInformationData)
+>>>>>>> d00deebf0d60863b8cf79be89f61f088003809c7
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const logoutHandle = () => {
-    dispatch(setUser(false));
+const logoutHandle = () => {
+    dispatch(isLoggedIn());
     navigate(location.state?.return_url || "/", {
       replace: true,
     });

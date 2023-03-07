@@ -2,11 +2,12 @@ import Router from "./Router/index"
 import { useSelector } from "react-redux";
 import LoadingTruck from "./Shared/commonComponents/loading/LoadingTruck";
 import { useEffect,useState } from "react";
+import { userInformationData } from "./store/private/userInformationSlice";
 
 
 function App() {
 
-  const user = useSelector(state => state.auth.user)
+  const isLoggedIn = useSelector(userInformationData)
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() =>{
@@ -18,7 +19,7 @@ function App() {
     }
   },[])
 
-  if(!user && !redirect){
+  if(isLoggedIn && !redirect){
     return<LoadingTruck/>
   }
 

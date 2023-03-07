@@ -8,7 +8,8 @@ import {
   Button,
   Form,
   Checkbox,
-  Radio
+  Radio,
+  message
 } from 'antd';
 import { Link } from "react-router-dom";
 
@@ -40,7 +41,11 @@ function BusinessSignup() {
     setTcno(!tcno)
   };
   const [disabled, setDisabled] = useState(false);
-  
+  const onFinish=()=>{
+    setTimeout(()=>{
+      message.success('Login success')
+    },1000)
+  }
   const toggleDisable = () => {
     setDisabled(!disabled);
   };
@@ -66,6 +71,7 @@ function BusinessSignup() {
           <h3>Kurumsal Hesap Aç</h3>
           <Form
             // autoComplete="off"
+            onFinish={onFinish}
             form={form}
             name="dynamic_rule"
             >
@@ -86,7 +92,7 @@ function BusinessSignup() {
                             }
                           ]}
                         >
-                        <InputValidation type="text" className="form-input" maxLength={10} value={name} label="İsim" />
+                        <InputValidation type="text" className="form-input"  value={name} label="İsim" />
                       </Form.Item>
                       <Form.Item
                         name="surname"
@@ -138,6 +144,7 @@ function BusinessSignup() {
                       </Form.Item>
                       <Form.Item
                         name="phone"
+                        
                         rules={[
                           {
                             required: true,
@@ -146,7 +153,8 @@ function BusinessSignup() {
                           {
                             whitespace:true,
                             message:"Boşluk içeremez!"
-                          }
+                          },
+                          
                         ]}
                         >
                         <InputValidation className="form-input phone" value={phone} label="Sabit Telefon" />

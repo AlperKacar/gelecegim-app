@@ -4,9 +4,9 @@ import { useState } from "react";
 import { LoginDiv } from "./Logincss";
 import {AiFillFacebook} from "react-icons/ai"
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/auth";
+import {  setItemList} from "../../store/userInformation";
 import {useNavigate, useLocation, Link} from "react-router-dom"
-import { Form,Button} from 'antd';
+import { Form,Button, message} from 'antd';
 import logosrc from "../../images/revize3.png";
 
 function Login() {
@@ -19,22 +19,22 @@ function Login() {
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
 
-  
 
  const handleSubmit = e => 
     {
-       e.preventDefault()
-      dispatch(setUser({
-      email,password
-      }))
-      
-      navigate(location.state?.return_url || '/', {
-      replace: true
-    })
+      setTimeout(()=>{
+        message.success('Giriş yapıldı')
+        e.preventDefault()
+       dispatch(setItemList({
+       email,password
+       }))
+       
+       navigate(location.state?.return_url || '/', {
+       replace: true
+     })
+      },1000)
     }
   
-
-
   return (
     <LoginDiv>
       <Helmet>
@@ -43,8 +43,6 @@ function Login() {
       <Form 
       className="Form-boyut"
         form={form}
-        name="normal_login"
-        initialValues={{ remember: true }} 
         >
         <div className="Login">
           <div className="Login-boyut"> 
@@ -58,6 +56,7 @@ function Login() {
                 {
                   type: 'email',
                   message: 'Geçerli E-posta giriniz!',
+                  
                 },
                 {
                   required: true,
@@ -73,13 +72,16 @@ function Login() {
                 {
                   required: true,
                   message: 'Lütfen şifrenizi girin!',
-                  
                 },
                 {
                   whitespace:true,
                   message:"Boşluk içeremez!"
                 },
-                { min: 6, message: 'Şifre en az 6 karakter olmalıdır.' }
+                {
+                  min: 6, 
+                  max: 30, 
+                  message: 'Şifre en az 6 en fazla 30 karakter olmalıdır.' 
+                }
                 ]}
                 >
                   <InputValidation  className="form-input" type="password" value={password} label="Şifre" onChange={e => setPassword(e.target.value)}/>
@@ -93,7 +95,8 @@ function Login() {
                       <Button
                         className="Button"
                         onClick={handleSubmit}
-                        type="primary"
+                        type="primary" 
+                        htmlType="submit"
                         disabled=
                           {
                             !form.isFieldsTouched(true) ||

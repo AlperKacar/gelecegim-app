@@ -1,24 +1,21 @@
 import { memo } from "react";
-import {Navigate, useLocation} from"react-router-dom"
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
+import { useLocation, Navigate } from "react-router-dom";
+import { userInformationData } from "../../store/private/userInformationSlice";
 
-const MembershipAuth = memo(({children}) => {
+const MembershipAuth = memo(({ children }) => {
+  const {isLoggedIn} = useSelector(userInformationData);
+  let location = useLocation();
+ 
+  if (isLoggedIn) {
+    return <Navigate to="/" replace={true} state={{
+        return_url: location.pathname
+    }}
+    
+    />
+}
 
-    const user = useSelector(state => state.auth.user)
-    let location = useLocation()
+  return children;
+});
 
-    if (user) {
-        return <Navigate to="/" replace={true} state={{
-            return_url: location.pathname
-        }}
-        
-        />
-    }
-
-
-
-
-return children
-})
-
-export default MembershipAuth
+export default MembershipAuth;
