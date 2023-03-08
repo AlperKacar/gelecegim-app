@@ -1,20 +1,11 @@
 import React from 'react'
 import {ResSub} from "./ComponentCss/ResSubBarCss"
-import { IoSearchSharp } from "react-icons/io5";
-import {RiMessage2Line} from "react-icons/ri";
-import {CgProfile} from "react-icons/cg";
-import { GrAchievement } from "react-icons/gr";
 import { useDispatch,useSelector} from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-<<<<<<< HEAD
-import { setUser } from "../store/auth";
-const ResSubBar=() => {
-  
-=======
 import { userInformationData } from "../store/private/userInformationSlice";
+import {HomeOutlined, SearchOutlined, PlusCircleOutlined, MessageOutlined,UserOutlined} from "@ant-design/icons";
 function ResSubBar() {
   const {isLoggedIn} = useSelector(userInformationData)
->>>>>>> d00deebf0d60863b8cf79be89f61f088003809c7
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,10 +20,11 @@ const logoutHandle = () => {
     <ResSub>
       <div className="sub-bar">
       <ul className='sub-ul'>
-        <li className='sub-li'><IoSearchSharp className='icon'/> Arama </li>
-        <li className='sub-li'><CgProfile className='icon'/> Profilim </li>
-        <li className='sub-li'><Link className="link" onClick={logoutHandle}><RiMessage2Line className='icon'/> Mesajlar</Link></li>
-        <li className='sub-li'><Link className="link" to="/auth/signup"><GrAchievement className='icon'/> Kayıt</Link></li>
+        <li className='sub-li'><Link className="link" to="/"><HomeOutlined className='icon' /></Link> </li>
+        <li className='sub-li'><Link className="link" to=""><SearchOutlined className='icon'/> </Link> </li>
+        <li className='sub-li'><Link className="link" to="/auth/signup"><PlusCircleOutlined className='icon'/></Link> </li>
+        <li className='sub-li'><Link className="link" to=""><MessageOutlined className='icon'/></Link></li>
+        <li className='sub-li' onClick={logoutHandle}><UserOutlined className='icon'/></li>
      
      
       </ul>
