@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import LoadingTruck from "./Shared/commonComponents/loading/LoadingTruck";
 import { useEffect,useState } from "react";
 import { userInformationData } from "./store/private/userInformationSlice";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -24,7 +24,10 @@ function App() {
   }
 
   return (
-    <Router/>
+    <>
+      <Router/>
+    </>
+
   )
 }
 

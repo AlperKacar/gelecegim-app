@@ -25,7 +25,7 @@ function Signup() {
   const toggleDisable = () => {
     setDisabled(!disabled);
   };
-  
+
   return (
     <LoginDiv>
       <Helmet>

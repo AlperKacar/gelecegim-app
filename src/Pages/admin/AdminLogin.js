@@ -1,5 +1,4 @@
 import { Helmet} from "react-helmet"
-import { Formik, Form} from 'formik';
 import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "../membership/Logincss";
@@ -22,15 +21,6 @@ function AdminLogin() {
       <Helmet>
         <title>AdminLogin</title>
       </Helmet>
-      <Formik
-      initialValues={{
-        email:'', 
-        password:''
-      }}
-
-      >
-       {({}) => (
-         <Form>
           <div className="Login" >
             <div className="Login-boyut">
               <a href="login" className="img-logo"/>
@@ -44,9 +34,6 @@ function AdminLogin() {
               </a>
             </div>
           </div>
-         </Form>
-       )}
-      </Formik>
     </LoginDiv>
   )
 }
