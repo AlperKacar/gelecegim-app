@@ -14,7 +14,7 @@
 
 Bu Proje Kütahya Dumlupınar Üniversitesi Bilgisayar Mühendisliği Bölümü 2022-2023 Bulanık Mantık Projeleri Kapsamında Hazırlanmıştır.
 
-
+Frontend Kısmı
 -Ertan Eracar
 -Alper Kacar
 

@@ -44,7 +44,7 @@ background-color: #3f475f;
       background-color: #ffe800;
       display: block;
       position: absolute;
-      left: 5px;
+      left: 8px;
       top: 11px;
       
       border-radius: 5px;

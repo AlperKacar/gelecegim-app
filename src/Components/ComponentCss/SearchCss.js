@@ -115,8 +115,8 @@ export const Searchdiv = styled.div`
       justify-content: center;
       align-items: center;
       position: absolute;
-      right: 5px;
-      top: 10px;
+      right: 6px;
+      top: 9px;
     }
   }
 `;
