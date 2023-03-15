@@ -2,12 +2,13 @@ import { Helmet} from "react-helmet"
 import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
-import {AiFillFacebook} from "react-icons/ai"
 import { useDispatch } from "react-redux";
 import {  setItemList} from "../../store/userInformation";
 import {useNavigate, useLocation, Link} from "react-router-dom"
 import { Form,Button, message} from 'antd';
 import logosrc from "../../images/revize3.png";
+import { GoogleLogin } from '@react-oauth/google';
+
 
 function Login() {
 
@@ -15,11 +16,15 @@ function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const [form] = Form.useForm();
-  
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
-
-
+  
+  const responseMessage = (response) => {
+    console.log(response);
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
  const handleSubmit = e => 
     {
       setTimeout(()=>{
@@ -113,10 +118,7 @@ function Login() {
                       <span className="Or-span">OR</span>
                     <div className="Or-div-div"/>
                   </div>
-                  <Link to="/" className="Facebook-login">
-                    <AiFillFacebook size={20}/>
-                    Login with Facebook
-                  </Link>
+                  <GoogleLogin  onSuccess={responseMessage} onError={errorMessage} >asd</GoogleLogin>
                   <Link to="/auth/forgotPassword" className="Forgot-password">
                     Forgot password?
                   </Link>

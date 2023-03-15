@@ -2,10 +2,6 @@ import React from 'react'
 import {ResSub} from "./ComponentCss/ResSubBarCss"
 import { useDispatch,useSelector} from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-<<<<<<< HEAD
-
-=======
->>>>>>> c1c8895b24e313c9b2c8571e5636ae22220432c2
 import { userInformationData } from "../store/private/userInformationSlice";
 import {HomeOutlined, SearchOutlined, PlusCircleOutlined, MessageOutlined,UserOutlined} from "@ant-design/icons";
 function ResSubBar() {
