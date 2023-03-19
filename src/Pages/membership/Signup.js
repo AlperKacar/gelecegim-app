@@ -2,21 +2,24 @@ import { Helmet} from "react-helmet"
 import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
-import {AiFillFacebook} from "react-icons/ai"
 import logosrc from "../../images/revize3.png";
 import {
   Button,
   Form,
   Checkbox
 } from 'antd';
-import { Link } from "react-router-dom";
+import {Link, useNavigate,useLocation} from "react-router-dom"
+
 import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
 
 
 function Signup() {
 
   const [form] = Form.useForm()
   const [disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
@@ -27,17 +30,20 @@ function Signup() {
   };
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-
-    try{
-      await axios.post("http://localhost:5000/auth/signup",{
-        name,password,email,surname
-      })
-    } catch( error)
-    {
-      console.log(error.response.data)
-    }
+    setTimeout(async() => {
+      try{
+        await axios.post("http://localhost:3001/auth/signup", {email,password,name,surname},        
+       navigate(location.state?.return_url || '/auth/login', {
+       replace: true
+       }))      
+      } catch( error)
+      {
+        console.log("error")
+      }
+    },1000)
+  
 
 }
 
@@ -166,10 +172,7 @@ function Signup() {
                         )}
                     </Form.Item>
               </div>
-                <Link to="/" className="Facebook-login">
-                  <AiFillFacebook size={20}/>
-                  Login with Facebook
-                </Link>
+              <GoogleLogin/>
             </div>
           </div>
           <div className="Sign-up-boyut">

@@ -2,10 +2,8 @@ import { Helmet} from "react-helmet"
 import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
-import { useDispatch } from "react-redux";
-import { setLogin} from "../../store/userInformation";
-import {useNavigate, useLocation, Link} from "react-router-dom"
-import { Form,Button, message} from 'antd';
+import {Link} from "react-router-dom"
+import { Form,Button} from 'antd';
 import logosrc from "../../images/revize3.png";
 import { GoogleLogin } from '@react-oauth/google';
 import axios from "axios"
@@ -13,36 +11,27 @@ import axios from "axios"
 
 function Login() {
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const location = useLocation()
   const [form] = Form.useForm();
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
   
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
+    setTimeout( async () => {
+      try{
+         await axios.post("http://localhost:3001/auth/login",{
+          email,password
+        })
 
-    try{
-      await axios.post("http://localhost:5000/auth/login",{
-        email,password
-        
-      })
-    } catch( error)
-    {
-      console.log(error.response.data)
-    }
+      } catch( error)
+      {
+        console.log(error)
+      }
 
+    },1000)
 }
 
 
-  const responseMessage = (response) => {
-    console.log(response);
-};
-const errorMessage = (error) => {
-    console.log(error);
-};
 //  const handleSubmit = e => 
 //     {
 //       setTimeout(()=>{
@@ -136,7 +125,7 @@ const errorMessage = (error) => {
                       <span className="Or-span">OR</span>
                     <div className="Or-div-div"/>
                   </div>
-                  <GoogleLogin  onSuccess={responseMessage} onError={errorMessage} >asd</GoogleLogin>
+                  <GoogleLogin/>
                   <Link to="/auth/forgotPassword" className="Forgot-password">
                     Forgot password?
                   </Link>
