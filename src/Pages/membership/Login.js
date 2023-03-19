@@ -3,11 +3,12 @@ import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
 import { useDispatch } from "react-redux";
-import {  setItemList} from "../../store/userInformation";
+import { setLogin} from "../../store/userInformation";
 import {useNavigate, useLocation, Link} from "react-router-dom"
 import { Form,Button, message} from 'antd';
 import logosrc from "../../images/revize3.png";
 import { GoogleLogin } from '@react-oauth/google';
+import axios from "axios"
 
 
 function Login() {
@@ -19,26 +20,43 @@ function Login() {
   const[email,setEmail] =useState ("")
   const[password,setPassword] =useState ("")
   
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try{
+      await axios.post("http://localhost:5000/auth/login",{
+        email,password
+        
+      })
+    } catch( error)
+    {
+      console.log(error.response.data)
+    }
+
+}
+
+
   const responseMessage = (response) => {
     console.log(response);
 };
 const errorMessage = (error) => {
     console.log(error);
 };
- const handleSubmit = e => 
-    {
-      setTimeout(()=>{
-        message.success('Giriş yapıldı')
-        e.preventDefault()
-       dispatch(setItemList({
-       email,password
-       }))
+//  const handleSubmit = e => 
+//     {
+//       setTimeout(()=>{
+//         message.success('Giriş yapıldı')
+//         e.preventDefault()
+//        dispatch(setLogin({
+//        email,password
+//        }))
        
-       navigate(location.state?.return_url || '/', {
-       replace: true
-     })
-      },1000)
-    }
+//        navigate(location.state?.return_url || '/', {
+//        replace: true
+//      })
+//       },1000)
+//     }
   
   return (
     <LoginDiv>

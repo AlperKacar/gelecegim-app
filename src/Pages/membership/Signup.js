@@ -10,21 +10,36 @@ import {
   Checkbox
 } from 'antd';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 function Signup() {
 
-  const [form] = Form.useForm();
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [email, setEmail] = useState('')
-  const [passwordone, setPasswordone] = useState('')
-  const [passwordtwo, setPasswordtwo] = useState('')
+  const [form] = Form.useForm()
   const [disabled, setDisabled] = useState(false);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   
   const toggleDisable = () => {
     setDisabled(!disabled);
   };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try{
+      await axios.post("http://localhost:5000/auth/signup",{
+        name,password,email,surname
+      })
+    } catch( error)
+    {
+      console.log(error.response.data)
+    }
+
+}
 
   return (
     <LoginDiv>
@@ -57,7 +72,7 @@ function Signup() {
                           }
                         ]}
                       >
-                      <InputValidation type="text" className="form-input"  value={name} label="İsim" onChange={e => setName(e.target.value)}/>
+                      <InputValidation type="text" className="form-input"  value={name} label="İsim" onChange={(e) => setName(e.target.value)}/>
                     </Form.Item>
                     <Form.Item
                       name="surname"
@@ -72,7 +87,7 @@ function Signup() {
                         }
                       ]}
                       >
-                      <InputValidation type="text" className="form-input"  value={surname} label="Soyisim" onChange={e => setSurname(e.target.value)}/>
+                      <InputValidation type="text" className="form-input"  name="surname" label="Soyisim" onChange={(e) => setSurname(e.target.value)}/>
                     </Form.Item>
                   </div> 
                     <Form.Item
@@ -88,7 +103,7 @@ function Signup() {
                           },
                         ]}
                       >
-                        <InputValidation value={email} className="form-input"  label="E-posta" onChange={e => setEmail(e.target.value)}/>
+                        <InputValidation name="email" className="form-input"  label="E-posta" onChange={(e) => setEmail(e.target.value)}/>
                     </Form.Item>
                     <Form.Item
                       name="password"
@@ -103,7 +118,7 @@ function Signup() {
                         }
                       ]}
                       >
-                      <InputValidation className="form-input" type="password" value={passwordone} label="Şifre" onChange={e => setPasswordone(e.target.value)}/>
+                      <InputValidation className="form-input" type="password" name="passwordone" label="Şifre" onChange={(e) => setPassword(e.target.value)}/>
                     </Form.Item>
                     <Form.Item
                       name="confirm"
@@ -126,7 +141,7 @@ function Signup() {
                           }),
                       ]}
                       >
-                      <InputValidation type="password" className="form-input"  value={passwordtwo} label="Şifreyi Onayla" onChange={e => setPasswordtwo(e.target.value)}/>
+                      <InputValidation type="password" className="form-input" label="Şifreyi Onayla" />
                     </Form.Item>       
                     <Checkbox  className="form-input" onClick={toggleDisable}>
                       Kuralları okudum kabul ediyorum.
@@ -136,6 +151,7 @@ function Signup() {
                       shouldUpdate>
                         {() => (
                           <Button
+                          onClick={handleSubmit}
                             className="Button"
                             type="primary"
                             disabled=

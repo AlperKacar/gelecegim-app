@@ -4,48 +4,70 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "userInformation",
   initialState: {
-    loading: true,
-    hasErrors: false,
-    hasMessage: null,
+    mode:"light",
     user: null,
-    isLoggedIn: false,
+    token:null,
+    posts: [],
+    isLoggedIn:false,
   },
   reducers: {
-    setItemList: (state, { payload }) => {
-      state.user = payload;
-      state.loading = false;
-      state.hasErrors = false;
-      state.hasMessage = null;
-      state.isLoggedIn = true;
+    setMode:(state) => {
+      state.mode = state.mode === "light" ? "dark" : "light";
     },
-    failed: (state, { payload }) => {
-      state.loading = false;
-      state.hasErrors = true;
-      state.hasMessage = payload;
+    setLogin: (state,action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;  
     },
-    setUserData: (state, { payload }) => {
-      state.loading = false;
-      state.hasErrors = false;
-      state.hasMessage = null;
-      state.user = payload;
+    setLogout: (state) => {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;  
     },
-    isLoggedInControl: (state, { payload }) => {
-      state.isLoggedIn = payload;
+    setFriends: (state, action) => {
+      if (state.user ) {
+        state.user.friends = action.payload.friends;
+      } else {
+        console.error("kullacının arkadaşları yok")
+      }
     },
-  },
-  extraReducers(builder) {
-    builder.addCase( (state, action) => {
-      return {
-        ...state,
-        ...action.payload.userInformation,
-      };
-    });
+    setPosts: (state, action) => {
+      state.posts = action.payload.posts;
+    },
+    setPost: (state, action) => {
+      const updatedPosts = state.posts.map((post) => {
+        if (post._id === action.payload.post_id) return action.payload.post;
+        return post;
+      });
+      state.posts = updatedPosts;
+    }
+    // setItemList: (state, { payload }) => {
+    //   state.user = payload;
+    //   state.loading = false;
+    //   state.hasErrors = false;
+    //   state.hasMessage = null;
+    //   state.isLoggedIn = true;
+    // },
+    // failed: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.hasErrors = true;
+    //   state.hasMessage = payload;
+    // },
+    // setUserData: (state, { payload }) => {
+    //   state.loading = false;
+    //   state.hasErrors = false;
+    //   state.hasMessage = null;
+    //   state.user = payload;
+    // },
+    // isLoggedInControl: (state, { payload }) => {
+    //   state.isLoggedIn = payload;
+    // },
   },
 });
 
 export const userData = (state) => state.userInformation; // state üzerindeki bilgileri dışarı aktarma
 
-export const { setItemList, failed, setUserData, isLoggedInControl } =
+export const { setFriends, setLogin, setLogout, setMode, setPost, setPosts } =
   userSlice.actions; // functions dışarıya aktarılması
 
 export default userSlice.reducer;

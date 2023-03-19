@@ -1,15 +1,17 @@
 import React from "react";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { userInformationData } from "../store/private/userInformationSlice";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
+import { setLogout } from "../store/userInformation"
 import { BiChevronDown } from "react-icons/bi";
 export function Menu() {
-  const {isLoggedIn} = useSelector(userInformationData)
+  const {isLoggedIn} = useSelector((state) => state.isLoggedIn);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
 
   const logoutHandle = () => {
     dispatch(isLoggedIn());
@@ -47,7 +49,7 @@ export function Menu() {
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">
-              Ad Soyad
+              ad soyad
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>

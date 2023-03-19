@@ -2,10 +2,9 @@ import React from 'react'
 import {ResSub} from "./ComponentCss/ResSubBarCss"
 import { useDispatch,useSelector} from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { userInformationData } from "../store/private/userInformationSlice";
 import {HomeOutlined, SearchOutlined, PlusCircleOutlined, MessageOutlined,UserOutlined} from "@ant-design/icons";
 function ResSubBar() {
-  const {isLoggedIn} = useSelector(userInformationData)
+  const {isLoggedIn} = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();

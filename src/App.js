@@ -2,12 +2,11 @@ import Router from "./Router/index"
 import { useSelector } from "react-redux";
 import LoadingTruck from "./Shared/commonComponents/loading/LoadingTruck";
 import { useEffect,useState } from "react";
-import { userInformationData } from "./store/private/userInformationSlice";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
-  const isLoggedIn = useSelector(userInformationData)
+  const {isLoggedIn} = useSelector((state) => state.isLoggedIn);
   const [redirect, setRedirect] = useState(false)
 
   useEffect(() =>{
