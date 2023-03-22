@@ -3,21 +3,23 @@ import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
-import { setLogout } from "../store/userInformation"
+import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
+import setLogin from "../store/userInformation";
 export function Menu() {
-  const {isLoggedIn} = useSelector((state) => state.isLoggedIn);
-  const user = useSelector((state) => state.user);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const logoutHandle = () => {
-    dispatch(isLoggedIn());
+    dispatch(setLogout());
     navigate(location.state?.return_url || "/", {
       replace: true,
     });
+  };
+  const fullname = () => {
+    dispatch(`${setLogin.name} ${setLogin.surname}`);
   };
   const items = [
     {
@@ -49,7 +51,7 @@ export function Menu() {
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">
-              ad soyad
+              {fullname}
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>
@@ -64,14 +66,11 @@ export function Menu() {
               Hesap Aç
             </Link>
           </ul>
-          <button className="kurum-kayit" name="Kurum Kaydı" >
-             <Link to="/auth/kayit/kurumsal">Kurum Kaydı</Link>
+          <button className="kurum-kayit" name="Kurum Kaydı">
+            <Link to="/auth/kayit/kurumsal">Kurum Kaydı</Link>
           </button>
         </div>
       )}
     </KullaniciMenu>
   );
 }
-
-
-

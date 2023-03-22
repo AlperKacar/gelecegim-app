@@ -1,34 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const userSlice = createSlice({
   name: "userInformation",
   initialState: {
-    mode:"light",
+    mode: "light",
     user: null,
-    token:null,
+    token: null,
     posts: [],
-    isLoggedIn:false,
+    isLoggedIn: false,
   },
   reducers: {
-    setMode:(state) => {
+    setMode: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
     },
-    setLogin: (state,action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;  
+    setLogin: (state, { payload }) => {
+      state.user = payload.user;
+      state.token = payload.token;
+      state.isLoggedIn = true;
     },
     setLogout: (state) => {
       state.user = null;
       state.token = null;
-      state.isLoggedIn = false;  
+      state.isLoggedIn = false;
     },
     setFriends: (state, action) => {
-      if (state.user ) {
+      if (state.user) {
         state.user.friends = action.payload.friends;
       } else {
-        console.error("kullacının arkadaşları yok")
+        console.error("kullacının arkadaşları yok");
       }
     },
     setPosts: (state, action) => {
@@ -40,7 +39,7 @@ const userSlice = createSlice({
         return post;
       });
       state.posts = updatedPosts;
-    }
+    },
     // setItemList: (state, { payload }) => {
     //   state.user = payload;
     //   state.loading = false;

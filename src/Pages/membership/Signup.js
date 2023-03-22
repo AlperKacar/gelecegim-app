@@ -5,14 +5,23 @@ import { LoginDiv } from "./Logincss";
 import logosrc from "../../images/revize3.png";
 import { Button, Form, Checkbox } from "antd";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+<<<<<<< HEAD
 
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
 
+=======
+import { toast } from "react-toastify";
+import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
+import { useDispatch, useSelector } from "react-redux";
+import setLogin from "../../store/userInformation";
+>>>>>>> baa0a0e69e1420a0e4c2d7ac5affff5dbebc1cad
 function Signup() {
   const [form] = Form.useForm();
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -23,6 +32,7 @@ function Signup() {
     setDisabled(!disabled);
   };
 
+<<<<<<< HEAD
   const handleSubmit = (e) => {
     e.preventDefault();
     setTimeout(async () => {
@@ -40,6 +50,28 @@ function Signup() {
     }, 1000);
   };
 
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("http://localhost:3001/auth/signup", {
+        email,
+        password,
+        name,
+        surname,
+      })
+      .then((res) => {
+        toast.success("Kayıt Başarılı!");
+
+        navigate(location.state?.return_url || "/auth/login", {
+          replace: true,
+        });
+      })
+      .catch((err) => {
+        toast.error("email adresi kayıtlıdır.");
+      });
+  };
+>>>>>>> baa0a0e69e1420a0e4c2d7ac5affff5dbebc1cad
   return (
     <LoginDiv>
       <Helmet>
