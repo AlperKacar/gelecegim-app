@@ -20,12 +20,14 @@ function Login() {
     setTimeout( async () => {
       try{
          await axios.post("http://localhost:3001/auth/login",{
-          email,password
+          email:email,
+          password:password
         })
 
-      } catch( error)
+      } 
+      catch(error)
       {
-        console.log(error)
+        console.log(error.response)
       }
 
     },1000)
