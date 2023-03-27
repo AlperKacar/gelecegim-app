@@ -24,6 +24,8 @@ background-color: #3f475f;
     background-color: #ffe800;
     width: 135px;
     height: 34px;
+    position: relative;
+    top: 2px;
   }
   @media screen and (max-width: 720px) {
     background-color: #32628d;
