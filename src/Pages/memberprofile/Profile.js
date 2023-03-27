@@ -1,4 +1,4 @@
-import { Helmet} from "react-helmet"
+import { Helmet } from "react-helmet";
 
 function Profile() {
   return (
@@ -6,9 +6,9 @@ function Profile() {
       <Helmet>
         <title> Profile</title>
       </Helmet>
-      ASD
+      Profile
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

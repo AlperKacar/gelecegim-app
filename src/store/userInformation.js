@@ -5,6 +5,7 @@ const userSlice = createSlice({
   initialState: {
     mode: "light",
     user: null,
+    activation: null,
     token: null,
     posts: [],
     isLoggedIn: false,
@@ -14,12 +15,14 @@ const userSlice = createSlice({
       state.mode = state.mode === "light" ? "dark" : "light";
     },
     setLogin: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
+      state.user = payload;
+      state.token = payload;
       state.isLoggedIn = true;
     },
-    setLogout: (state) => {
-      state.user = null;
+    setActivaition: (state, { payload }) => {
+      state.activation = payload;
+    },
+    setLogout: (state, { payload }) => {
       state.token = null;
       state.isLoggedIn = false;
     },
@@ -66,7 +69,15 @@ const userSlice = createSlice({
 
 export const userData = (state) => state.userInformation; // state üzerindeki bilgileri dışarı aktarma
 
-export const { setFriends, setLogin, setLogout, setMode, setPost, setPosts } =
-  userSlice.actions; // functions dışarıya aktarılması
+export const {
+  setFriends,
+  setLogin,
+  setLogout,
+  setMode,
+  setPost,
+  setPosts,
+  setSignup,
+  setActivaition,
+} = userSlice.actions; // functions dışarıya aktarılması
 
 export default userSlice.reducer;

@@ -5,21 +5,17 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
 import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
-import setLogin from "../store/userInformation";
+
 export function Menu() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const logoutHandle = () => {
     dispatch(setLogout());
     navigate(location.state?.return_url || "/", {
       replace: true,
     });
-  };
-  const fullname = () => {
-    dispatch(`${setLogin.name} ${setLogin.surname}`);
   };
   const items = [
     {
@@ -51,7 +47,7 @@ export function Menu() {
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">
-              {fullname}
+              ad soyad
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>

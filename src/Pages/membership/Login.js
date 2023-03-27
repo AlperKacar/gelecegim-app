@@ -3,12 +3,11 @@ import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Form, Button, message } from "antd";
+import { Form, Button } from "antd";
 import logosrc from "../../images/revize3.png";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { setLogin } from "../../store/userInformation";
 
@@ -30,7 +29,7 @@ function Login() {
       })
       .then((res) => {
         toast.success("Giriş Başarılı!");
-        dispatch(setLogin(email, password));
+        dispatch(setLogin({ email, password }));
         navigate(location.state?.return_url || "/", {
           replace: true,
         });
