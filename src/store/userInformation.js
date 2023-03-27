@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "userInformation",
   initialState: {
+    activation: null,
     mode: "light",
     user: null,
     token: null,
@@ -40,6 +41,9 @@ const userSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    setActivation: (state, {payload}) => {
+      state.activation = payload;
+    },
     // setItemList: (state, { payload }) => {
     //   state.user = payload;
     //   state.loading = false;
@@ -66,7 +70,14 @@ const userSlice = createSlice({
 
 export const userData = (state) => state.userInformation; // state üzerindeki bilgileri dışarı aktarma
 
-export const { setFriends, setLogin, setLogout, setMode, setPost, setPosts } =
-  userSlice.actions; // functions dışarıya aktarılması
+export const {
+  setFriends,
+  setLogin,
+  setLogout,
+  setMode,
+  setPost,
+  setPosts,
+  setActivation,
+} = userSlice.actions; // functions dışarıya aktarılması
 
 export default userSlice.reducer;

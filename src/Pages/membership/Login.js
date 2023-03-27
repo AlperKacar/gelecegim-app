@@ -14,25 +14,6 @@ import { setLogin } from "../../store/userInformation";
 
 function Login() {
   const [form] = Form.useForm();
-<<<<<<< HEAD
-  const[email,setEmail] =useState ("")
-  const[password,setPassword] =useState ("")
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setTimeout( async () => {
-      try{
-         await axios.post("http://localhost:3001/auth/login",{
-          email:email,
-          password:password
-        })
-
-      } 
-      catch(error)
-      {
-        console.log(error.response)
-      }
-=======
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,8 +22,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
->>>>>>> baa0a0e69e1420a0e4c2d7ac5affff5dbebc1cad
-
+ 
     await axios
       .post("http://localhost:3001/auth/login", {
         email,

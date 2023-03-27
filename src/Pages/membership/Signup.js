@@ -1,82 +1,81 @@
 import { Helmet } from "react-helmet";
 import InputValidation from "../../Components/InputValidation";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { LoginDiv } from "./Logincss";
 import logosrc from "../../images/revize3.png";
 import { Button, Form, Checkbox } from "antd";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-<<<<<<< HEAD
-
-import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
-
-=======
 import { toast } from "react-toastify";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
-import { useDispatch, useSelector } from "react-redux";
-import setLogin from "../../store/userInformation";
->>>>>>> baa0a0e69e1420a0e4c2d7ac5affff5dbebc1cad
-function Signup() {
+import { useDispatch,useSelector } from "react-redux";
+import { setLogin, setActivation } from "../../store/userInformation";
+import { v4 as uuidv4 } from "uuid";
+
+const Signup = memo(() => {
   const [form] = Form.useForm();
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const [name, setName] = useState("");
+  const [show, setShow] = useState(false);
+  const [activation, setActivation] = useState(false);
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
+  const activation_code = useSelector((state) => state.activation);
+  
   const toggleDisable = () => {
     setDisabled(!disabled);
   };
-
-<<<<<<< HEAD
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTimeout(async () => {
-      try {
-        await axios.post(
-          "http://localhost:3001/auth/signup",
-          { email, password, name, surname },
-          navigate(location.state?.return_url || "/auth/login", {
-            replace: true,
-          })
-        );
-      } catch (error) {
-        console.log(error.response);
-      }
-    }, 1000);
-  };
-
-=======
   const handleSubmit = async (e) => {
+    console.log(activation_code)
     e.preventDefault();
     await axios
       .post("http://localhost:3001/auth/signup", {
+        activation,
         email,
         password,
         name,
         surname,
       })
       .then((res) => {
+        
         toast.success("Kayıt Başarılı!");
-
-        navigate(location.state?.return_url || "/auth/login", {
-          replace: true,
-        });
       })
       .catch((err) => {
         toast.error("email adresi kayıtlıdır.");
       });
   };
->>>>>>> baa0a0e69e1420a0e4c2d7ac5affff5dbebc1cad
+  const activationSubmit = async (e) => {
+    const new_code = uuidv4().substring(0, 6);
+    console.log("new code:", new_code);
+    e.preventDefault();
+    await axios
+      .post("http://localhost:3001/auth/signup/activation", {
+        email,
+        new_code,
+      })
+      .then((res) => {
+        dispatch(setActivation({ new_code }));
+        toast.success("email yollandı!");
+      })
+      .catch((err) => {
+        toast.error("bir hata oluştu");
+      });
+  };
   return (
     <LoginDiv>
       <Helmet>
         <title>Signup</title>
       </Helmet>
+      {activation && (
+        <div>
+          <InputValidation onChange={(e) => setActivation(e.target.value)} />
+          <button onClick={handleSubmit}>gönder</button>
+        </div>
+      )}
       <Form className="Form-boyut" form={form} name="dynamic_rule">
         <div className="Login">
           <div className="Login-boyut">
@@ -201,10 +200,14 @@ function Signup() {
                 <Checkbox className="form-input" onClick={toggleDisable}>
                   Kuralları okudum kabul ediyorum.
                 </Checkbox>
-                <Form.Item className="Form-button" shouldUpdate>
+                <Form.Item
+                  onClick={activationSubmit}
+                  className="Form-button"
+                  shouldUpdate
+                >
                   {() => (
                     <Button
-                      onClick={handleSubmit}
+                      onClick={() => setActivation((activation) => !activation)}
                       className="Button"
                       type="primary"
                       disabled={
@@ -245,6 +248,5 @@ function Signup() {
       </Form>
     </LoginDiv>
   );
-}
-
+});
 export default Signup;
