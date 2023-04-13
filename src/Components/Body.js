@@ -1,5 +1,25 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import SingleUser from "./SingleUser";
+const Body = React.memo(() => {
+  // const [state, setState] = useState([]);
 
-export default function Body() {
-  return <div style={{ width: "100%", height: "1000px" }}>Body</div>;
-}
+  // const fetchUsers = async () => {
+  //   const response = await axios.get(`http://localhost:3001/profile/`);
+  //   setState(response.data);
+  // };
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
+  return (
+    <div>
+      <ul>
+        {/* {state.map((state, index) => (
+          <SingleUser state={state} key={index} />
+        ))} */}
+      </ul>
+    </div>
+  );
+});
+export default Body;

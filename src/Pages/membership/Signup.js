@@ -28,7 +28,9 @@ const Signup = memo(() => {
     setDisabled(!disabled);
   };
   const showModal = () => {
-    setOpen(true);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1000);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -79,11 +81,12 @@ const Signup = memo(() => {
         <title>Signup</title>
       </Helmet>
       <Modal
-        title="Activasyon kodunu giriniz."
+        title="E-mail adresinize gelen Activasyon kodunu giriniz."
         open={open}
         onOk={handleSubmit}
         onCancel={handleCancel}
         cancelText="Kodu Tekrar Gönder"
+        okText="Kodu Onayla"
       >
         <Input onChange={(e) => setActiv(e.target.value)} />
       </Modal>

@@ -7,7 +7,7 @@ import { Form, Button } from "antd";
 import logosrc from "../../images/revize3.png";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { setLogin } from "../../store/userInformation";
 
@@ -21,7 +21,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     await axios
       .post("http://localhost:3001/auth/login", {
         email,
@@ -29,7 +29,7 @@ function Login() {
       })
       .then((res) => {
         toast.success("Giriş Başarılı!");
-        dispatch(setLogin({ email, password }));
+        dispatch(setLogin());
         navigate(location.state?.return_url || "/", {
           replace: true,
         });
