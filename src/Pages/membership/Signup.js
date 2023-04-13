@@ -67,6 +67,7 @@ const Signup = memo(() => {
         toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
+        
         setTimeout(() => {
           window.location.reload(false);
         }, 1000);
@@ -79,7 +80,7 @@ const Signup = memo(() => {
         <title>Signup</title>
       </Helmet>
       <Modal
-        title="Activasyon kodunu giriniz."
+        title="Aktivasyon kodunu giriniz."
         open={open}
         onOk={handleSubmit}
         onCancel={handleCancel}
