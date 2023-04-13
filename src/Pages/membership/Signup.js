@@ -82,11 +82,7 @@ const Signup = memo(() => {
         <title>Signup</title>
       </Helmet>
       <Modal
-<<<<<<< HEAD
-        title="E-mail adresinize gelen Activasyon kodunu giriniz."
-=======
         title="Aktivasyon kodunu giriniz."
->>>>>>> 5f19bdecd13fb41fe3fdfeaf567d9f5e62d647e7
         open={open}
         onOk={handleSubmit}
         onCancel={handleCancel}
