@@ -1,16 +1,16 @@
-import { Helmet } from "react-helmet";
-import InputValidation from "../../Components/InputValidation";
-import { useState, memo } from "react";
-import { LoginDiv } from "./Logincss";
-import logosrc from "../../images/revize3.png";
-import { Button, Form, Checkbox, Modal, Input } from "antd";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
+import { Helmet } from "react-helmet"; //Componentlerin meta etiketleri için gerekli kütüphane
+import InputValidation from "../../Components/InputValidation"; //Formlardaki validasyon işlemleri için oluşturduğumuz fonksiyonun çağrılması
+import { useState, memo } from "react"; //reactın kendi içinde bulunan fonksiyonlar
+import { LoginDiv } from "./Logincss";  //stillendirme kısmında kullandığımız styled-components ile oluşturulmuş css kodunun çağırılması
+import logosrc from "../../images/revize3.png"; 
+import { Button, Form, Checkbox, Modal, Input } from "antd"; //ant design materyalleri
+import { Link } from "react-router-dom"; 
+import { toast } from "react-toastify"; // nodejsin içinde bulunan ekrana bildirim çıkartmayı sağlayan bir eklenti
+import axios from "axios";      //http istek ve cevaplarını yönlendirmemizi sağlayan js kütüphanesi
+import { GoogleLogin } from "@react-oauth/google"; //google ile giriş yapmak için gerekli kütüphane
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin, setActivation } from "../../store/userInformation";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid"; //kayıt olan kullanıcıların mailine gönderip doğrulama yapmasını istediğimiz kodun oluşumunu sağlayan kütüphane
 
 const Signup = memo(() => {
   const [open, setOpen] = useState(false);
@@ -69,6 +69,7 @@ const Signup = memo(() => {
         toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
+        
         setTimeout(() => {
           window.location.reload(false);
         }, 1000);
@@ -81,7 +82,11 @@ const Signup = memo(() => {
         <title>Signup</title>
       </Helmet>
       <Modal
+<<<<<<< HEAD
         title="E-mail adresinize gelen Activasyon kodunu giriniz."
+=======
+        title="Aktivasyon kodunu giriniz."
+>>>>>>> 5f19bdecd13fb41fe3fdfeaf567d9f5e62d647e7
         open={open}
         onOk={handleSubmit}
         onCancel={handleCancel}

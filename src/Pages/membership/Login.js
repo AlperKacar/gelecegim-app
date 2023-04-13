@@ -41,7 +41,7 @@ function Login() {
   return (
     <LoginDiv>
       <Helmet>
-        <title>Login</title>
+        <title>Giriş Yap</title>
       </Helmet>
       <Form className="Form-boyut" form={form}>
         <div className="Login">
@@ -109,7 +109,7 @@ function Login() {
                         .filter(({ errors }) => errors.length).length
                     }
                   >
-                    <Link>Log in</Link>
+                    <Link>Giriş Yap</Link>
                   </Button>
                 )}
               </Form.Item>
@@ -121,16 +121,16 @@ function Login() {
             </div>
             <GoogleLogin />
             <Link to="/auth/forgotPassword" className="Forgot-password">
-              Forgot password?
+              Şifremi Unuttum
             </Link>
           </div>
         </div>
         <div className="Sign-up-boyut">
           <div>
             <p>
-              Don't have an account?
+            Henüz hesabın yok mu? 
               <Link to="/auth/signup" className="signup-login">
-                Sign Up
+                Üye Ol
               </Link>
             </p>
           </div>
