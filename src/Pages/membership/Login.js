@@ -29,7 +29,7 @@ function Login() {
       })
       .then((res) => {
         toast.success("Giriş Başarılı!");
-        dispatch(setLogin());
+        dispatch(setLogin(email));
         navigate(location.state?.return_url || "/", {
           replace: true,
         });
@@ -128,7 +128,7 @@ function Login() {
         <div className="Sign-up-boyut">
           <div>
             <p>
-            Henüz hesabın yok mu? 
+              Henüz hesabın yok mu?
               <Link to="/auth/signup" className="signup-login">
                 Üye Ol
               </Link>
