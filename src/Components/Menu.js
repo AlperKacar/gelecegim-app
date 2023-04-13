@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link, useParams } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
 import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
@@ -12,9 +12,11 @@ export function Menu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const email = useSelector((state) => state.user);
   const [user, setUser] = useState([]);
   const fetchUsers = async () => {
-    const response = await axios.get(`http://localhost:3001/profile/`);
+    const response = await axios.get(`http://localhost:3001/profile/${email}`);
+
     setUser(response.data);
   };
   useEffect(() => {
