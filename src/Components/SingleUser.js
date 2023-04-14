@@ -4,7 +4,7 @@ const SingleUser = ({ state }) => {
     <div>
       <div>
         <h3>
-          {state.name} {state.surname}
+          {state.ad} {state.ilceler}
         </h3>
         {state.email}
       </div>

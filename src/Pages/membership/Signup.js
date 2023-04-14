@@ -30,7 +30,7 @@ const Signup = memo(() => {
   const showModal = () => {
     setTimeout(() => {
       setOpen(true);
-    }, 1000);
+    }, 2000);
   };
   const handleCancel = () => {
     setOpen(false);
@@ -47,7 +47,6 @@ const Signup = memo(() => {
         })
         .then((res) => {
           toast.success("Kayıt Başarılı!");
-          dispatch(setLogin());
         })
         .catch((err) => {
           toast.error("email adresi kayıtlıdır.");
@@ -69,9 +68,7 @@ const Signup = memo(() => {
         toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
-        setTimeout(() => {
-          window.location.reload(false);
-        }, 1000);
+        setTimeout(() => {}, 1000);
         toast.error(`${email} Adresi zaten kayıtlı.`);
       });
   };
