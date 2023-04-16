@@ -2,31 +2,33 @@ import { Select } from "antd";
 import { memo, useCallback } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
-function Ilceler({ label, ...props }) {
+function Ilceler({ il, label, ...props }) {
   const [state, setState] = useState([]);
-  const id = useSelector((state) => state.activation);
-  const fetchUsers = async () => {
-    const response = await axios.get(
-      `http://localhost:3001/select/${label}/${id}`
-    );
-    setState(response.data.ilceler);
-  };
+  const [state1, setState1] = useState([]);
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [il]);
+  const fetchUsers = useCallback(async () => {
+    const response = await axios.get(
+      `http://localhost:3001/select/${label}/${il}`
+    );
+    setState(response.data[0].ilceler);
+    setState1(response.data[0].ilceler[0]);
+  });
   return (
     <>
       <Select
         {...props}
         showSearch
+        value={state1}
+        onChange={setState1}
         optionFilterProp="children"
-        options={state.map((state) => ({
-          value: state,
+        options={state.map((ilce) => ({
+          value: ilce,
         }))}
       />
       <small className="input-text">{label}</small>
     </>
   );
 }
-export default Ilceler;
+export default memo(Ilceler);
