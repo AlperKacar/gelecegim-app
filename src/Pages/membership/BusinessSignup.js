@@ -7,8 +7,6 @@ import { BusinessSignupDiv } from "./BusinessSignupcss";
 import { Button, Form, Checkbox, Radio, message } from "antd";
 import { Link } from "react-router-dom";
 import Ilceler from "../../Components/Ilceler";
-import { useDispatch } from "react-redux";
-import { setActivation } from "../../store/userInformation";
 
 function BusinessSignup() {
   const [form] = Form.useForm();
@@ -20,9 +18,6 @@ function BusinessSignup() {
   const [select, setSelect] = useState("");
   const [password, setPassword] = useState("");
   const [il, setİl] = useState("");
-  console.log(il);
-  const dispatch = useDispatch();
-  dispatch(setActivation(il));
   const [ilce, setIlce] = useState("");
   const [value, setValue] = useState(1);
   const [tcno, setTcno] = useState("");
@@ -30,6 +25,7 @@ function BusinessSignup() {
     setValue(e.target.value);
     setTcno(!tcno);
   };
+  const enable = il;
   const [disabled, setDisabled] = useState(false);
   const onFinish = () => {
     setTimeout(() => {
@@ -189,23 +185,22 @@ function BusinessSignup() {
                     </Form.Item>
                   </div>
                   <div className="right-section section-border">
-                    <Form.Item>
-                      <SelectValidation
-                        value={il}
-                        label="Iller"
-                        onChange={(o) => setİl(o)}
-                      />
-                    </Form.Item>
                     <div className="split-form ">
                       <Form.Item>
-                        <Ilceler
-                          value={ilce}
-                          label="Ilceler"
-                          onChange={(e) => setIlce(e.target.value)}
+                        <SelectValidation
+                          value={il}
+                          label="Iller"
+                          onChange={(o) => setİl(o)}
                         />
                       </Form.Item>
                       <Form.Item>
-                        <SelectValidation value={select} label="Mahalle" />
+                        <Ilceler
+                          disabled={!enable}
+                          value={ilce}
+                          il={il}
+                          label="Ilceler"
+                          onChange={(o) => setIlce(o)}
+                        />
                       </Form.Item>
                     </div>
                     <label>İşletme Türü</label>
