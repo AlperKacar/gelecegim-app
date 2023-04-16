@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 function SelectValidation({ label, ...props }) {
   const [state, setState] = useState([]);
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     const response = await axios.get(`http://localhost:3001/select/${label}`);
     setState(response.data);
-  };
+  });
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -19,8 +19,7 @@ function SelectValidation({ label, ...props }) {
         showSearch
         optionFilterProp="children"
         options={state.map((state) => ({
-          value: state._id,
-          label: state.ad,
+          value: state.ad,
         }))}
       />
 
@@ -28,4 +27,4 @@ function SelectValidation({ label, ...props }) {
     </>
   );
 }
-export default SelectValidation;
+export default memo(SelectValidation);

@@ -31,4 +31,8 @@ function Ilceler({ il, label, ...props }) {
     </>
   );
 }
+<<<<<<< HEAD
 export default memo(Ilceler);
+=======
+export default memo(Ilceler);
+>>>>>>> 2d00102c9389a3d80a158ce2ad47eec5e29185e9
