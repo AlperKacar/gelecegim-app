@@ -46,27 +46,6 @@ const userSlice = createSlice({
     setActivation: (state, { payload }) => {
       state.activation = payload;
     },
-    // setItemList: (state, { payload }) => {
-    //   state.user = payload;
-    //   state.loading = false;
-    //   state.hasErrors = false;
-    //   state.hasMessage = null;
-    //   state.isLoggedIn = true;
-    // },
-    // failed: (state, { payload }) => {
-    //   state.loading = false;
-    //   state.hasErrors = true;
-    //   state.hasMessage = payload;
-    // },
-    // setUserData: (state, { payload }) => {
-    //   state.loading = false;
-    //   state.hasErrors = false;
-    //   state.hasMessage = null;
-    //   state.user = payload;
-    // },
-    // isLoggedInControl: (state, { payload }) => {
-    //   state.isLoggedIn = payload;
-    // },
   },
 });
 

@@ -2,38 +2,28 @@ import { Helmet } from "react-helmet";
 import InputValidation from "../../Components/InputValidation";
 import { useState } from "react";
 import { LoginDiv } from "./Logincss";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Form, Button, message } from "antd";
+import { Link } from "react-router-dom";
+import { Button, Form } from "antd";
 import logosrc from "../../images/revize3.png";
-import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { setLogin } from "../../store/userInformation";
 
 function ForgotPassword() {
   const [form] = Form.useForm();
-  const location = useLocation();
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [answer, setAnswere] = useState("");
 
-  const handleSubmit = async (e) => {
+  const activationSubmit = async (e) => {
     e.preventDefault();
-
     await axios
       .post("http://localhost:3001/auth/activation/forgotPassword", {
         email,
       })
       .then((res) => {
-        toast.success(
-          `${email} adresinize şifre yenileme adresi yollanmıştır.`
-        );
+        toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
-        toast.error(`Kullanıcı Bulunamadı.`);
+        setTimeout(() => {}, 1000);
+        toast.error(`${email} Adresi zaten kayıtlı.`);
       });
   };
   return (
@@ -71,7 +61,7 @@ function ForgotPassword() {
                 {() => (
                   <Button
                     className="Button"
-                    onClick={handleSubmit}
+                    onClick={activationSubmit}
                     type="primary"
                     htmlType="submit"
                     disabled={

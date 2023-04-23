@@ -9,7 +9,7 @@ import { toast } from "react-toastify"; // nodejsin içinde bulunan ekrana bildi
 import axios from "axios"; //http istek ve cevaplarını yönlendirmemizi sağlayan js kütüphanesi
 import { GoogleLogin } from "@react-oauth/google"; //google ile giriş yapmak için gerekli kütüphane
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setActivation } from "../../store/userInformation";
+import { setActivation } from "../../store/userInformation";
 import { v4 as uuidv4 } from "uuid"; //kayıt olan kullanıcıların mailine gönderip doğrulama yapmasını istediğimiz kodun oluşumunu sağlayan kütüphane
 
 const Signup = memo(() => {
@@ -68,7 +68,9 @@ const Signup = memo(() => {
         toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
-        setTimeout(() => {}, 1000);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
         toast.error(`${email} Adresi zaten kayıtlı.`);
       });
   };
