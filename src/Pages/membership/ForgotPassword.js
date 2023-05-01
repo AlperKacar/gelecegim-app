@@ -19,7 +19,7 @@ function ForgotPassword() {
         email,
       })
       .then((res) => {
-        toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
+        toast.success(`Link  ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {
         setTimeout(() => {}, 1000);

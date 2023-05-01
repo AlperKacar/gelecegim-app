@@ -9,6 +9,7 @@ const userSlice = createSlice({
     token: null,
     posts: [],
     isLoggedIn: false,
+    cotrol: true,
   },
   reducers: {
     setMode: (state) => {
@@ -45,6 +46,7 @@ const userSlice = createSlice({
     },
     setActivation: (state, { payload }) => {
       state.activation = payload;
+      state.cotrol = false;
     },
   },
 });

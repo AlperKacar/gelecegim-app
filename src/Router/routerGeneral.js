@@ -5,7 +5,7 @@ import {
   OzelDers,
   IsIlani,
   Kurum,
-  Home
+  Home,
 } from "./routerComponents";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 //import GeneralAuth from "../Shared/auth/GeneralAuth";
@@ -15,11 +15,7 @@ const RouterGeneral = () => {
   return (
     <Suspense fallback={<LoadingTruck />}>
       <Routes>
-        <Route
-          element={
-              <LayoutGeneral/>
-          }
-        >
+        <Route element={<LayoutGeneral />}>
           <Route path="/" element={<Home />} />
           <Route path="kurum" element={<Kurum />} />
           <Route path="isilani" element={<IsIlani />} />

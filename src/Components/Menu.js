@@ -19,6 +19,7 @@ export function Menu() {
 
     setUser(response.data);
   };
+  console.log(user);
   useEffect(() => {
     fetchUsers();
   }, []);
