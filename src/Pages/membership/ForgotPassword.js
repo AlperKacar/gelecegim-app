@@ -7,11 +7,13 @@ import { Button, Form } from "antd";
 import logosrc from "../../images/revize3.png";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setActivaitiona } from "../../store/userInformation";
 
 function ForgotPassword() {
   const [form] = Form.useForm();
   const [email, setEmail] = useState("");
-
+  const dispatch = useDispatch();
   const activationSubmit = async (e) => {
     e.preventDefault();
     await axios
@@ -19,6 +21,7 @@ function ForgotPassword() {
         email,
       })
       .then((res) => {
+        dispatch(setActivaitiona());
         toast.success(`Link  ${email} adresine gönderilmiştir.`);
       })
       .catch((err) => {

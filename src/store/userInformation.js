@@ -9,7 +9,7 @@ const userSlice = createSlice({
     token: null,
     posts: [],
     isLoggedIn: false,
-    cotrol: true,
+    control: true,
   },
   reducers: {
     setMode: (state) => {
@@ -20,8 +20,9 @@ const userSlice = createSlice({
       state.token = payload;
       state.isLoggedIn = true;
     },
-    setActivaition: (state, { payload }) => {
+    setActivaitiona: (state, { payload }) => {
       state.activation = null;
+      state.control = true;
     },
     setLogout: (state, { payload }) => {
       state.token = null;
@@ -46,7 +47,7 @@ const userSlice = createSlice({
     },
     setActivation: (state, { payload }) => {
       state.activation = payload;
-      state.cotrol = false;
+      state.control = false;
     },
   },
 });
@@ -61,6 +62,7 @@ export const {
   setPost,
   setPosts,
   setActivation,
+  setActivaitiona,
 } = userSlice.actions; // functions dışarıya aktarılması
 
 export default userSlice.reducer;

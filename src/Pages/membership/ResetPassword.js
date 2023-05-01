@@ -9,13 +9,12 @@ import { setActivation } from "../../store/userInformation";
 function ResetPassword() {
   const { id, token } = useParams();
   const [form] = Form.useForm();
-  const cotrol = useSelector((state) => state.cotrol);
-  console.log(cotrol);
+  const control = useSelector((state) => state.control);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
-  const [data, setData] = useState(cotrol);
+  const [data, setData] = useState(control);
 
   useEffect(() => {
     userValid();
@@ -35,7 +34,7 @@ function ResetPassword() {
         password,
       })
       .then((res) => {
-        dispatch(setActivation(true));
+        dispatch(setActivation());
         navigate(location.state?.return_url || "/auth/login", {
           replace: true,
         });
