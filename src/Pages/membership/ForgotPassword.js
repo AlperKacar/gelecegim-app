@@ -4,12 +4,12 @@ import { useState } from "react";
 import { LoginDiv } from "./Logincss";
 import { Link } from "react-router-dom";
 import { Button, Form } from "antd";
-import logosrc from "../../images/revize3.png";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setActivaitiona } from "../../store/userInformation";
-
+import { ForgotDiv } from "./forgotpasswordcss";
 function ForgotPassword() {
   const [form] = Form.useForm();
   const [email, setEmail] = useState("");
@@ -32,21 +32,29 @@ function ForgotPassword() {
   return (
     <LoginDiv>
       <Helmet>
-        <title>ŞifreYenileme</title>
+        <title>Şifremi Unuttum</title>
       </Helmet>
       <Form className="Form-boyut" form={form}>
-        <div className="Login">
+        <div className="Forgot">
           <div className="Login-boyut">
-            <Link to="/">
-              <img src={logosrc} className="img-logo" alt="logo" />
-            </Link>
+          <ForgotDiv>
+            <span className="lock-img"></span>
+            </ForgotDiv>
+            <ForgotDiv>
+              <span className="baslik">Giriş Yaparken Sorun mu Yaşıyorsun?</span>
+            </ForgotDiv>
+            <div className="text-div">
+              <span className="text">Kayıt olurken kullandığın e-posta adresini gir 
+              ve hesabına yeniden ulaşabilmen için sana bir bağlantı
+              gönderelim.</span>
+            </div>
             <div className="Input-div">
               <Form.Item
                 name="email"
                 rules={[
                   {
                     type: "email",
-                    message: "Geçerli E-posta giriniz!",
+                    message: "Geçerli bir e-posta giriniz!",
                   },
                   {
                     required: true,
@@ -63,7 +71,7 @@ function ForgotPassword() {
               <Form.Item className="Form-button" shouldUpdate>
                 {() => (
                   <Button
-                    className="Button"
+                    className="forgot-form-button"
                     onClick={activationSubmit}
                     type="primary"
                     htmlType="submit"
@@ -74,10 +82,22 @@ function ForgotPassword() {
                         .filter(({ errors }) => errors.length).length
                     }
                   >
-                    <Link>Giriş linki Gönder</Link>
+                    <p>Giriş bağlantısı Gönder</p>
                   </Button>
                 )}
+                
               </Form.Item>
+              <div>
+              <p class="or-divider">&nbsp;&nbsp;YA DA&nbsp;&nbsp;</p>
+              <Link className="forgot-link" to="/auth/signup">
+              Hesap Aç
+            </Link>
+            </div>
+            <div className="forgot-giris-div">
+              <Link className="forgot-giris-link" to="/auth/login">
+              Giriş Ekranına Dön
+            </Link>
+            </div>
             </div>
           </div>
         </div>

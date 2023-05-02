@@ -7,6 +7,7 @@ import { BusinessSignupDiv } from "./BusinessSignupcss";
 import { Button, Form, Checkbox, Radio, message } from "antd";
 import { Link } from "react-router-dom";
 import Ilceler from "../../Components/Ilceler";
+import VdAdlar from "../../Components/VdAdlar";
 
 function BusinessSignup() {
   const [form] = Form.useForm();
@@ -17,10 +18,12 @@ function BusinessSignup() {
   const [email, setEmail] = useState("");
   const [select, setSelect] = useState("");
   const [password, setPassword] = useState("");
-  const [il, setİl] = useState("");
+  const [il, setIl] = useState("");
   const [ilce, setIlce] = useState("");
   const [value, setValue] = useState(1);
   const [tcno, setTcno] = useState("");
+  const [vdil,setVdIl]=useState("");
+  const [vdilce,setVdIlce]=useState("");
   const onChange = (e) => {
     setValue(e.target.value);
     setTcno(!tcno);
@@ -189,8 +192,9 @@ function BusinessSignup() {
                       <Form.Item>
                         <SelectValidation
                           value={il}
-                          label="Iller"
-                          onChange={(o) => setİl(o)}
+                          label="İller"
+                          getir="Iller"
+                          onChange={(o) => setIl(o)}
                         />
                       </Form.Item>
                       <Form.Item>
@@ -198,7 +202,8 @@ function BusinessSignup() {
                           disabled={!enable}
                           value={ilce}
                           il={il}
-                          label="Ilceler"
+                          getir="Ilceler"
+                          label="İlçeler"
                           onChange={(o) => setIlce(o)}
                         />
                       </Form.Item>
@@ -217,16 +222,19 @@ function BusinessSignup() {
                     <div className="split-form ">
                       <Form.Item>
                         <SelectValidation
-                          value={select}
-                          label="Vergi dairesi İli"
-                          onChange={(e) => setSelect(e.target.value)}
+                          value={vdil}
+                          label="Vergi Dairesi İli"
+                          getir="vdIl"
+                          onChange={(e) => setVdIl(e)}
                         />
                       </Form.Item>
                       <Form.Item>
-                        <SelectValidation
-                          value={select}
-                          label="Vergi dairesi"
-                          onChange={(e) => setSelect(e.target.value)}
+                        <VdAdlar
+                          value={vdilce}
+                          il={vdil}
+                          label="Vergi Dairesi Adı"
+                          getir="vdAd"
+                          onChange={(e) => setVdIlce(e)}
                         />
                       </Form.Item>
                     </div>

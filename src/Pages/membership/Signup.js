@@ -42,8 +42,8 @@ const Signup = memo(() => {
         .post("http://localhost:3001/auth/signup", {
           email,
           password,
-          name,
-          surname,
+          name:name.charAt(0).toUpperCase()+name.slice(1),
+          surname:surname.charAt(0).toUpperCase()+surname.slice(1),
         })
         .then((res) => {
           toast.success("Kayıt Başarılı!");
@@ -61,6 +61,7 @@ const Signup = memo(() => {
     await axios
       .post("http://localhost:3001/auth/activation", {
         email,
+        name,
         new_code,
       })
       .then((res) => {
