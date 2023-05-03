@@ -6,6 +6,7 @@ import { Form, Button } from "antd";
 import InputValidation from "../../Components/InputValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { setActivation } from "../../store/userInformation";
+import { Body } from "./resetpasswordcss";
 function ResetPassword() {
   const { id, token } = useParams();
   const [form] = Form.useForm();
@@ -44,13 +45,21 @@ function ResetPassword() {
   return (
     <div>
       <Helmet>
-        <title>ResetPassword</title>
+        <title>Şifre Sıfırlama</title>
       </Helmet>
 
       {data ? (
-        <Form className="Form-boyut" form={form}>
+      <Body>
+        <div className="main-div">
+        <div className="info" >
+          <h1 className="Baslik">Güçlü Bir Şifre Oluştur</h1>
+          <p className="text">Şifren en az 6 karakterden oluşmalı. Tavsiyemiz içinde en az birer tane rakam,küçük harf,büyük harf ve özel karakter kullanmandır.</p>
+        </div>
+
+        <Form className="form-div" form={form}>
           <Form.Item
             name="password"
+            
             rules={[
               {
                 required: true,
@@ -58,7 +67,7 @@ function ResetPassword() {
               },
               {
                 whitespace: true,
-                message: "Boşluk içeremez!",
+                message: "Şifre Boşluk içeremez!",
               },
             ]}
           >
@@ -66,7 +75,7 @@ function ResetPassword() {
               className="form-input"
               type="password"
               name="passwordone"
-              label="Şifre"
+              placeholder="Şifrenizi girin"
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Item>
@@ -93,13 +102,13 @@ function ResetPassword() {
             <InputValidation
               type="password"
               className="form-input"
-              label="Şifreyi Onayla"
+              placeholder="Şifrenizi onaylamak için tekrar girin"
             />
           </Form.Item>
           <Form.Item className="Form-button" shouldUpdate>
             {() => (
               <Button
-                className="Button"
+                className="reset-button"
                 onClick={sendpassword}
                 type="primary"
                 htmlType="submit"
@@ -109,11 +118,13 @@ function ResetPassword() {
                     .length
                 }
               >
-                <Link>Giriş Yap</Link>
+                <p>Onayla</p>
               </Button>
             )}
           </Form.Item>
         </Form>
+        </div>
+        </Body>
       ) : (
         <div>zaman aşımına uğradı</div>
       )}
