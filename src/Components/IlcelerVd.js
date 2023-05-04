@@ -2,19 +2,23 @@ import { Select } from "antd";
 import { memo, useCallback } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function VdAdlar({ il,label,getir, ...props }) {
+function IlcelerVd({ il, label,getir, ...props }) {
   const [state, setState] = useState([]);
   const [state1, setState1] = useState([]);
   useEffect(() => {
     fetchUsers();
   }, [il]);
   const fetchUsers = useCallback(async () => {
+    if (il){
     const response = await axios.get(
-      `http://localhost:3001/select/${getir}/${il}`   
+     ` http://localhost:3001/select/${getir}/${il}`
+   
     );
-    
     setState(response.data);
-    setState1(response.data[0].ad);
+    setState1(response.data[0].name);
+   }
+    
+  
   });
   return (
     <>
@@ -24,8 +28,8 @@ function VdAdlar({ il,label,getir, ...props }) {
         value={state1}
         onChange={setState1}
         optionFilterProp="children"
-        options={state.map((vd) => ({
-          value: vd.ad,
+        options={state.map((item) => ({
+          value: item.name,
         }))}
       />
       <small className="input-text">{label}</small>
@@ -33,5 +37,5 @@ function VdAdlar({ il,label,getir, ...props }) {
   );
 }
 
-export default memo(VdAdlar);
+export default IlcelerVd;
 

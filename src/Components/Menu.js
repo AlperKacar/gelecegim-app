@@ -59,9 +59,11 @@ export function Menu() {
       {isLoggedIn ? (
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
-            <Space className="namesurname">
-              {user.name}
+            <Space>
+              <span className="namesurname">
+              {user.name}  &nbsp;
               {user.surname}
+              </span>
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>

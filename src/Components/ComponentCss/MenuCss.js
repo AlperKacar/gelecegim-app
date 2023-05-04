@@ -52,11 +52,15 @@ export const KullaniciMenu = styled.div`
   .namesurname {
     color: #ebebeb;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 11.3px;
+    letter-spacing: 0.4px;
     font-weight: bold;
+    text-shadow: 1px 1px 0 #2f3339;
+
   }
   .namesurname:hover {
     text-decoration: underline;
+    
   }
   .down-arrow {
     color: #b5c9ff;
