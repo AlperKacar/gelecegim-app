@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
 import { Dropdown, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation, Link, useParams } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
 import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
-import axios from "axios";
 
 export function Menu() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const email = useSelector((state) => state.user);
-  const [user, setUser] = useState([]);
-  const fetchUsers = async () => {
-    const response = await axios.get(`http://localhost:3001/profile/${email}`);
-
-    setUser(response.data);
-  };
-  console.log(user);
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const fullName = `${user.data.existingUser.name} ${user.data.existingUser.surname}`;
   const logoutHandle = () => {
     dispatch(setLogout());
     navigate(location.state?.return_url || "/", {
@@ -59,11 +48,16 @@ export function Menu() {
       {isLoggedIn ? (
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
+<<<<<<< HEAD
             <Space>
               <span className="namesurname">
               {user.name}  &nbsp;
               {user.surname}
               </span>
+=======
+            <Space className="namesurname">
+              {fullName}
+>>>>>>> beb3236f5e536cb0978b5c433d37d6b3fb51e1ed
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>

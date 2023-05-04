@@ -29,15 +29,18 @@ function Login() {
       })
       .then((res) => {
         toast.success("Giriş Başarılı!");
-        dispatch(setLogin(email));
-        navigate(location.state?.return_url || "/", {
-          replace: true,
-        });
+        setTimeout(() => {
+          dispatch(setLogin(res));
+          navigate(location.state?.return_url || "/", {
+            replace: true,
+          });
+        }, 1000);
       })
       .catch((err) => {
         toast.error("Kullanıcı adı veya şifre hatalıdır.");
       });
   };
+
   return (
     <LoginDiv>
       <Helmet>
