@@ -3,93 +3,46 @@ import InputValidation from "../../Components/InputValidation"; //Formlardaki va
 import { useState, memo } from "react"; //reactın kendi içinde bulunan fonksiyonlar
 import { LoginDiv } from "./Logincss"; //stillendirme kısmında kullandığımız styled-components ile oluşturulmuş css kodunun çağırılması
 import logosrc from "../../images/revize3.png";
-import { Button, Form, Checkbox, Modal, Input } from "antd"; //ant design materyalleri
+import { Button, Form, Checkbox } from "antd"; //ant design materyalleri
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify"; // nodejsin içinde bulunan ekrana bildirim çıkartmayı sağlayan bir eklenti
 import axios from "axios"; //http istek ve cevaplarını yönlendirmemizi sağlayan js kütüphanesi
 import { GoogleLogin } from "@react-oauth/google"; //google ile giriş yapmak için gerekli kütüphane
-import { useDispatch, useSelector } from "react-redux";
-import { setActivation } from "../../store/userInformation";
-import { v4 as uuidv4 } from "uuid"; //kayıt olan kullanıcıların mailine gönderip doğrulama yapmasını istediğimiz kodun oluşumunu sağlayan kütüphane
 
 const Signup = memo(() => {
-  const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const [disabled, setDisabled] = useState(false);
-  const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [activ, setActiv] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const activation_code = useSelector((state) => state.activation);
-  const new_code = uuidv4().substring(0, 6);
   const toggleDisable = () => {
     setDisabled(!disabled);
   };
-  const showModal = () => {
-    setTimeout(() => {
-      setOpen(true);
-    }, 2000);
-  };
-  const handleCancel = () => {
-    setOpen(false);
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (activ === activation_code) {
-      await axios
-        .post("http://localhost:3001/auth/signup", {
-          email,
-          password,
-          name:name.charAt(0).toUpperCase()+name.slice(1),
-          surname:surname.charAt(0).toUpperCase()+surname.slice(1),
-        })
-        .then((res) => {
-          toast.success("Kayıt Başarılı!");
-        })
-        .catch((err) => {
-          toast.error("email adresi kayıtlıdır.");
-          console.log(err.response);
-        });
-    } else {
-      toast.error("kod eşleşmedi.");
-    }
-  };
-  const activationSubmit = async (e) => {
-    e.preventDefault();
     await axios
-      .post("http://localhost:3001/auth/activation", {
+      .post("http://localhost:3001/auth/signup", {
         email,
-        name,
-        new_code,
+        password,
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        surname: surname.charAt(0).toUpperCase() + surname.slice(1),
       })
       .then((res) => {
-        dispatch(setActivation(new_code));
-        toast.success(`Aktivasyon kodu ${email} adresine gönderilmiştir.`);
+        toast.success("Kayıt Başarılı!");
       })
       .catch((err) => {
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 1000);
-        toast.error(`${email} Adresi zaten kayıtlı.`);
+        toast.error("email adresi kayıtlıdır.");
+        console.log(err.response);
       });
   };
+
   return (
     <LoginDiv>
       <Helmet>
         <title>Signup</title>
       </Helmet>
-      <Modal
-        title="Aktivasyon kodunu giriniz."
-        open={open}
-        onOk={handleSubmit}
-        onCancel={handleCancel}
-        cancelText="Kodu Tekrar Gönder"
-        okText="Kodu Onayla"
-      >
-        <Input onChange={(e) => setActiv(e.target.value)} />
-      </Modal>
       <Form className="Form-boyut" form={form} name="dynamic_rule">
         <div className="Login">
           <div className="Login-boyut">
@@ -214,14 +167,10 @@ const Signup = memo(() => {
                 <Checkbox className="form-input" onClick={toggleDisable}>
                   Kuralları okudum kabul ediyorum.
                 </Checkbox>
-                <Form.Item
-                  onClick={activationSubmit}
-                  className="Form-button"
-                  shouldUpdate
-                >
+                <Form.Item className="Form-button" shouldUpdate>
                   {() => (
                     <Button
-                      onClick={showModal}
+                      onClick={handleSubmit}
                       className="Button"
                       type="primary"
                       disabled={
