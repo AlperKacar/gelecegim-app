@@ -6,10 +6,9 @@ import logosrc from "../../images/revize3.png";
 import { BusinessSignupDiv } from "./BusinessSignupcss";
 import { Button, Form, Checkbox, Radio, message } from "antd";
 import { Link } from "react-router-dom";
-import Ilceler from "../../Components/Ilceler";
-import VdAdlar from "../../Components/VdAdlar";
 import axios from "axios";
 import { toast } from "react-toastify";
+import IlcelerVd from "../../Components/IlcelerVd";
 
 function BusinessSignup() {
   const [form] = Form.useForm();
@@ -222,7 +221,7 @@ function BusinessSignup() {
                         />
                       </Form.Item>
                       <Form.Item>
-                        <Ilceler
+                        <IlcelerVd
                           disabled={!enable}
                           value={ilce}
                           il={il}
@@ -253,7 +252,7 @@ function BusinessSignup() {
                         />
                       </Form.Item>
                       <Form.Item>
-                        <VdAdlar
+                        <IlcelerVd
                           value={vdilce}
                           il={vdil}
                           disabled={!vgd}

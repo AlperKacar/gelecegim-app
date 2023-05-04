@@ -6,6 +6,7 @@ import {
   IsIlani,
   Kurum,
   Home,
+  Ilan
 } from "./routerComponents";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 //import GeneralAuth from "../Shared/auth/GeneralAuth";
@@ -20,8 +21,8 @@ const RouterGeneral = () => {
           <Route path="kurum" element={<Kurum />} />
           <Route path="isilani" element={<IsIlani />} />
           <Route path="ozelders" element={<OzelDers />} />
-
           <Route path="*" element={<PageNotFound />} />
+          <Route path="ilan" element={<Ilan/>}/>
         </Route>
       </Routes>
     </Suspense>

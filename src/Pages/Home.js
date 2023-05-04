@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
     <Helmet>
-      <title>Geleceğim Kurum, ÖzelDers ve İş İlanına Kolay Ulaşım</title>
+      <title>Geleceğim Kurum ve kurslara kolay ulaşım.</title>
       <meta name="description" content="anasayfa description"/>
     </Helmet>
       <Body/>
