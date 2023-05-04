@@ -2,7 +2,7 @@ import { Select } from "antd";
 import { memo, useCallback } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function SelectValidation({ label,getir, ...props }) {
+function SelectValidation({ label, getir, ...props }) {
   const [state, setState] = useState([]);
   const fetchUsers = useCallback(async () => {
     const response = await axios.get(`http://localhost:3001/select/${getir}`);

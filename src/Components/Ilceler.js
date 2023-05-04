@@ -2,7 +2,7 @@ import { Select } from "antd";
 import { memo, useCallback } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function Ilceler({ il, label,getir, ...props }) {
+function Ilceler({ il, label, getir, ...props }) {
   const [state, setState] = useState([]);
   const [state1, setState1] = useState([]);
   useEffect(() => {
@@ -33,4 +33,3 @@ function Ilceler({ il, label,getir, ...props }) {
 }
 
 export default memo(Ilceler);
-

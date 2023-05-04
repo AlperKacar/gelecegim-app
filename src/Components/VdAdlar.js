@@ -2,7 +2,7 @@ import { Select } from "antd";
 import { memo, useCallback } from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function VdAdlar({ il,label,getir, ...props }) {
+function VdAdlar({ il, label, getir, ...props }) {
   const [state, setState] = useState([]);
   const [state1, setState1] = useState([]);
   useEffect(() => {
@@ -10,9 +10,9 @@ function VdAdlar({ il,label,getir, ...props }) {
   }, [il]);
   const fetchUsers = useCallback(async () => {
     const response = await axios.get(
-      `http://localhost:3001/select/${getir}/${il}`   
+      `http://localhost:3001/select/${getir}/${il}`
     );
-    
+
     setState(response.data);
     setState1(response.data[0].ad);
   });
@@ -34,4 +34,3 @@ function VdAdlar({ il,label,getir, ...props }) {
 }
 
 export default memo(VdAdlar);
-

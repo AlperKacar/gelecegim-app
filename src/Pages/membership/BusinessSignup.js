@@ -8,6 +8,8 @@ import { Button, Form, Checkbox, Radio, message } from "antd";
 import { Link } from "react-router-dom";
 import Ilceler from "../../Components/Ilceler";
 import VdAdlar from "../../Components/VdAdlar";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function BusinessSignup() {
   const [form] = Form.useForm();
@@ -22,13 +24,34 @@ function BusinessSignup() {
   const [ilce, setIlce] = useState("");
   const [value, setValue] = useState(1);
   const [tcno, setTcno] = useState("");
-  const [vdil,setVdIl]=useState("");
-  const [vdilce,setVdIlce]=useState("");
+  const [show, hide] = useState(true);
+  const [vdil, setVdIl] = useState("");
+  const [vdilce, setVdIlce] = useState("");
   const onChange = (e) => {
     setValue(e.target.value);
-    setTcno(!tcno);
+    hide(!show);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:3001/auth/signup", {
+        email,
+        password,
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        surname: surname.charAt(0).toUpperCase() + surname.slice(1),
+      })
+      .then((res) => {
+        toast.success("Kayıt Başarılı!");
+      })
+      .catch((err) => {
+        toast.error("email adresi kayıtlıdır.");
+        console.log(err.response);
+      });
   };
   const enable = il;
+  const vgd = vdil;
   const [disabled, setDisabled] = useState(false);
   const onFinish = () => {
     setTimeout(() => {
@@ -182,6 +205,7 @@ function BusinessSignup() {
                     >
                       <SelectValidation
                         value={select}
+                        getir="Kurum"
                         label="Kurum Alanınız"
                         onChange={(e) => setSelect(e.target.value)}
                       />
@@ -232,6 +256,7 @@ function BusinessSignup() {
                         <VdAdlar
                           value={vdilce}
                           il={vdil}
+                          disabled={!vgd}
                           label="Vergi Dairesi Adı"
                           getir="vdAd"
                           onChange={(e) => setVdIlce(e)}
@@ -277,6 +302,7 @@ function BusinessSignup() {
                       >
                         <InputValidation
                           type="text"
+                          disabled={!show}
                           className="form-input"
                           value={tcno}
                           label="TC Kimlik No"
@@ -309,6 +335,7 @@ function BusinessSignup() {
                         <Form.Item className="Form-button" shouldUpdate>
                           {() => (
                             <Button
+                              onClick={handleSubmit}
                               className="Button"
                               type="primary"
                               disabled={
