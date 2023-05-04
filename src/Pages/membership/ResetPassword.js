@@ -19,7 +19,7 @@ function ResetPassword() {
 
   useEffect(() => {
     userValid();
-  }, []);
+  });
   const userValid = async () => {
     await axios
       .get(`http://localhost:3001/auth/forgotPassword/${id}/${token}`)
@@ -49,81 +49,85 @@ function ResetPassword() {
       </Helmet>
 
       {data ? (
-      <Body>
-        <div className="main-div">
-        <div className="info" >
-          <h1 className="Baslik">Güçlü Bir Şifre Oluştur</h1>
-          <p className="text">Şifren en az 6 karakterden oluşmalı. Tavsiyemiz içinde en az birer tane rakam,küçük harf,büyük harf ve özel karakter kullanmandır.</p>
-        </div>
+        <Body>
+          <div className="main-div">
+            <div className="info">
+              <h1 className="Baslik">Güçlü Bir Şifre Oluştur</h1>
+              <p className="text">
+                Şifren en az 6 karakterden oluşmalı. Tavsiyemiz içinde en az
+                birer tane rakam,küçük harf,büyük harf ve özel karakter
+                kullanmandır.
+              </p>
+            </div>
 
-        <Form className="form-div" form={form}>
-          <Form.Item
-            name="password"
-            
-            rules={[
-              {
-                required: true,
-                message: "Lütfen şifrenizi girin!",
-              },
-              {
-                whitespace: true,
-                message: "Şifre Boşluk içeremez!",
-              },
-            ]}
-          >
-            <InputValidation
-              className="form-input"
-              type="password"
-              name="passwordone"
-              placeholder="Şifrenizi girin"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Item>
-          <Form.Item
-            name="confirm"
-            dependencies={["password"]}
-            rules={[
-              {
-                required: true,
-                message: "Lütfen şifrenizi doğrulayınız!",
-              },
-              ({ getFieldValue }) => ({
-                validator(_, value) {
-                  if (!value || getFieldValue("password") === value) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(
-                    new Error("Girdiğiniz iki şifre uyuşmuyor!")
-                  );
-                },
-              }),
-            ]}
-          >
-            <InputValidation
-              type="password"
-              className="form-input"
-              placeholder="Şifrenizi onaylamak için tekrar girin"
-            />
-          </Form.Item>
-          <Form.Item className="Form-button" shouldUpdate>
-            {() => (
-              <Button
-                className="reset-button"
-                onClick={sendpassword}
-                type="primary"
-                htmlType="submit"
-                disabled={
-                  !form.isFieldsTouched(true) ||
-                  !!form.getFieldsError().filter(({ errors }) => errors.length)
-                    .length
-                }
+            <Form className="form-div" form={form}>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Lütfen şifrenizi girin!",
+                  },
+                  {
+                    whitespace: true,
+                    message: "Şifre Boşluk içeremez!",
+                  },
+                ]}
               >
-                <p>Onayla</p>
-              </Button>
-            )}
-          </Form.Item>
-        </Form>
-        </div>
+                <InputValidation
+                  className="form-input"
+                  type="password"
+                  name="passwordone"
+                  placeholder="Şifrenizi girin"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Item>
+              <Form.Item
+                name="confirm"
+                dependencies={["password"]}
+                rules={[
+                  {
+                    required: true,
+                    message: "Lütfen şifrenizi doğrulayınız!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("Girdiğiniz iki şifre uyuşmuyor!")
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <InputValidation
+                  type="password"
+                  className="form-input"
+                  placeholder="Şifrenizi onaylamak için tekrar girin"
+                />
+              </Form.Item>
+              <Form.Item className="Form-button" shouldUpdate>
+                {() => (
+                  <Button
+                    className="reset-button"
+                    onClick={sendpassword}
+                    type="primary"
+                    htmlType="submit"
+                    disabled={
+                      !form.isFieldsTouched(true) ||
+                      !!form
+                        .getFieldsError()
+                        .filter(({ errors }) => errors.length).length
+                    }
+                  >
+                    <p>Onayla</p>
+                  </Button>
+                )}
+              </Form.Item>
+            </Form>
+          </div>
         </Body>
       ) : (
         <div>zaman aşımına uğradı</div>

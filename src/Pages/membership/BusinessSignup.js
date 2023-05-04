@@ -14,20 +14,22 @@ function BusinessSignup() {
   const [form] = Form.useForm();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  // const [businessname, setBusinessname] = useState("");
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [select, setSelect] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [business, setBusiness] = useState("");
   const [il, setIl] = useState("");
   const [ilce, setIlce] = useState("");
-  const [value, setValue] = useState(1);
-  const [tcno, setTcno] = useState("");
-  const [show, hide] = useState(true);
+  const [uyelikTuru, setUyelikTuru] = useState(1);
   const [vdil, setVdIl] = useState("");
-  const [vdilce, setVdIlce] = useState("");
+  const [vdad, setVdAd] = useState("");
+  const [tcno, setTcno] = useState("");
+  const [vkNo, setVkNo] = useState("");
+
+  const [show, hide] = useState(true);
+
   const onChange = (e) => {
-    setValue(e.target.value);
+    setUyelikTuru(e.target.value);
     hide(!show);
   };
 
@@ -40,6 +42,15 @@ function BusinessSignup() {
         password,
         name: name.charAt(0).toUpperCase() + name.slice(1),
         surname: surname.charAt(0).toUpperCase() + surname.slice(1),
+        phone,
+        business,
+        il,
+        ilce,
+        uyelikTuru,
+        vdil,
+        vdad,
+        tcno,
+        vkNo,
       })
       .then((res) => {
         toast.success("Kayıt Başarılı!");
@@ -191,6 +202,7 @@ function BusinessSignup() {
                       <InputValidation
                         className="form-input phone"
                         value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                         label="Sabit Telefon"
                       />
                     </Form.Item>
@@ -203,10 +215,10 @@ function BusinessSignup() {
                       ]}
                     >
                       <SelectValidation
-                        value={select}
+                        value={business}
                         getir="Kurum"
                         label="Kurum Alanınız"
-                        onChange={(e) => setSelect(e.target.value)}
+                        onChange={(e) => setBusiness(e.target.value)}
                       />
                     </Form.Item>
                   </div>
@@ -236,7 +248,7 @@ function BusinessSignup() {
                       <Radio.Group
                         className="form-radio"
                         onChange={onChange}
-                        value={value}
+                        value={uyelikTuru}
                       >
                         <Radio value={1}>Şahıs Şirketi</Radio>
                         <Radio value={2}>Limited veya Anonim Şirketi</Radio>
@@ -247,18 +259,18 @@ function BusinessSignup() {
                         <SelectValidation
                           value={vdil}
                           label="Vergi Dairesi İli"
-                          getir="vdIl"
+                          getir="Iller"
                           onChange={(e) => setVdIl(e)}
                         />
                       </Form.Item>
                       <Form.Item>
                         <IlcelerVd
-                          value={vdilce}
+                          value={vdad}
                           il={vdil}
                           disabled={!vgd}
                           label="Vergi Dairesi Adı"
                           getir="vdAd"
-                          onChange={(e) => setVdIlce(e)}
+                          onChange={(e) => setVdAd(e)}
                         />
                       </Form.Item>
                     </div>
@@ -280,9 +292,9 @@ function BusinessSignup() {
                         <InputValidation
                           type="text"
                           className="form-input"
-                          value={name}
+                          value={vkNo}
                           label="Vergi Kimlik No"
-                          onChange={(e) => setName(e.target.value)}
+                          onChange={(e) => setVkNo(e.target.value)}
                         />
                       </Form.Item>
                       <Form.Item
