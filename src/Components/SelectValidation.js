@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 function SelectValidation({ label, getir, ...props }) {
   const [state, setState] = useState([]);
-  const fetchUsers = useCallback(async () => {
+  const fetchUsers = async () => {
     const response = await axios.get(`http://localhost:3001/select/${getir}`);
     setState(response.data);
-  });
+  };
   useEffect(() => {
     fetchUsers();
   }, []);

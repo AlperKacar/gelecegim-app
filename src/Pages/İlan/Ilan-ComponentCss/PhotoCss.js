@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const PhotoDiv = styled.div`
+  text-shadow: 1px 1px #fff;
   width: 528px;
   margin-right: 30px;
+
   .frame-main {
-    width: 100%;
+    width: 528px;
     height: 396px;
     border: 3px solid black;
   }
@@ -12,11 +14,15 @@ export const PhotoDiv = styled.div`
   .frame-side {
     width: 100px;
     height: 75px;
+    margin-right: 1px;
+    background-color: #d7d7d7;
+  }
+  .frame-side:focus {
     border: 2px solid black;
   }
 
   .buyuk-video-buton {
-    width: 100%;
+    width: 528px;
     height: 33px;
     border-bottom: 1px solid #d7d7d7;
     padding-top: 9px;
@@ -40,25 +46,35 @@ export const PhotoDiv = styled.div`
   .buyukFotoLink {
     color: #039;
     text-decoration: none;
-    padding-left: 22px;
+    padding-left: 1 px;
     font-weight: bold;
     overflow: hidden;
     display: inline-block;
     position: relative;
   }
   .search-icon {
+    color: #039;
     width: 20px;
     height: 17px;
   }
   .videoLink {
     font-weight: bold;
-    padding-left: 23px;
+    padding-left:1px;
     position: relative;
     color: #039;
     text-decoration: none;
+    bottom: 3px;
   }
   .play-icon {
+    color: #039;
     width: 20px;
     height: 17px;
+  }
+  .side-container {
+    border: 1px solid black;
+    width: 528px;
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
   }
 `;

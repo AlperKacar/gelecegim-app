@@ -34,6 +34,11 @@ function BusinessSignup() {
   };
 
   const handleSubmit = async (e) => {
+    let hesapTuru=""
+      if (uyelikTuru===1)
+        hesapTuru="Şahıs Şirketi"
+      else
+        hesapTuru="Limited Veya Anonim Şirket"
     e.preventDefault();
 
     await axios
@@ -46,7 +51,7 @@ function BusinessSignup() {
         business,
         il,
         ilce,
-        uyelikTuru,
+        hesapTuru,
         vdil,
         vdad,
         tcno,
@@ -146,7 +151,7 @@ function BusinessSignup() {
                     </div>
                     <Form.Item
                       name="email"
-                      addonAfter="0("
+                      
                       rules={[
                         {
                           type: "email",
@@ -218,7 +223,7 @@ function BusinessSignup() {
                         value={business}
                         getir="Kurum"
                         label="Kurum Alanınız"
-                        onChange={(e) => setBusiness(e.target.value)}
+                        onChange={(e) => setBusiness(e)}
                       />
                     </Form.Item>
                   </div>

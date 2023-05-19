@@ -32,7 +32,7 @@ const IsIlani = lazy(() => import("../Pages/Kategori/IsIlani"));
 const OzelDers = lazy(() => import("../Pages/Kategori/OzelDers"));
 const PageNotFound = lazy(() => import("../Pages/PageNotFound"));
 const Ilan =lazy(()=>import("../Pages/İlan/Ilan"));
-
+const IlanVer=lazy(()=>import("../Pages/IlanVer/IlanVer"));
 
 
 export {
@@ -57,4 +57,5 @@ export {
   AdminSignUp,
   PageNotFound,
   Ilan,
+  IlanVer,
 };

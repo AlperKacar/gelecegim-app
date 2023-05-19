@@ -28,6 +28,7 @@ const Signup = memo(() => {
         password,
         name: name.charAt(0).toUpperCase() + name.slice(1),
         surname: surname.charAt(0).toUpperCase() + surname.slice(1),
+        hesapTuru:"Bireysel",
       })
       .then((res) => {
         toast.success("Kayıt Başarılı!");

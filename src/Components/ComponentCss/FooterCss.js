@@ -7,7 +7,7 @@ export const Foot = styled.div`
   background-color: #f9f9f9;
 
   .container {
-    width: 1115px;
+    width: 1150px;
 
     margin: auto;
   }
