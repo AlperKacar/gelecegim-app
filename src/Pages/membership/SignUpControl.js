@@ -14,7 +14,6 @@ function SignUpControl() {
       await axios
         .get(`http://localhost:3001/auth/signup/${id}/${token}`)
         .then((res) => {
-          console.log("dogru");
           navigate(location.state?.return_url || "/auth/login", {
             replace: true,
           });
