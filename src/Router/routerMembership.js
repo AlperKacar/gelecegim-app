@@ -8,6 +8,7 @@ import {
   BusinessSignup,
   SignUpControl,
   SignUp,
+  SignUpDeleteControl
 } from "./routerComponents";
 import LayoutMembership from "../Shared/layout/LayoutMembership";
 import MembershipAuth from "../Shared/auth/MembershipAuth";
@@ -31,6 +32,7 @@ const RouterMembership = () => {
           <Route path="kayit/kurumsal" element={<BusinessSignup />} />
           <Route path="signUp" element={<SignUp />} />
           <Route path="signUp/:id/:token" element={<SignUpControl />} />
+          <Route path="signUp/delete/:id/:token" element={<SignUpDeleteControl />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>

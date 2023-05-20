@@ -29,6 +29,7 @@ const ResetPassword = lazy(() => import("../Pages/membership/ResetPassword"));
 const SignUp = lazy(() => import("../Pages/membership/Signup"));
 const BusinessSignup = lazy(() => import("../Pages/membership/BusinessSignup"));
 const SignUpControl = lazy(() => import("../Pages/membership/SignUpControl"));
+const SignUpDeleteControl = lazy(() => import("../Pages/membership/SignUpDeleteControl"));
 
 //general
 const RouterGeneral = lazy(() => import("./routerGeneral"));
@@ -51,7 +52,7 @@ export {
   SignUp,
   SignUpControl,
   BusinessSignup,
-
+  SignUpDeleteControl,
   //general
   RouterGeneral,
   OzelDers,
