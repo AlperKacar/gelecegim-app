@@ -29,7 +29,8 @@ function DeleteProfile() {
       });
 
       dispatch(setLogout());
-      navigate(location.state?.return_url || "/auth/login", {
+      toast.success("Hesap silme Başarılı");
+      navigate(location.state?.return_url || "/auth/signup", {
         replace: true,
       });
     } catch (err) {

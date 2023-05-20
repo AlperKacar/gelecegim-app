@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import InputValidation from "../../Components/InputValidation";
 import SelectValidation from "../../Components/SelectValidation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logosrc from "../../images/revize3.png";
 import { BusinessSignupDiv } from "./BusinessSignupcss";
 import { Button, Form, Checkbox, Radio, message } from "antd";
@@ -26,6 +26,7 @@ function BusinessSignup() {
   const [tcno, setTcno] = useState("");
   const [vkNo, setVkNo] = useState("");
   const [checked, setChecked] = useState(false);
+  const [tcnochecked, setTcnoChecked] = useState(false);
 
   const handleRadioChange = (e) => {
     setHesapTuru(e.target.value);
@@ -59,6 +60,13 @@ function BusinessSignup() {
         toast.error("email adresi kayıtlıdır.");
       });
   };
+  useEffect(() => {
+    if (tcno.length === 11) {
+      setTcnoChecked(false);
+    } else {
+      setTcnoChecked(true);
+    }
+  }, [tcno]);
   const toggleDisable = () => {
     setChecked(false);
   };
@@ -382,9 +390,7 @@ function BusinessSignup() {
                                     .filter(({ errors }) => errors.length)
                                     .length ||
                                   !checked ||
-                                  tcno.length === 11
-                                    ? false
-                                    : true
+                                  tcnochecked
                                 }
                               >
                                 <Link>Hesap Aç</Link>
