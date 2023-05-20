@@ -28,11 +28,7 @@ const Signup = memo(() => {
         password,
         name: name.charAt(0).toUpperCase() + name.slice(1),
         surname: surname.charAt(0).toUpperCase() + surname.slice(1),
-<<<<<<< HEAD
-        hesapTuru: "bireysel",
-=======
-        hesapTuru:"Bireysel",
->>>>>>> 5af1760c0a594054adce4717356ba2a436d3d0c5
+        hesapTuru: "Bireysel",
       })
       .then((res) => {
         toast.success(`${email} adresinize kayıt linki gönderilmiştir`);

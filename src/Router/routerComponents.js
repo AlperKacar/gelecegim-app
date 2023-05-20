@@ -59,6 +59,7 @@ export {
   Kurum,
   Home,
   Ilan,
+  IlanVer,
 
   //private
   RouterPrivate,
@@ -75,6 +76,4 @@ export {
 
   //notFound
   PageNotFound,
-  Ilan,
-  IlanVer,
 };
