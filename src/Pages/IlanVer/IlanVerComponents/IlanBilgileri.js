@@ -10,8 +10,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import IlcelerVd from "../../../Components/IlcelerVd";
 import dayjs from 'dayjs'
-
+import {useSelector } from "react-redux";
 function IlanBilgileri({ secilen }) {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const { name, surname,_id } = useSelector((state) =>
+    isLoggedIn ? state.user.data.existingUser : ""
+  );
+  const olusturan=_id;
   const [disabled, setDisabled] = useState(false);
   const [form] = Form.useForm();
   const [baslik, setBaslik] = useState("");
@@ -51,7 +56,8 @@ function IlanBilgileri({ secilen }) {
         kursBaslama,
         kursBitis,
         il,
-        ilce
+        ilce,
+        olusturan
       })
       .then((res) => {
         toast.success("İlan Başarıyla oluşturuldu.");
