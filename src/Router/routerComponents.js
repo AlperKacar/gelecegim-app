@@ -37,6 +37,7 @@ const Kurum = lazy(() => import("../Pages/Kategori/Kurum"));
 const IsIlani = lazy(() => import("../Pages/Kategori/IsIlani"));
 const OzelDers = lazy(() => import("../Pages/Kategori/OzelDers"));
 const Ilan = lazy(() => import("../Pages/İlan/Ilan"));
+const IlanVer = lazy(() => import("../Pages/IlanVer/IlanVer"));
 
 //notFound
 const PageNotFound = lazy(() => import("../Pages/PageNotFound"));
@@ -74,4 +75,6 @@ export {
 
   //notFound
   PageNotFound,
+  Ilan,
+  IlanVer,
 };

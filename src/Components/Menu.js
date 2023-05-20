@@ -66,9 +66,10 @@ export function Menu() {
               Hesap Aç
             </Link>
           </ul>
+          <Link to="/auth/kayit/kurumsal">
           <button className="kurum-kayit" name="Kurum Kaydı">
-            <Link to="/auth/kayit/kurumsal">Kurum Kaydı</Link>
-          </button>
+           Kurum Kaydı
+          </button></Link>
         </div>
       )}
     </KullaniciMenu>

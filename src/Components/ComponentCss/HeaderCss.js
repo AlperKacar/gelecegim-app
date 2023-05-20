@@ -11,7 +11,7 @@ background-color: #3f475f;
 
   .Navbar {
     
-    width: 1115px;
+    width: 1150px;
     height: 57.9px;
     display: flex;
     align-items: center;

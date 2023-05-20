@@ -35,6 +35,11 @@ function BusinessSignup() {
   };
   const isRequired = hesapTuru === "Şahıs Şirketi";
   const handleSubmit = async (e) => {
+    let hesapTuru=""
+      if (uyelikTuru===1)
+        hesapTuru="Şahıs Şirketi"
+      else
+        hesapTuru="Limited Veya Anonim Şirket"
     e.preventDefault();
     await axios
       .post("http://localhost:3001/auth/signup", {
@@ -146,6 +151,10 @@ function BusinessSignup() {
                     </div>
                     <Form.Item
                       name="email"
+<<<<<<< HEAD
+=======
+                      
+>>>>>>> 5af1760c0a594054adce4717356ba2a436d3d0c5
                       rules={[
                         {
                           type: "email",
@@ -218,7 +227,11 @@ function BusinessSignup() {
                         value={business}
                         getir="Kurum"
                         label="Kurum Alanınız"
+<<<<<<< HEAD
                         onChange={(o) => setBusiness(o)}
+=======
+                        onChange={(e) => setBusiness(e)}
+>>>>>>> 5af1760c0a594054adce4717356ba2a436d3d0c5
                       />
                     </Form.Item>
                   </div>

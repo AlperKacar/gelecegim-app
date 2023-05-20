@@ -88,7 +88,7 @@ function ForgotPassword() {
                 
               </Form.Item>
               <div>
-              <p class="or-divider">&nbsp;&nbsp;YA DA&nbsp;&nbsp;</p>
+              <p className="or-divider">&nbsp;&nbsp;YA DA&nbsp;&nbsp;</p>
               <Link className="forgot-link" to="/auth/signup">
               Hesap Aç
             </Link>
