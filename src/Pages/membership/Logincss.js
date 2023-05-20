@@ -146,7 +146,10 @@ export const LoginDiv = styled.div`
     padding: 3px 35px 0 18px !important;
   }
   .input-text {
-    bottom: 29px;
+    height: 1px;
+    display: flex;
+    align-items: center;
+    bottom: 39px;
     background-color: white;
     left: 13px;
     padding: 0 5px;
@@ -265,13 +268,13 @@ export const LoginDiv = styled.div`
     justify-content: flex-start;
     margin-right: 44px;
   }
-  .text{
-    font-size:14px;
+  .text {
+    font-size: 14px;
     line-height: 18px;
     margin-top: 5px;
     text-align: center;
     font-weight: 400;
-}
+  }
   @media screen and (max-width: 720px) {
     overflow: hidden;
     .Sign-up-boyut {

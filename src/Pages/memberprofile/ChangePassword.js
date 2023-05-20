@@ -1,24 +1,24 @@
 import { Helmet } from "react-helmet";
 import MainMenu from "../../Components/Mainmenu";
-import EditProfile from "../../Components/EditProfile";
 import { MemberLayout } from "./Memberprofilecss/Memmbercss";
+import EditPassword from "../../Components/EditPassword";
 
-function Profile() {
+function ChangePassword() {
   return (
     <>
       <Helmet>
-        <title> Profile</title>
+        <title>ChangePassword</title>
       </Helmet>
       <MemberLayout>
         <div>
           <MainMenu />
         </div>
         <div>
-          <EditProfile />
+          <EditPassword />
         </div>
       </MemberLayout>
     </>
   );
 }
 
-export default Profile;
+export default ChangePassword;

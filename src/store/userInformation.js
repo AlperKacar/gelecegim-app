@@ -5,7 +5,6 @@ const userSlice = createSlice({
   initialState: {
     mode: "light",
     user: null,
-    activation: null,
     token: null,
     posts: [],
     isLoggedIn: false,
@@ -20,12 +19,16 @@ const userSlice = createSlice({
       state.token = payload;
       state.isLoggedIn = true;
     },
+    setProfile: (state, { payload }) => {
+      state.user = payload;
+      state.token = payload;
+    },
     setActivaitiona: (state, { payload }) => {
-      state.activation = null;
       state.control = true;
     },
     setLogout: (state, { payload }) => {
       state.token = null;
+      state.user = null;
       state.isLoggedIn = false;
     },
     setFriends: (state, action) => {
@@ -46,7 +49,6 @@ const userSlice = createSlice({
       state.posts = updatedPosts;
     },
     setActivation: (state, { payload }) => {
-      state.activation = payload;
       state.control = false;
     },
   },
@@ -56,6 +58,7 @@ export const userData = (state) => state.userInformation; // state üzerindeki b
 
 export const {
   setFriends,
+  setProfile,
   setLogin,
   setLogout,
   setMode,

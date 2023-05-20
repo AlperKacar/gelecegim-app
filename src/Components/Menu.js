@@ -7,11 +7,13 @@ import { BiChevronDown } from "react-icons/bi";
 
 export function Menu() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const user = useSelector((state) => state.user);
+  const { name, surname } = useSelector((state) =>
+    isLoggedIn ? state.user.data.existingUser : ""
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const fullName = `${user.data.existingUser.name} ${user.data.existingUser.surname}`;
+  const fullName = `${name} ${surname}`;
   const logoutHandle = () => {
     dispatch(setLogout());
     navigate(location.state?.return_url || "/", {
@@ -20,7 +22,7 @@ export function Menu() {
   };
   const items = [
     {
-      label: <Link to="/profile">Profili Görüntüle</Link>,
+      label: <Link to="/user/profile">Profili Görüntüle</Link>,
       key: "0",
     },
     /* {

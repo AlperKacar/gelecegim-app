@@ -20,22 +20,22 @@ function BusinessSignup() {
   const [business, setBusiness] = useState("");
   const [il, setIl] = useState("");
   const [ilce, setIlce] = useState("");
-  const [uyelikTuru, setUyelikTuru] = useState(1);
+  const [hesapTuru, setHesapTuru] = useState("Şahıs Şirketi");
   const [vdil, setVdIl] = useState("");
   const [vdad, setVdAd] = useState("");
   const [tcno, setTcno] = useState("");
   const [vkNo, setVkNo] = useState("");
+  const [checked, setChecked] = useState(false);
 
-  const [show, hide] = useState(true);
-
-  const onChange = (e) => {
-    setUyelikTuru(e.target.value);
-    hide(!show);
+  const handleRadioChange = (e) => {
+    setHesapTuru(e.target.value);
+    if (hesapTuru === "Şahıs Şirketi") {
+      setTcno("");
+    }
   };
-
+  const isRequired = hesapTuru === "Şahıs Şirketi";
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await axios
       .post("http://localhost:3001/auth/signup", {
         email,
@@ -46,7 +46,7 @@ function BusinessSignup() {
         business,
         il,
         ilce,
-        uyelikTuru,
+        hesapTuru,
         vdil,
         vdad,
         tcno,
@@ -57,20 +57,20 @@ function BusinessSignup() {
       })
       .catch((err) => {
         toast.error("email adresi kayıtlıdır.");
-        console.log(err.response);
       });
   };
-  const enable = il;
-  const vgd = vdil;
-  const [disabled, setDisabled] = useState(false);
+  const toggleDisable = () => {
+    setChecked(false);
+  };
+  const onClick = () => {
+    setChecked(!checked);
+  };
   const onFinish = () => {
     setTimeout(() => {
       message.success("Login success");
     }, 1000);
   };
-  const toggleDisable = () => {
-    setDisabled(!disabled);
-  };
+  const { Item } = Form;
   return (
     <>
       <Helmet>
@@ -146,7 +146,6 @@ function BusinessSignup() {
                     </div>
                     <Form.Item
                       name="email"
-                      addonAfter="0("
                       rules={[
                         {
                           type: "email",
@@ -208,6 +207,7 @@ function BusinessSignup() {
                     </Form.Item>
 
                     <Form.Item
+                      name="Kurum"
                       rules={[
                         {
                           required: true,
@@ -218,13 +218,20 @@ function BusinessSignup() {
                         value={business}
                         getir="Kurum"
                         label="Kurum Alanınız"
-                        onChange={(e) => setBusiness(e.target.value)}
+                        onChange={(o) => setBusiness(o)}
                       />
                     </Form.Item>
                   </div>
                   <div className="right-section section-border">
                     <div className="split-form ">
-                      <Form.Item>
+                      <Form.Item
+                        name="Il"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
                         <SelectValidation
                           value={il}
                           label="İller"
@@ -232,9 +239,15 @@ function BusinessSignup() {
                           onChange={(o) => setIl(o)}
                         />
                       </Form.Item>
-                      <Form.Item>
+                      <Form.Item
+                        name="Ilce"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
                         <IlcelerVd
-                          disabled={!enable}
                           value={ilce}
                           il={il}
                           getir="Ilceler"
@@ -245,17 +258,36 @@ function BusinessSignup() {
                     </div>
                     <label>İşletme Türü</label>
                     <div className="split-form ">
-                      <Radio.Group
-                        className="form-radio"
-                        onChange={onChange}
-                        value={uyelikTuru}
-                      >
-                        <Radio value={1}>Şahıs Şirketi</Radio>
-                        <Radio value={2}>Limited veya Anonim Şirketi</Radio>
-                      </Radio.Group>
+                      <Item name="radio">
+                        <Radio.Group
+                          className="form-radio"
+                          onChange={handleRadioChange}
+                          value={hesapTuru}
+                        >
+                          <Radio
+                            onClick={toggleDisable}
+                            value={"Şahıs Şirketi"}
+                          >
+                            Şahıs Şirketi
+                          </Radio>
+                          <Radio
+                            onClick={toggleDisable}
+                            value={"Limited veya Anonim Şirketi"}
+                          >
+                            Limited veya Anonim Şirketi
+                          </Radio>
+                        </Radio.Group>
+                      </Item>
                     </div>
                     <div className="split-form ">
-                      <Form.Item>
+                      <Form.Item
+                        name="VdIl"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
                         <SelectValidation
                           value={vdil}
                           label="Vergi Dairesi İli"
@@ -263,11 +295,17 @@ function BusinessSignup() {
                           onChange={(e) => setVdIl(e)}
                         />
                       </Form.Item>
-                      <Form.Item>
+                      <Form.Item
+                        name="vdAd"
+                        rules={[
+                          {
+                            required: true,
+                          },
+                        ]}
+                      >
                         <IlcelerVd
                           value={vdad}
                           il={vdil}
-                          disabled={!vgd}
                           label="Vergi Dairesi Adı"
                           getir="vdAd"
                           onChange={(e) => setVdAd(e)}
@@ -297,25 +335,12 @@ function BusinessSignup() {
                           onChange={(e) => setVkNo(e.target.value)}
                         />
                       </Form.Item>
-                      <Form.Item
-                        name="tcno"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Lütfen soyisim giriniz!",
-                            whitespace: true,
-                          },
-                          {
-                            whitespace: true,
-                            message: "Boşluk içeremez!",
-                          },
-                        ]}
-                      >
+                      <Form.Item>
                         <InputValidation
-                          type="text"
-                          disabled={!show}
-                          className="form-input"
+                          max={11}
                           value={tcno}
+                          disabled={hesapTuru === "Limited veya Anonim Şirketi"}
+                          className="form-input"
                           label="TC Kimlik No"
                           onChange={(e) => setTcno(e.target.value)}
                         />
@@ -335,33 +360,59 @@ function BusinessSignup() {
                     </div>
                     <div className="eula-and-button">
                       <div>
-                        <Checkbox onClick={toggleDisable}>
-                          <Link to="/" className="eula-area">
+                        <Checkbox checked={checked} onChange={onClick}>
+                          <Link className="eula-area">
                             Kurumsal Hesap Sözleşmesi ve Ekleri'ni
                           </Link>
                           &nbsp;kabul ediyorum.
                         </Checkbox>
                       </div>
                       <div className="sign-up-container ">
-                        <Form.Item className="Form-button" shouldUpdate>
-                          {() => (
-                            <Button
-                              onClick={handleSubmit}
-                              className="Button"
-                              type="primary"
-                              disabled={
-                                !form.isFieldsTouched(true) ||
-                                !!form
-                                  .getFieldsError()
-                                  .filter(({ errors }) => errors.length)
-                                  .length ||
-                                !!!disabled
-                              }
-                            >
-                              <Link>Hesap Aç</Link>
-                            </Button>
-                          )}
-                        </Form.Item>
+                        {isRequired ? (
+                          <Form.Item className="Form-button" shouldUpdate>
+                            {() => (
+                              <Button
+                                onClick={handleSubmit}
+                                className="Button"
+                                type="primary"
+                                disabled={
+                                  !form.isFieldsTouched(true) ||
+                                  !!form
+                                    .getFieldsError()
+                                    .filter(({ errors }) => errors.length)
+                                    .length ||
+                                  !checked ||
+                                  tcno.length === 11
+                                    ? false
+                                    : true
+                                }
+                              >
+                                <Link>Hesap Aç</Link>
+                              </Button>
+                            )}
+                          </Form.Item>
+                        ) : (
+                          <Form.Item className="Form-button" shouldUpdate>
+                            {() => (
+                              <Button
+                                onClick={handleSubmit}
+                                className="Button"
+                                type="primary"
+                                disabled={
+                                  !form.isFieldsTouched(true) ||
+                                  !!form
+                                    .getFieldsError()
+                                    .filter(({ errors }) => errors.length)
+                                    .length ||
+                                  !!!checked
+                                }
+                              >
+                                <Link>Hesap Aç</Link>
+                              </Button>
+                            )}
+                          </Form.Item>
+                        )}
+
                         <p className="redirect-to-login-register ">
                           Hesabın var mı?&nbsp;
                           <Link to="/auth/login">Giriş Yap</Link>

@@ -11,22 +11,11 @@ import {
 } from "./routerComponents";
 
 const Router = () => {
-
-
-  
-
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, []);
-
-
-  useEffect(() => {
-
-  }, [pathname]);
-
- 
+  useEffect(() => {}, [pathname]);
 
   return (
     <Suspense fallback={<LoadingTruck />}>
@@ -34,34 +23,26 @@ const Router = () => {
         <Route
           path="/500"
           element={
-            
             <LayoutMembership childrenActive>
               <PageNotFound
                 title="Beklenmeyen hata"
-                desc={
-                  <>
-                    500 Internal server error
-                  </>
-                }
+                desc={<>500 Internal server error</>}
               />
             </LayoutMembership>
-            
           }
         />
 
         {/* user login... */}
-        <Route  path="/auth/*"  element={<RouterMembership />} />
+        <Route path="/auth/*" element={<RouterMembership />} />
         {/* login sonrası private */}
-        <Route path="/*"  element={<RouterGeneral />} />
+        <Route path="/*" element={<RouterGeneral />} />
         {/* auth/admin sonrası private */}
         <Route path="/auth/admin/*" element={<RouterAdminPrivate />} />
         {/* profile/ sonrası private */}
-        <Route path="/profile/*" authre={true} element={<RouterPrivate />} />
-      </Routes> 
+        <Route path="/user/*" authre={true} element={<RouterPrivate />} />
+      </Routes>
     </Suspense>
-  )
-  
-}
-
+  );
+};
 
 export default Router;

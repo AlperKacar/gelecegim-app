@@ -1,24 +1,24 @@
 import { Helmet } from "react-helmet";
 import MainMenu from "../../Components/Mainmenu";
-import EditProfile from "../../Components/EditProfile";
 import { MemberLayout } from "./Memberprofilecss/Memmbercss";
+import DeleteProfile from "../../Components/DeleteProfile";
 
-function Profile() {
+function DeleteAccount() {
   return (
     <>
       <Helmet>
-        <title> Profile</title>
+        <title> DeleteAccount</title>
       </Helmet>
       <MemberLayout>
         <div>
           <MainMenu />
         </div>
         <div>
-          <EditProfile />
+          <DeleteProfile />
         </div>
       </MemberLayout>
     </>
   );
 }
 
-export default Profile;
+export default DeleteAccount;

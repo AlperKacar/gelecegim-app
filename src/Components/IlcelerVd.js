@@ -1,22 +1,21 @@
 import { Select } from "antd";
-import { memo } from "react";
-import { useState, useEffect } from "react";
+import { memo, useState, useEffect } from "react";
 import axios from "axios";
 
 function IlcelerVd({ il, label, getir, ...props }) {
-  const [state, setState] = useState([]);
-  const [state1, setState1] = useState([]);
+  const { Option } = Select;
+  const [ilceler, setIlceler] = useState([]);
+
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchIlceler = async () => {
       if (il) {
         const response = await axios.get(
           ` http://localhost:3001/select/${getir}/${il}`
         );
-        setState(response.data);
-        setState1(response.data[0].name);
+        setIlceler(response.data);
       }
     };
-    fetchUsers();
+    fetchIlceler();
   }, [il, getir]);
 
   return (
@@ -24,13 +23,15 @@ function IlcelerVd({ il, label, getir, ...props }) {
       <Select
         {...props}
         showSearch
-        value={state1}
-        onChange={setState1}
         optionFilterProp="children"
-        options={state.map((item) => ({
-          value: item.name,
-        }))}
-      />
+        disabled={!ilceler.length}
+      >
+        {ilceler.map((ilce) => (
+          <Option key={ilce.name} value={ilce.name}>
+            {ilce.name}
+          </Option>
+        ))}
+      </Select>
       <small className="input-text">{label}</small>
     </>
   );

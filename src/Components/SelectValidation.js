@@ -1,25 +1,27 @@
 import { Select } from "antd";
-import { memo, useCallback } from "react";
-import { useState, useEffect } from "react";
+import { memo, useCallback, useState, useEffect } from "react";
 import axios from "axios";
+
 function SelectValidation({ label, getir, ...props }) {
-  const [state, setState] = useState([]);
-  const fetchUsers = useCallback(async () => {
+  const [options, setOptions] = useState([]);
+
+  const fetchOptions = useCallback(async () => {
     const response = await axios.get(`http://localhost:3001/select/${getir}`);
-    setState(response.data);
-  });
+    setOptions(response.data);
+  }, [getir]);
+
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchOptions();
+  }, [fetchOptions]);
 
   return (
     <>
       <Select
         {...props}
         showSearch
-        optionFilterProp="children"
-        options={state.map((state) => ({
-          value: state.ad,
+        options={options.map((option) => ({
+          value: option.ad,
+          label: option.ad,
         }))}
       />
 
@@ -27,4 +29,5 @@ function SelectValidation({ label, getir, ...props }) {
     </>
   );
 }
+
 export default memo(SelectValidation);

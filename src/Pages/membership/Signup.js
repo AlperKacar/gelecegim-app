@@ -28,13 +28,13 @@ const Signup = memo(() => {
         password,
         name: name.charAt(0).toUpperCase() + name.slice(1),
         surname: surname.charAt(0).toUpperCase() + surname.slice(1),
+        hesapTuru: "bireysel",
       })
       .then((res) => {
-        toast.success("Kayıt Başarılı!");
+        toast.success(`${email} adresinize kayıt linki gönderilmiştir`);
       })
       .catch((err) => {
         toast.error("email adresi kayıtlıdır.");
-        console.log(err.response);
       });
   };
 

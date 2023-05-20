@@ -15,18 +15,15 @@ function ResetPassword() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
-  const [data, setData] = useState(control);
 
   useEffect(() => {
     userValid();
-  });
+  }, []);
   const userValid = async () => {
     await axios
       .get(`http://localhost:3001/auth/forgotPassword/${id}/${token}`)
       .then((res) => {})
-      .catch((err) => {
-        setData(true);
-      });
+      .catch((err) => {});
   };
   const sendpassword = async (e) => {
     e.preventDefault();
@@ -48,7 +45,7 @@ function ResetPassword() {
         <title>Şifre Sıfırlama</title>
       </Helmet>
 
-      {data ? (
+      {control ? (
         <Body>
           <div className="main-div">
             <div className="info">
