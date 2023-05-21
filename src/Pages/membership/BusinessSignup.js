@@ -54,7 +54,7 @@ function BusinessSignup() {
         vkNo,
       })
       .then((res) => {
-        toast.success("Kayıt Başarılı!");
+        toast.success(`${email} adresine kayıt linki gönderilmiştir.`);
       })
       .catch((err) => {
         toast.error("email adresi kayıtlıdır.");

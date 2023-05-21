@@ -29,7 +29,9 @@ const ResetPassword = lazy(() => import("../Pages/membership/ResetPassword"));
 const SignUp = lazy(() => import("../Pages/membership/Signup"));
 const BusinessSignup = lazy(() => import("../Pages/membership/BusinessSignup"));
 const SignUpControl = lazy(() => import("../Pages/membership/SignUpControl"));
-const SignUpDeleteControl = lazy(() => import("../Pages/membership/SignUpDeleteControl"));
+const SignUpDeleteControl = lazy(() =>
+  import("../Pages/membership/SignUpDeleteControl")
+);
 
 //general
 const RouterGeneral = lazy(() => import("./routerGeneral"));
@@ -38,6 +40,8 @@ const Kurum = lazy(() => import("../Pages/Kategori/Kurum"));
 const IsIlani = lazy(() => import("../Pages/Kategori/IsIlani"));
 const OzelDers = lazy(() => import("../Pages/Kategori/OzelDers"));
 const Ilan = lazy(() => import("../Pages/İlan/Ilan"));
+//
+const RouterIlan = lazy(() => import("./routerIlan"));
 const IlanVer = lazy(() => import("../Pages/IlanVer/IlanVer"));
 
 //notFound
@@ -67,7 +71,8 @@ export {
   Profile,
   ChangePassword,
   DeleteAccount,
-
+  //Ilan
+  RouterIlan,
   //adminprivate
   RouterAdminPrivate,
   AdminLogin,

@@ -7,6 +7,7 @@ import {
   RouterAdminPrivate,
   RouterGeneral,
   RouterPrivate,
+  RouterIlan,
   PageNotFound,
 } from "./routerComponents";
 
@@ -36,6 +37,7 @@ const Router = () => {
         <Route path="/auth/*" element={<RouterMembership />} />
         {/* login sonrası private */}
         <Route path="/*" element={<RouterGeneral />} />
+        <Route path="/ilanver*" element={<RouterIlan />} />
         {/* auth/admin sonrası private */}
         <Route path="/auth/admin/*" element={<RouterAdminPrivate />} />
         {/* profile/ sonrası private */}
