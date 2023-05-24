@@ -31,15 +31,15 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
-    setFriends: (state, action) => {
-      if (state.user) {
-        state.user.friends = action.payload.friends;
-      } else {
-        console.error("kullacının arkadaşları yok");
-      }
-    },
-    setPosts: (state, action) => {
-      state.posts = action.payload.posts;
+    // setFriends: (state, action) => {
+    //   if (state.user) {
+    //     state.user.friends = action.payload.friends;
+    //   } else {
+    //     console.error("kullacının arkadaşları yok");
+    //   }
+    // },
+    setPosts: (state, { payload }) => {
+      state.posts = payload;
     },
     setPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {
@@ -57,7 +57,7 @@ const userSlice = createSlice({
 export const userData = (state) => state.userInformation; // state üzerindeki bilgileri dışarı aktarma
 
 export const {
-  setFriends,
+  // setFriends,
   setProfile,
   setLogin,
   setLogout,

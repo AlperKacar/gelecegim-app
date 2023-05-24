@@ -11,7 +11,9 @@ import { Profile } from "./ComponentCss/EditProfilecss";
 
 function ResetPassword() {
   const [form] = Form.useForm();
-  const user = useSelector((state) => state.user.data.existingUser);
+  const user = useSelector(
+    (state) => state.userInformation.user.data.existingUser
+  );
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

@@ -5,18 +5,19 @@ import { useState } from "react";
 import { Container } from "../IlanVerComponentCss/IlanBilgileriCss";
 import { Button, Form, Radio, Input, DatePicker } from "antd";
 
-import { Link, useNavigate,useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import IlcelerVd from "../../../Components/IlcelerVd";
-import dayjs from 'dayjs'
-import {useSelector } from "react-redux";
+import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts } from "../../../store/userInformation";
 function IlanBilgileri({ secilen }) {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const { name, surname,_id } = useSelector((state) =>
-    isLoggedIn ? state.user.data.existingUser : ""
+  const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+  const { name, surname, _id } = useSelector((state) =>
+    isLoggedIn ? state.userInformation.user.data.existingUser : ""
   );
-  const olusturan=_id;
+  const olusturan = _id;
   const [disabled, setDisabled] = useState(false);
   const [form] = Form.useForm();
   const [baslik, setBaslik] = useState("");
@@ -32,15 +33,13 @@ function IlanBilgileri({ secilen }) {
   const [ilce, setIlce] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
-
-
+  const dispatch = useDispatch();
   const { TextArea } = Input;
   const { RangePicker } = DatePicker;
   const disablePastDates = (current) => {
     return current && current < dayjs().endOf("day");
-  }
+  };
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
 
     await axios
@@ -57,12 +56,12 @@ function IlanBilgileri({ secilen }) {
         kursBitis,
         il,
         ilce,
-        olusturan
+        olusturan,
       })
       .then((res) => {
         toast.success("İlan Başarıyla oluşturuldu.");
         setTimeout(() => {
-          
+          dispatch(setPosts(res));
           navigate(location.state?.return_url || "/", {
             replace: true,
           });
@@ -73,13 +72,13 @@ function IlanBilgileri({ secilen }) {
         console.log(err.response);
       });
   };
- 
+
   return (
     <>
       <Helmet>
         <title>İlan Ver</title>
       </Helmet>
-     
+
       <Container>
         <div className="business-center-colum">
           <div className="form-corporate">
@@ -91,50 +90,48 @@ function IlanBilgileri({ secilen }) {
                 name="dynamic_rule"
               >
                 <div className="form-container">
-                  
-                    <label className="labels">İlan Başlığı </label>
+                  <label className="labels">İlan Başlığı </label>
 
-                    <Form.Item
-                      name="Baslik"
-                      onChange={(e) => setBaslik(e.target.value)}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Lütfen ilanınıza bir başlık giriniz!",
-                          whitespace: true,
-                        },
-                      ]}
-                    >
-                      <InputValidation
-                        type="text"
-                        className="form-input baslik"
-                        value={baslik}
-                      />
-                    </Form.Item>
-                    <label className="labels">Açıklama</label>
-                    <Form.Item
-                      name="aciklama"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Lütfen ilanınıza bir açıklama giriniz!",
-                          whitespace: true,
-                        },
-                      ]}
-                    >
-                      <TextArea
-                        className="text-area"
-                        value={aciklama}
-                        showCount
-                        maxLength={750}
-                        style={{ height: 120, marginBottom: 24 }}
-                        onChange={(e) => setAciklama(e.target.value)}
-                        
-                      />
-                    </Form.Item>
-                    <div className="yanyana">
+                  <Form.Item
+                    name="Baslik"
+                    onChange={(e) => setBaslik(e.target.value)}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Lütfen ilanınıza bir başlık giriniz!",
+                        whitespace: true,
+                      },
+                    ]}
+                  >
+                    <InputValidation
+                      type="text"
+                      className="form-input baslik"
+                      value={baslik}
+                    />
+                  </Form.Item>
+                  <label className="labels">Açıklama</label>
+                  <Form.Item
+                    name="aciklama"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Lütfen ilanınıza bir açıklama giriniz!",
+                        whitespace: true,
+                      },
+                    ]}
+                  >
+                    <TextArea
+                      className="text-area"
+                      value={aciklama}
+                      showCount
+                      maxLength={750}
+                      style={{ height: 120, marginBottom: 24 }}
+                      onChange={(e) => setAciklama(e.target.value)}
+                    />
+                  </Form.Item>
+                  <div className="yanyana">
                     <label className="labels">Fiyat</label>
-                    
+
                     <Form.Item
                       name="fiyat"
                       rules={[
@@ -158,8 +155,8 @@ function IlanBilgileri({ secilen }) {
                         onChange={(e) => setUcret(e.target.value)}
                       />
                     </Form.Item>
-                    </div>
-                    <div className="tasi">
+                  </div>
+                  <div className="tasi">
                     <label className="labels">Eğitmen Sayısı</label>
                     <Form.Item
                       name="egitmen_sayisi"
@@ -181,88 +178,93 @@ function IlanBilgileri({ secilen }) {
                         onChange={(e) => setEgitmenSayisi(e.target.value)}
                       />
                     </Form.Item>
-                    </div>
-                    <label className="labels">İlan branşı</label>
-
-                    <Form.Item
-                      rules={[
-                        {
-                          required: true,
-                        },
-                      ]}
-                    >
-                      <IlcelerVd
-                        className="selects"
-                        size="large"
-                        value={brans}
-                        il={secilen}
-                        getir="altAlan"
-                        onChange={(e) => setBrans(e)}
-                      />
-                    </Form.Item>
-
-                    <label className="labels">Kurum İli</label>
-                    <Form.Item>
-                      <SelectValidation
-                        className="selects"
-                        size="large"
-                        value={il}
-                        getir="Iller"
-                        onChange={(o) => setIl(o)}
-                      />
-                    </Form.Item>
-                    <label className="labels">Kurum İlçesi</label>
-                    <Form.Item>
-                      <IlcelerVd
-                        className="selects"
-                        size="large"
-                        value={ilce}
-                        il={il}
-                        getir="Ilceler"
-                        onChange={(o) => setIlce(o)}
-                      />
-                    </Form.Item>
-
-                    <label className="labels">Taksit İmkanı?</label>
-                    <Radio.Group
-                     className="form-radio" 
-                     value={taksit}
-                     onChange={(e) => {setTaksit(e.target.value)}}>
-                      <Radio value={"Evet"}>Evet</Radio>
-                      <Radio value={"Hayır"}>Hayır</Radio>
-                    </Radio.Group>
-
-                    <label className="labels">Sertifikalı mı?</label>
-
-                    <Radio.Group
-                     className="form-radio" 
-                     value={sertifika}
-                     onChange={(e) => {setSertifika(e.target.value)}}>
-                      <Radio value={"Evet"}>Evet</Radio>
-                      <Radio value={"Hayır"}>Hayır</Radio>
-                    </Radio.Group>
-
-                    <label className="labels">
-                      Kurs Başlangıç&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitiş Tarihi
-                    </label>
-
-                    <Form.Item>
-                      <RangePicker
-                        allowClear="false"
-                        format="DD/MM/YYYY"
-                        size="large"
-                        onChange={(date) => {
-                          setkursBaslama(dayjs(date[0]).format("DD/MM/YYYY"))
-                          setkursBitis(dayjs(date[1]).format("DD/MM/YYYY"))
-                        }}
-                       
-                        disabledDate={disablePastDates}
-                      />
-                    </Form.Item>
-
-                    
                   </div>
-                
+                  <label className="labels">İlan branşı</label>
+
+                  <Form.Item
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <IlcelerVd
+                      className="selects"
+                      size="large"
+                      value={brans}
+                      il={secilen}
+                      getir="altAlan"
+                      onChange={(e) => setBrans(e)}
+                    />
+                  </Form.Item>
+
+                  <label className="labels">Kurum İli</label>
+                  <Form.Item>
+                    <SelectValidation
+                      className="selects"
+                      size="large"
+                      value={il}
+                      getir="Iller"
+                      onChange={(o) => setIl(o)}
+                    />
+                  </Form.Item>
+                  <label className="labels">Kurum İlçesi</label>
+                  <Form.Item>
+                    <IlcelerVd
+                      className="selects"
+                      size="large"
+                      value={ilce}
+                      il={il}
+                      getir="Ilceler"
+                      onChange={(o) => setIlce(o)}
+                    />
+                  </Form.Item>
+
+                  <label className="labels">Taksit İmkanı?</label>
+                  <Radio.Group
+                    className="form-radio"
+                    value={taksit}
+                    onChange={(e) => {
+                      setTaksit(e.target.value);
+                    }}
+                  >
+                    <Radio value={"Evet"}>Evet</Radio>
+                    <Radio value={"Hayır"}>Hayır</Radio>
+                  </Radio.Group>
+
+                  <label className="labels">Sertifikalı mı?</label>
+
+                  <Radio.Group
+                    className="form-radio"
+                    value={sertifika}
+                    onChange={(e) => {
+                      setSertifika(e.target.value);
+                    }}
+                  >
+                    <Radio value={"Evet"}>Evet</Radio>
+                    <Radio value={"Hayır"}>Hayır</Radio>
+                  </Radio.Group>
+
+                  <label className="labels">
+                    Kurs
+                    Başlangıç&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitiş
+                    Tarihi
+                  </label>
+
+                  <Form.Item>
+                    <RangePicker
+                      allowClear="false"
+                      format="DD/MM/YYYY"
+                      size="large"
+                      onChange={(date) => {
+                        setkursBaslama(dayjs(date[0]).format("DD/MM/YYYY"));
+                        setkursBitis(dayjs(date[1]).format("DD/MM/YYYY"));
+                      }}
+                      disabledDate={disablePastDates}
+                    />
+                  </Form.Item>
+                </div>
+
                 <div className="form-extra-container">
                   <div className="extra-text-wrapper">
                     <div className="eula-and-button">
@@ -273,8 +275,6 @@ function IlanBilgileri({ secilen }) {
                               onClick={handleSubmit}
                               className="Button"
                               type="primary"
-                              
-                             
                             >
                               <Link>İlan Ver</Link>
                             </Button>

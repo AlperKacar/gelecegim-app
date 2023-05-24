@@ -73,11 +73,6 @@ function BusinessSignup() {
   const onClick = () => {
     setChecked(!checked);
   };
-  const onFinish = () => {
-    setTimeout(() => {
-      message.success("Login success");
-    }, 1000);
-  };
   const { Item } = Form;
   return (
     <>
@@ -98,12 +93,7 @@ function BusinessSignup() {
           <div className="form-corporate">
             <div className="registration-corporate">
               <h3>Kurumsal Hesap Aç</h3>
-              <Form
-                // autoComplete="off"
-                onFinish={onFinish}
-                form={form}
-                name="dynamic_rule"
-              >
+              <Form form={form} name="dynamic_rule">
                 <div className="form-container">
                   <div className="left-section section-border">
                     <div className="split-form ">

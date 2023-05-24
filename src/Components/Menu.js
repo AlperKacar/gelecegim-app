@@ -6,9 +6,10 @@ import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
 
 export function Menu() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+
   const { name, surname } = useSelector((state) =>
-    isLoggedIn ? state.user.data.existingUser : ""
+    isLoggedIn ? state.userInformation.user.data.existingUser : ""
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,9 +68,10 @@ export function Menu() {
             </Link>
           </ul>
           <Link to="/auth/kayit/kurumsal">
-          <button className="kurum-kayit" name="Kurum Kaydı">
-           Kurum Kaydı
-          </button></Link>
+            <button className="kurum-kayit" name="Kurum Kaydı">
+              Kurum Kaydı
+            </button>
+          </Link>
         </div>
       )}
     </KullaniciMenu>

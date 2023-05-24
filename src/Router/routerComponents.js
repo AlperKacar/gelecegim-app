@@ -12,14 +12,10 @@ const DeleteAccount = lazy(() =>
 
 //adminprivate
 const RouterAdminPrivate = lazy(() => import("./routerAdminPrivate"));
-const AdminLogin = lazy(() => import("../Pages/admin/AdminLogin"));
-const AdminForgotPassword = lazy(() =>
-  import("../Pages/admin/AdminForgotPassword")
-);
-const AdminResetPassword = lazy(() =>
-  import("../Pages/admin/AdminResetPassword")
-);
-const AdminSignUp = lazy(() => import("../Pages/admin/AdminSignUp"));
+const AdminLogin = lazy(() => import("../Pages/adminAuth/AdminLogin"));
+//adminship
+const RouterAdminshipe = lazy(() => import("./routerAdminship"));
+const AdminProfile = lazy(() => import("../Pages/adminProfile/AdminProfile"));
 
 //membership
 const RouterMembership = lazy(() => import("./routerMembership"));
@@ -76,10 +72,9 @@ export {
   //adminprivate
   RouterAdminPrivate,
   AdminLogin,
-  AdminForgotPassword,
-  AdminResetPassword,
-  AdminSignUp,
-
+  //adminship
+  RouterAdminshipe,
+  AdminProfile,
   //notFound
   PageNotFound,
 };

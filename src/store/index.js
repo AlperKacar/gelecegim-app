@@ -1,10 +1,42 @@
 import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import userInformation from "./userInformation";
+import adminInformation from "./adminInformation";
+
+const persistConfig = { key: "root", storage, version: 1 };
+const persistConfigAdmin = {
+  key: "admin",
+  storage,
+  version: 1,
+};
+const persistedReducer = persistReducer(persistConfig, userInformation);
+const persistedAdminReducer = persistReducer(
+  persistConfigAdmin,
+  adminInformation
+);
 
 const store = configureStore({
   reducer: {
-    userInformation,
+    userInformation: persistedReducer,
+    adminInformation: persistedAdminReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
+export const persistor = persistStore(store);
 export default store;

@@ -15,7 +15,9 @@ const getBase64 = (file) =>
   });
 
 const EditProfile = () => {
-  const user = useSelector((state) => state.user.data.existingUser);
+  const user = useSelector(
+    (state) => state.userInformation.user.data.existingUser
+  );
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");

@@ -10,6 +10,7 @@ import {
   RouterIlan,
   PageNotFound,
 } from "./routerComponents";
+import RouterAdminship from "./routerAdminship";
 
 const Router = () => {
   const { pathname } = useLocation();
@@ -37,9 +38,11 @@ const Router = () => {
         <Route path="/auth/*" element={<RouterMembership />} />
         {/* login sonrası private */}
         <Route path="/*" element={<RouterGeneral />} />
-        <Route path="/ilanver*" element={<RouterIlan />} />
+        <Route path="/ilanver/*" element={<RouterIlan />} />
         {/* auth/admin sonrası private */}
         <Route path="/auth/admin/*" element={<RouterAdminPrivate />} />
+        {/* admin giriş sonrası */}
+        <Route path="/admin/*" element={<RouterAdminship />} />
         {/* profile/ sonrası private */}
         <Route path="/user/*" authre={true} element={<RouterPrivate />} />
       </Routes>

@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
-export default function InputValidation({ max, label, type = "", ...props }) {
+function InputValidation({ max, label, type = "", ...props }) {
   const [show, setShow] = useState(false);
-
   const [inputType, setInputType] = useState(type);
   useEffect(() => {
     if (show) {
@@ -33,3 +32,5 @@ export default function InputValidation({ max, label, type = "", ...props }) {
     </>
   );
 }
+
+export default memo(InputValidation);
