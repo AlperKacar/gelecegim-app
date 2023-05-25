@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Menu } from "antd";
+import Modal from "antd/lib/modal/Modal";
 import axios from "axios";
 
 export default function AdminProfile() {
   const [users, setUsers] = useState([]);
   const [ilans, setIlans] = useState([]);
+  const [selectedUserDetails, setSelectedUserDetails] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUserIdDelete, setSelectedUserIdDelete] = useState(null);
+  const [selectedIlanIdDelete, setSelectedIlanIdDelete] = useState(null);
+  const [selectedUserIdDetails, setSelectedUserIdDetails] = useState(null);
   const [ilanlar, setIlanlar] = useState([]);
   const [menuKey, setMenuKey] = useState("users");
   const [isVerified, setIsVerified] = useState("");
   const [hesapTuru, setHesapTuru] = useState("");
   const [userSearch, setUserSearch] = useState("");
   const [ilanlarSearch, setIlanlarSearch] = useState("");
-
+  const [deleteModalVisibleIlan, setDeleteModalVisibleIlan] = useState(false);
+  const [deleteModalVisibleUser, setDeleteModalVisibleUser] = useState(false);
+  const showDeleteModalUser = (userId) => {
+    setSelectedUserIdDelete(userId);
+    setDeleteModalVisibleUser(true);
+  };
+  const showDeleteModalIlan = (userId) => {
+    setSelectedIlanIdDelete(userId);
+    setDeleteModalVisibleIlan(true);
+  };
   const fetchUsers = async () => {
     try {
       if (menuKey === "ilanlar") {
@@ -79,12 +93,80 @@ export default function AdminProfile() {
     setIsVerified(event.key);
     setIlans([]);
   };
-  const handleDeleteUser = (userId) => {};
-  const handleEditUser = (userId) => {};
-  const handleViewUserDetails = (userId) => {};
+  const handleDeleteUser = async (userId) => {
+    try {
+      // Make the delete request using axios or your preferred HTTP library
+      await axios.delete(`http://localhost:3001/admin/users/delete/${userId}`);
+
+      // Close the delete confirmation modal
+      setDeleteModalVisibleUser(false);
+
+      // Refresh the ad list by calling fetchUsers or any other suitable function
+      fetchUsers();
+    } catch (error) {
+      console.error("İlan silinirken bir hata oluştu:", error);
+    }
+  };
+  // const handleisVerifiedUsers = async (userId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:3001/admin/users/isVerified/${userId}`
+  //     );
+
+  //     setSelectedUserId(userId);
+  //     setIlanlar(response.data.Ilans);
+  //   } catch (error) {
+  //     console.error(
+  //       "Kullanıcının ilanlarını getirirken bir hata oluştu:",
+  //       error
+  //     );
+  //   }
+  // };
+  const handleViewUserDetails = async (userId) => {
+    try {
+      if (userId === selectedUserIdDetails) {
+        setSelectedUserIdDetails(null);
+        setSelectedUserDetails([]);
+        return;
+      }
+
+      const response = await axios.get(
+        `http://localhost:3001/admin/users/details/${userId}`
+      );
+
+      setSelectedUserIdDetails(userId);
+      setSelectedUserDetails(response.data);
+    } catch (error) {
+      console.error("Kullanıcı detaylarını getirirken bir hata oluştu:", error);
+    }
+  };
   const handleIlanDetail = (userId) => {};
   const handleEditIlan = (userId) => {};
-  const handleDeleteIlan = (userId) => {};
+  const handleDeleteIlan = async (userId) => {
+    try {
+      // Make the delete request using axios or your preferred HTTP library
+      await axios.delete(
+        `http://localhost:3001/admin/ilanlar/delete/${userId}`
+      );
+
+      // Close the delete confirmation modal
+      setDeleteModalVisibleIlan(false);
+
+      // Refresh the ad list by calling fetchUsers or any other suitable function
+      fetchUsers();
+    } catch (error) {
+      console.error("İlan silinirken bir hata oluştu:", error);
+    }
+  };
+  const handleisVerifiedIlan = async (userId) => {
+    try {
+      await axios.get(
+        `http://localhost:3001/admin/ilanlar/isVerified/${userId}`
+      );
+    } catch (error) {
+      console.error("İlan doğrulama hatası:", error);
+    }
+  };
   const columns = [
     {
       title: "Ad",
@@ -129,11 +211,76 @@ export default function AdminProfile() {
       key: "actions",
       render: (_, record) => (
         <div>
-          <Button onClick={() => handleDeleteUser(record._id)}>Sil</Button>
-          <Button onClick={() => handleEditUser(record._id)}>Düzenle</Button>
-          <Button onClick={() => handleViewUserDetails(record._id)}>
-            Detaylar
+          <Button
+            style={{
+              color: "White",
+              background: "red",
+              width: 80,
+              marginRight: 10,
+            }}
+            onClick={() => showDeleteModalUser(record._id)}
+          >
+            Sil
           </Button>
+          {selectedUserIdDetails === record._id ? (
+            <>
+              <Button
+                style={{
+                  color: "White",
+                  background: "blue",
+                  width: 120,
+                  marginRight: 10,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Detayları kapat
+              </Button>
+              <Button
+                style={{
+                  color: "White",
+                  background: "Green",
+                  width: 100,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Düzenle
+              </Button>
+            </>
+          ) : (
+            <Button
+              style={{
+                color: "White",
+                background: "blue",
+                width: 120,
+              }}
+              onClick={() => handleViewUserDetails(record._id)}
+            >
+              Detaylar
+            </Button>
+          )}
+        </div>
+      ),
+    },
+    {
+      title: "Doğrulama",
+      key: "isVerified",
+      render: (_, record) => (
+        <div>
+          {record && record.isVerified ? (
+            <h4
+              style={{
+                color: "White",
+                background: "green",
+                width: 120,
+              }}
+            >
+              Doğrulanmış Kullanıcı
+            </h4>
+          ) : (
+            <h4 style={{ color: "White", background: "red", width: 120 }}>
+              Doğrulanmamış Kullanıcı
+            </h4>
+          )}
         </div>
       ),
     },
@@ -159,9 +306,71 @@ export default function AdminProfile() {
       key: "actions",
       render: (_, record) => (
         <div>
-          <Button onClick={() => handleIlanDetail(record)}>Detaylar</Button>
-          <Button onClick={() => handleEditIlan(record)}>Düzenle</Button>
-          <Button onClick={() => handleDeleteIlan(record._id)}>Sil</Button>
+          <Button
+            style={{
+              color: "White",
+              background: "red",
+              width: 80,
+              marginRight: 10,
+            }}
+            onClick={() => showDeleteModalIlan(record._id)}
+          >
+            Sil
+          </Button>
+          {selectedUserIdDetails === record._id ? (
+            <>
+              <Button
+                style={{
+                  color: "White",
+                  background: "blue",
+                  width: 120,
+                  marginRight: 10,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Detayları kapat
+              </Button>
+              <Button
+                style={{
+                  color: "White",
+                  background: "Green",
+                  width: 100,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Düzenle
+              </Button>
+            </>
+          ) : (
+            <Button
+              style={{
+                color: "White",
+                background: "blue",
+                width: 120,
+              }}
+              onClick={() => handleViewUserDetails(record._id)}
+            >
+              Detaylar
+            </Button>
+          )}
+        </div>
+      ),
+    },
+    {
+      title: "Doğrulama",
+      key: "isVerified",
+      render: (_, record) => (
+        <div>
+          {record && record.isVerified ? (
+            <h4>Doğrulanmış Ilan</h4>
+          ) : (
+            <Button
+              style={{ color: "White", background: "green", width: 120 }}
+              onClick={() => handleisVerifiedIlan(record._id)}
+            >
+              Doğrula
+            </Button>
+          )}
         </div>
       ),
     },
@@ -187,14 +396,190 @@ export default function AdminProfile() {
       key: "actions",
       render: (_, record) => (
         <div>
-          <Button onClick={() => handleIlanDetail(record)}>Detaylar</Button>
-          <Button onClick={() => handleEditIlan(record)}>Düzenle</Button>
-          <Button onClick={() => handleDeleteIlan(record._id)}>Sil</Button>
+          <Button
+            style={{
+              color: "White",
+              background: "red",
+              width: 80,
+              marginRight: 10,
+            }}
+            onClick={() => showDeleteModalIlan(record._id)}
+          >
+            Sil
+          </Button>
+          {selectedUserIdDetails === record._id ? (
+            <>
+              <Button
+                style={{
+                  color: "White",
+                  background: "blue",
+                  width: 120,
+                  marginRight: 10,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Detayları kapat
+              </Button>
+              <Button
+                style={{
+                  color: "White",
+                  background: "Green",
+                  width: 100,
+                }}
+                onClick={() => handleViewUserDetails(record._id)}
+              >
+                Düzenle
+              </Button>
+            </>
+          ) : (
+            <Button
+              style={{
+                color: "White",
+                background: "blue",
+                width: 120,
+              }}
+              onClick={() => handleViewUserDetails(record._id)}
+            >
+              Detaylar
+            </Button>
+          )}
+        </div>
+      ),
+    },
+    {
+      title: "Doğrulama",
+      key: "isVerified",
+      render: (_, record) => (
+        <div>
+          {record && record.isVerified ? (
+            <h4>Doğrulanmış Ilan</h4>
+          ) : (
+            <Button
+              style={{ color: "White", background: "green", width: 120 }}
+              onClick={() => handleisVerifiedIlan(record._id)}
+            >
+              Doğrula
+            </Button>
+          )}
         </div>
       ),
     },
   ];
+  const userDetailsFirstColumns = [
+    {
+      title: "Ad",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Soyad",
+      dataIndex: "surname",
+      key: "surname",
+    },
+    {
+      title: "E-posta",
+      dataIndex: "email",
+      key: "email",
+    },
 
+    {
+      title: "Ilan Sayısı",
+      dataIndex: "Ilan",
+      key: "Ilan",
+    },
+    {
+      title: "_id",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
+      title: "Kayıt Tarihi",
+      dataIndex: "regDate",
+      key: "regDate",
+    },
+    {
+      title: "hesapTuru",
+      dataIndex: "hesapTuru",
+      key: "hesapTuru",
+    },
+  ];
+  const userDetailsSecondColumns = [
+    {
+      title: "Kurum Türü",
+      dataIndex: "business",
+      key: "business",
+    },
+    {
+      title: "TC Kimlik",
+      dataIndex: "tcno",
+      key: "tcno",
+    },
+    {
+      title: "Telefon",
+      dataIndex: "phone",
+      key: "phone",
+    },
+
+    {
+      title: "Vergi Dairesi Adı",
+      dataIndex: "vdad",
+      key: "vdad",
+    },
+    {
+      title: "Vergi Dairesi İli",
+      dataIndex: "vdil",
+      key: "vdil",
+    },
+    {
+      title: "Vergi Kimlik No",
+      dataIndex: "vkNo",
+      key: "vkNo",
+    },
+    {
+      title: "İl",
+      dataIndex: "il",
+      key: "il",
+    },
+    {
+      title: "İlçe",
+      dataIndex: "ilce",
+      key: "ilce",
+    },
+  ];
+  const UserDetailsTable = () => {
+    return (
+      <>
+        {menuKey === "users" && selectedUserIdDetails && (
+          <>
+            <h2>Kullanıcı Detayları</h2>
+
+            <Table
+              dataSource={selectedUserDetails}
+              columns={userDetailsFirstColumns}
+              rowKey="_id"
+              pagination={false}
+              locale={{
+                emptyText: "Veri bulunamadı",
+              }}
+            />
+            {selectedUserDetails[0].hesapTuru !== "Bireysel" && (
+              <Table
+                dataSource={selectedUserDetails}
+                columns={userDetailsSecondColumns}
+                rowKey="_id"
+                pagination={false}
+                locale={{
+                  emptyText: "Veri bulunamadı",
+                }}
+              />
+            )}
+
+            <Button>Düzenle</Button>
+          </>
+        )}
+      </>
+    );
+  };
   return (
     <div>
       <Menu
@@ -210,7 +595,7 @@ export default function AdminProfile() {
         <>
           <Menu
             onClick={handleUserMenuClick}
-            selectedKeys={hesapTuru === "" ? "" : [hesapTuru]}
+            selectedKeys={hesapTuru}
             mode="horizontal"
           >
             <Menu.Item key="">Hepsini Göster</Menu.Item>
@@ -235,7 +620,7 @@ export default function AdminProfile() {
         <>
           <Menu
             onClick={handleIlanMenuClick}
-            selectedKeys={isVerified === "" ? "" : [isVerified]}
+            selectedKeys={isVerified}
             mode="horizontal"
           >
             <Menu.Item key="">Hepsini Göster</Menu.Item>
@@ -267,7 +652,7 @@ export default function AdminProfile() {
 
       {menuKey === "users" && selectedUserId && (
         <>
-          <span>ilanlar</span>
+          <h2>ilanlar</h2>
           <Table
             dataSource={ilanlar}
             columns={ilanlarColumn}
@@ -299,6 +684,25 @@ export default function AdminProfile() {
           />
         </>
       )}
+      <Modal
+        open={deleteModalVisibleIlan}
+        onCancel={() => setDeleteModalVisibleIlan(false)}
+        onOk={() => handleDeleteIlan(selectedIlanIdDelete)}
+        okText="Sil"
+        cancelText="Vazgeç"
+      >
+        <p>Ilanı silmek istediğinize emin misiniz?</p>
+      </Modal>
+      <Modal
+        open={deleteModalVisibleUser}
+        onCancel={() => setDeleteModalVisibleUser(false)}
+        onOk={() => handleDeleteUser(selectedUserIdDelete)}
+        okText="Sil"
+        cancelText="Vazgeç"
+      >
+        <p>Kullanıcıyı silmek istediğinize emin misiniz?</p>
+      </Modal>
+      <UserDetailsTable />
     </div>
   );
 }
