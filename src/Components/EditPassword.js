@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Form, Button } from "antd";
 import InputValidation from "../Components/InputValidation";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +11,7 @@ import { Profile } from "./ComponentCss/EditProfilecss";
 
 function ResetPassword() {
   const [form] = Form.useForm();
-  const user = useSelector(
-    (state) => state.userInformation.user.data.existingUser
-  );
+  const token = useSelector((state) => state.userInformation);
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -31,7 +29,11 @@ function ResetPassword() {
           {
             password,
             newPassword,
-            user,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
 
@@ -49,7 +51,6 @@ function ResetPassword() {
       }
     }
   };
-
   return (
     <div>
       <Helmet>

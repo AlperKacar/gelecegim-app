@@ -1,301 +1,247 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Form, Input, Button, Upload, Modal } from "antd";
+import { Form, Input, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { setProfile } from "../store/userInformation";
-import { Profile } from "./ComponentCss/EditProfilecss";
-const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
+import styled from "styled-components";
+
+const EditProfileContainer = styled.div`
+  width: 916px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+`;
+
+const FormItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+const FormLabel = styled.label`
+  font-weight: bold;
+  color: #333;
+  width: 100px;
+`;
+
+const StyledInput = styled(Input)`
+  max-width: 300px;
+`;
+const StyledButton = styled(Button)`
+  margin-left: 10px;
+`;
+
+const UploadContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+`;
 
 const EditProfile = () => {
-  const user = useSelector(
-    (state) => state.userInformation.user.data.existingUser
-  );
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [phone, setPhone] = useState("");
-  const [business, setBusiness] = useState("");
-  const [il, setIl] = useState(user.il);
-  const [ilce, setIlce] = useState(user.ilce);
-  const [vdil, setVdil] = useState(user.vdil);
-  const [vdad, setVdad] = useState(user.vdad);
-  const [tcno, setTcno] = useState(user.tcno);
-  const [vkNo, setVkNo] = useState(user.vkNo);
-  const [hesapTuru, setHesapTuru] = useState(user.hesapTuru);
-  const [email] = useState(user.email);
-  const [fileList, setFileList] = useState([]);
-  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.userInformation);
+  const [hesapTuru, setHesapTuru] = useState("");
   const [form] = Form.useForm();
   const [editMode, setEditMode] = useState(false);
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-
-  useEffect(() => {
-    // Profil bilgilerini doldur
-    setName(user.name);
-    setSurname(user.surname);
-  }, [user]);
-
-  useEffect(() => {
-    // Profil resmini yükle
-    setFileList([
-      {
-        uid: "1",
-        name: "user.png",
-        status: "done",
-        url: user.profileImage || user.defaultProfileImage,
-      },
-    ]);
-  }, [user.profileImage, user.defaultProfileImage]);
-
+  const [loading, setLoading] = useState(true);
   const handleEdit = () => {
     setEditMode(true);
   };
 
-  const handleSubmit = async (values) => {
-    try {
-      // Dosya varsa, base64 formatına dönüştürüp sunucuya gönder
-      if (fileList && fileList.length > 0) {
-        const formData = new FormData();
-        formData.append("file", fileList[0].originFileObj);
-
-        const uploadResponse = await axios.post(
-          "http://localhost:3001/upload",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-
-        // Yüklendikten sonra sunucudan gelen resim URL'sini kullanarak profil güncelleme işlemi yap
-        const response = await axios.post(
-          "http://localhost:3001/profile/controller",
-          {
-            email,
-            name: name.charAt(0).toUpperCase() + name.slice(1),
-            surname: surname.charAt(0).toUpperCase() + surname.slice(1),
-            profileImage: uploadResponse.data.fileUrl,
-          }
-        );
-
-        dispatch(setProfile(response));
-        toast.success("Profil güncellendi.");
-        setEditMode(false);
-      } else {
-        // Dosya seçilmemişse, sadece diğer profil bilgilerini güncelle
-        const response = await axios.post(
-          "http://localhost:3001/profile/controller",
-          {
-            email,
-            name: name.charAt(0).toUpperCase() + name.slice(1),
-            surname: surname.charAt(0).toUpperCase() + surname.slice(1),
-          }
-        );
-
-        dispatch(setProfile(response));
-        toast.success("Profil güncellendi.");
-        setEditMode(false);
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const user = response.data;
+        setHesapTuru(user.hesapTuru);
+        form.setFieldsValue({
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          business: user.business,
+          vdil: user.vdil,
+          vdad: user.vdad,
+          phone: user.phone,
+          il: user.il,
+          ilce: user.ilce,
+          vkNo: user.vkNo,
+          tcno: user.tcno,
+          profileImage: user.defaultProfileImage.path
+            ? user.defaultProfileImage.path
+            : user.profileImage.path,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.log("Profil alınamadı:", error.message);
       }
+    };
+    fetchUserProfile();
+  }, [token, form]);
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      await axios.post(
+        "http://localhost:3001/profile/controller",
+        {
+          email: values.email,
+          name: values.name.charAt(0).toUpperCase() + values.name.slice(1),
+          surname:
+            values.surname.charAt(0).toUpperCase() + values.surname.slice(1),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Profil güncellendi.");
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+      setEditMode(false);
     } catch (error) {
       toast.error("Profil güncellenirken bir hata oluştu.");
     }
   };
 
   const handleCancel = () => {
-    form.resetFields();
     setEditMode(false);
   };
 
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-    );
-  };
-
-  const handleChange = ({ fileList }) => {
-    setFileList(fileList);
+  const handleImageUpload = (info) => {
+    // Resim yükleme işlemini burada gerçekleştirin
   };
 
   const uploadButton = (
     <div>
       <UploadOutlined />
-      <div className="ant-upload-text">Resim Yükle</div>
+      <div style={{ marginTop: 8 }}>Resim Yükle</div>
     </div>
   );
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
-    <Profile>
-      <h2 className="profile-h2">Profil Düzenle</h2>
+    <EditProfileContainer>
+      <Title>Profil Düzenle</Title>
+      <Form form={form} layout="vertical">
+        <FormItemContainer>
+          <FormLabel>İsim:</FormLabel>
+          <Form.Item name="name">
+            <StyledInput className="form-input" disabled={!editMode} />
+          </Form.Item>
+          <FormLabel>Soyisim:</FormLabel>
+          <Form.Item name="surname">
+            <StyledInput className="form-input" disabled={!editMode} />
+          </Form.Item>
+        </FormItemContainer>
 
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleSubmit}
-        className="profile-form"
-      >
-        <div className="form-margin margin-20px">
-          <div className="split-profile-info">
-            <div className="display-flex">
-              <Form.Item
-                name="name"
-                label={<label style={{ color: "red" }}>Isim</label>}
-                initialValue={user.name}
-              >
-                <Input
-                  className="form-input"
-                  disabled={!editMode}
-                  onChange={(e) => setName(e.target.value)}
-                />
+        <FormLabel>E-mail:</FormLabel>
+        <Form.Item name="email">
+          <StyledInput className="form-input" disabled />
+        </Form.Item>
+        {hesapTuru !== "Bireysel" && (
+          <>
+            <FormItemContainer>
+              <FormLabel>Vergi Dairesi:</FormLabel>
+              <Form.Item name="vdil">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-              <Form.Item
-                name="surname"
-                label={<label style={{ color: "red" }}>Soyisim</label>}
-                initialValue={user.surname}
-              >
-                <Input
-                  className="form-input"
-                  disabled={!editMode}
-                  onChange={(e) => setSurname(e.target.value)}
-                />
+              <FormLabel>Vergi Dairesi Adı:</FormLabel>
+              <Form.Item name="vdad">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-            </div>
-            <Form.Item
-              name="email"
-              label={<label style={{ color: "red" }}>E-mail</label>}
-              initialValue={user.email}
-            >
-              <Input disabled className="form-input" />
-            </Form.Item>
-            <Form.Item
-              className={user.phone ? "" : "display-none"}
-              name="phone"
-              label={<label style={{ color: "red" }}>Telefon</label>}
-              initialValue={user.phone}
-            >
-              <Input disabled className="form-input" />
-            </Form.Item>
-            <div className="display-flex">
-              <Form.Item
-                className={user.il ? "" : "display-none"}
-                name="il"
-                label={<label style={{ color: "red" }}>il</label>}
-                initialValue={user.il}
-              >
-                <Input disabled className="form-input" />
+            </FormItemContainer>
+            <FormItemContainer>
+              <FormLabel>Telefon Numarası:</FormLabel>
+              <Form.Item name="phone">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-              <Form.Item
-                className={user.ilce ? "" : "display-none"}
-                name="ilce"
-                label={<label style={{ color: "red" }}>ilçe</label>}
-                initialValue={user.ilce}
-              >
-                <Input disabled className="form-input" />
+              <FormLabel>İl:</FormLabel>
+              <Form.Item name="il">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-            </div>
-            <div className="display-flex">
-              <Form.Item
-                className={user.vdil ? "" : "display-none"}
-                name="vdil"
-                label={
-                  <label style={{ color: "red" }}>vergi dairesi ili</label>
-                }
-                initialValue={user.vdil}
-              >
-                <Input disabled className="form-input" />
+            </FormItemContainer>
+            <FormItemContainer>
+              <FormLabel>İlçe:</FormLabel>
+              <Form.Item name="ilce">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-              <Form.Item
-                className={user.vdad ? "" : "display-none"}
-                name="vdad"
-                label={
-                  <label style={{ color: "red" }}>vergi dairesi adı</label>
-                }
-                initialValue={user.vdad}
-              >
-                <Input disabled className="form-input" />
+              <FormLabel>Vergi Kimlik No:</FormLabel>
+              <Form.Item name="vkNo">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-            </div>
-            <div className="display-flex">
-              <Form.Item
-                className={user.tcno ? "" : "display-none"}
-                name="tcno"
-                label={<label style={{ color: "red" }}>Tc NUMARASI</label>}
-                initialValue={user.tcno}
-              >
-                <Input disabled className="form-input" />
+            </FormItemContainer>
+            <FormItemContainer>
+              <FormLabel>Kurum Alanı:</FormLabel>
+              <Form.Item name="business">
+                <StyledInput className="form-input" disabled />
               </Form.Item>
-              <Form.Item
-                className={user.vkNo ? "" : "display-none"}
-                name="vkNo"
-                label={<label style={{ color: "red" }}>vergi KİMLİK NO</label>}
-                initialValue={user.vkNo}
-              >
-                <Input disabled className="form-input" />
-              </Form.Item>
-            </div>
-          </div>
+              {hesapTuru === "Limited veya Anonim Şirketi" && (
+                <>
+                  <FormLabel>TC Kimlik No:</FormLabel>
+                  <Form.Item name="tcno">
+                    <StyledInput className="form-input" disabled />
+                  </Form.Item>
+                </>
+              )}
+            </FormItemContainer>
+          </>
+        )}
 
-          <div className="profile-upload">
-            <Form.Item
-              label={<label style={{ color: "red" }}>Profil Fotoğrafı</label>}
+        <UploadContainer>
+          <Upload
+            name="profileImage"
+            listType="picture-card"
+            className="avatar-uploader"
+            showUploadList={false}
+            onChange={handleImageUpload}
+            disabled={!editMode}
+          >
+            {form.getFieldValue("profileImage") ? (
+              <img
+                src={`http://localhost:3001/${form.getFieldValue(
+                  "profileImage"
+                )}`}
+                alt="Profile"
+                style={{ width: "100%" }}
+              />
+            ) : (
+              uploadButton
+            )}
+          </Upload>
+        </UploadContainer>
+
+        {editMode ? (
+          <FormItemContainer>
+            <StyledButton
+              type="primary"
+              htmlType="submit"
+              onClick={handleSubmit}
             >
-              <Upload
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-                disabled={!editMode}
-              >
-                {fileList.length >= 1 ? null : uploadButton}
-              </Upload>
-              <Modal
-                open={previewOpen}
-                title={previewTitle}
-                footer={null}
-                onCancel={() => setPreviewOpen(false)}
-              >
-                <img
-                  alt="example"
-                  style={{ width: "100%" }}
-                  src={previewImage}
-                />
-              </Modal>
-            </Form.Item>
-          </div>
-        </div>
-        <div className="form-button flex-jc-end">
-          {!editMode && (
-            <Form.Item>
-              <Button type="primary" onClick={handleEdit}>
-                Düzenle
-              </Button>
-            </Form.Item>
-          )}
-          {editMode && (
-            <Form.Item>
-              <Button type="primary" onClick={handleSubmit}>
-                Kaydet
-              </Button>
-              <Button onClick={handleCancel}>İptal</Button>
-            </Form.Item>
-          )}
-        </div>
+              Kaydet
+            </StyledButton>
+            <StyledButton onClick={handleCancel}>İptal</StyledButton>
+          </FormItemContainer>
+        ) : (
+          <FormItemContainer>
+            <StyledButton onClick={handleEdit}>Düzenle</StyledButton>
+          </FormItemContainer>
+        )}
       </Form>
-    </Profile>
+    </EditProfileContainer>
   );
 };
 

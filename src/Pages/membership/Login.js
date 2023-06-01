@@ -9,7 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { setLogin } from "../../store/userInformation";
+import { setLogin, setUser } from "../../store/userInformation";
 
 function Login() {
   const [form] = Form.useForm();
@@ -22,25 +22,60 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios
-      .post("http://localhost:3001/auth/login", {
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", {
         email,
         password,
-      })
-      .then((res) => {
-        toast.success("Giriş Başarılı!");
-        setTimeout(() => {
-          dispatch(setLogin(res));
-          navigate(location.state?.return_url || "/", {
-            replace: true,
-          });
-        }, 1000);
-      })
-      .catch((err) => {
-        toast.error("Kullanıcı adı veya şifre hatalıdır.");
       });
+      const { token, user } = response.data;
+      toast.success("Giriş Başarılı!");
+      setTimeout(() => {
+        dispatch(setLogin(token));
+        dispatch(setUser(user)); // Dispatch your login action with the token
+        navigate(location.state?.return_url || "/", {
+          replace: true,
+        });
+      }, 1000);
+    } catch (err) {
+      toast.error("Kullanıcı adı veya şifre hatalıdır.");
+    }
+  };
+  const handleGoogleLogin = async (response) => {
+    try {
+      if (response.error) {
+        // Giriş işlemi başarısız oldu, hata işlemlerini burada gerçekleştirin
+        console.error(response.error);
+        toast.error("Google ile giriş yapma işlemi başarısız oldu.");
+        return;
+      }
+
+      const { credential } = response;
+
+      // API rotasına isteği gönderin
+      const res = await axios.post("http://localhost:3001/google/login", {
+        idToken: credential,
+      });
+
+      const { token, user } = res.data;
+      toast.success("Giriş Başarılı!");
+      setTimeout(() => {
+        dispatch(setLogin(token));
+        dispatch(setUser(user));
+        navigate(location.state?.return_url || "/", {
+          replace: true,
+        });
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+      // Hata durumunda kullanıcıya bilgi verin
+      toast.error("Giriş sırasında bir hata oluştu.");
+    }
   };
 
+  const responseError = (error) => {
+    // Giriş sırasında hata olduğunda burası çalışacak
+    console.error(error);
+  };
   return (
     <LoginDiv>
       <Helmet>
@@ -122,7 +157,11 @@ function Login() {
               <span className="Or-span">OR</span>
               <div className="Or-div-div" />
             </div>
-            <GoogleLogin />
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onFailure={responseError}
+              cookiePolicy={"single_host_origin"}
+            />
             <Link to="/auth/forgotPassword" className="Forgot-password">
               Şifremi Unuttum
             </Link>

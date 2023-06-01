@@ -7,10 +7,12 @@ export default function AdminProfile() {
   const [users, setUsers] = useState([]);
   const [ilans, setIlans] = useState([]);
   const [selectedUserDetails, setSelectedUserDetails] = useState([]);
+  const [selectedIlanDetails, setSelectedIlanDetails] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [selectedUserIdDelete, setSelectedUserIdDelete] = useState(null);
   const [selectedIlanIdDelete, setSelectedIlanIdDelete] = useState(null);
   const [selectedUserIdDetails, setSelectedUserIdDetails] = useState(null);
+  const [selectedIlanIdDetails, setSelectedIlanIdDetails] = useState(null);
   const [ilanlar, setIlanlar] = useState([]);
   const [menuKey, setMenuKey] = useState("users");
   const [isVerified, setIsVerified] = useState("");
@@ -46,13 +48,15 @@ export default function AdminProfile() {
         });
         setUsers(response.data.users);
       }
+      setUserSearch("");
+      setIlanlarSearch("");
     } catch (error) {
       console.error("Kullanıcıları getirirken bir hata oluştu:", error);
     }
   };
   useEffect(() => {
     fetchUsers();
-  }, [isVerified, hesapTuru, userSearch, menuKey]);
+  }, [isVerified, hesapTuru, menuKey]);
 
   const handleViewUserIlanlar = async (userId) => {
     try {
@@ -84,44 +88,23 @@ export default function AdminProfile() {
 
   const handleUserMenuClick = (event) => {
     setHesapTuru(event.key);
-    setIsVerified("");
-    setSelectedUserId(null);
-    setIlanlar([]);
   };
 
   const handleIlanMenuClick = (event) => {
     setIsVerified(event.key);
-    setIlans([]);
   };
   const handleDeleteUser = async (userId) => {
     try {
-      // Make the delete request using axios or your preferred HTTP library
       await axios.delete(`http://localhost:3001/admin/users/delete/${userId}`);
 
-      // Close the delete confirmation modal
       setDeleteModalVisibleUser(false);
 
-      // Refresh the ad list by calling fetchUsers or any other suitable function
       fetchUsers();
     } catch (error) {
       console.error("İlan silinirken bir hata oluştu:", error);
     }
   };
-  // const handleisVerifiedUsers = async (userId) => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3001/admin/users/isVerified/${userId}`
-  //     );
 
-  //     setSelectedUserId(userId);
-  //     setIlanlar(response.data.Ilans);
-  //   } catch (error) {
-  //     console.error(
-  //       "Kullanıcının ilanlarını getirirken bir hata oluştu:",
-  //       error
-  //     );
-  //   }
-  // };
   const handleViewUserDetails = async (userId) => {
     try {
       if (userId === selectedUserIdDetails) {
@@ -140,7 +123,24 @@ export default function AdminProfile() {
       console.error("Kullanıcı detaylarını getirirken bir hata oluştu:", error);
     }
   };
-  const handleIlanDetail = (userId) => {};
+  const handleViewIlanDetails = async (userId) => {
+    try {
+      if (userId === selectedIlanIdDetails) {
+        setSelectedIlanIdDetails(null);
+        setSelectedIlanDetails([]);
+        return;
+      }
+
+      const response = await axios.get(
+        `http://localhost:3001/admin/ilans/details/${userId}`
+      );
+
+      setSelectedIlanIdDetails(userId);
+      setSelectedIlanDetails(response.data);
+    } catch (error) {
+      console.error("Kullanıcı detaylarını getirirken bir hata oluştu:", error);
+    }
+  };
   const handleEditIlan = (userId) => {};
   const handleDeleteIlan = async (userId) => {
     try {
@@ -169,14 +169,14 @@ export default function AdminProfile() {
   };
   const columns = [
     {
-      title: "Ad",
-      dataIndex: "name",
-      key: "name",
+      title: "Vergi",
+      dataIndex: "vkNo",
+      key: "vkNo",
     },
     {
-      title: "Soyad",
-      dataIndex: "surname",
-      key: "surname",
+      title: "Telefon Numarası",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
       title: "E-posta",
@@ -234,16 +234,6 @@ export default function AdminProfile() {
                 onClick={() => handleViewUserDetails(record._id)}
               >
                 Detayları kapat
-              </Button>
-              <Button
-                style={{
-                  color: "White",
-                  background: "Green",
-                  width: 100,
-                }}
-                onClick={() => handleViewUserDetails(record._id)}
-              >
-                Düzenle
               </Button>
             </>
           ) : (
@@ -317,7 +307,7 @@ export default function AdminProfile() {
           >
             Sil
           </Button>
-          {selectedUserIdDetails === record._id ? (
+          {selectedIlanIdDetails === record._id ? (
             <>
               <Button
                 style={{
@@ -326,19 +316,9 @@ export default function AdminProfile() {
                   width: 120,
                   marginRight: 10,
                 }}
-                onClick={() => handleViewUserDetails(record._id)}
+                onClick={() => handleViewIlanDetails(record._id)}
               >
                 Detayları kapat
-              </Button>
-              <Button
-                style={{
-                  color: "White",
-                  background: "Green",
-                  width: 100,
-                }}
-                onClick={() => handleViewUserDetails(record._id)}
-              >
-                Düzenle
               </Button>
             </>
           ) : (
@@ -348,7 +328,7 @@ export default function AdminProfile() {
                 background: "blue",
                 width: 120,
               }}
-              onClick={() => handleViewUserDetails(record._id)}
+              onClick={() => handleViewIlanDetails(record._id)}
             >
               Detaylar
             </Button>
@@ -377,6 +357,11 @@ export default function AdminProfile() {
   ];
   const ilanlarColumn = [
     {
+      title: "_id",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
       title: "Başlık",
       dataIndex: "baslik",
       key: "baslik",
@@ -387,9 +372,19 @@ export default function AdminProfile() {
       key: "ilan_aciklama",
     },
     {
-      title: "Ücret",
-      dataIndex: "ucret",
-      key: "ucret",
+      title: "kurs_baslama_tarihi",
+      dataIndex: "kurs_baslama_tarihi",
+      key: "kurs_baslama_tarihi",
+    },
+    {
+      title: "kurs_bitirme_tarihi",
+      dataIndex: "kurs_bitirme_tarihi",
+      key: "kurs_bitirme_tarihi",
+    },
+    {
+      title: "olusturan Kişinin _id",
+      dataIndex: "olusturan",
+      key: "olusturan",
     },
     {
       title: "İşlemler",
@@ -407,7 +402,7 @@ export default function AdminProfile() {
           >
             Sil
           </Button>
-          {selectedUserIdDetails === record._id ? (
+          {selectedIlanIdDetails === record._id ? (
             <>
               <Button
                 style={{
@@ -416,19 +411,9 @@ export default function AdminProfile() {
                   width: 120,
                   marginRight: 10,
                 }}
-                onClick={() => handleViewUserDetails(record._id)}
+                onClick={() => handleViewIlanDetails(record._id)}
               >
                 Detayları kapat
-              </Button>
-              <Button
-                style={{
-                  color: "White",
-                  background: "Green",
-                  width: 100,
-                }}
-                onClick={() => handleViewUserDetails(record._id)}
-              >
-                Düzenle
               </Button>
             </>
           ) : (
@@ -438,7 +423,7 @@ export default function AdminProfile() {
                 background: "blue",
                 width: 120,
               }}
-              onClick={() => handleViewUserDetails(record._id)}
+              onClick={() => handleViewIlanDetails(record._id)}
             >
               Detaylar
             </Button>
@@ -546,6 +531,75 @@ export default function AdminProfile() {
       key: "ilce",
     },
   ];
+  const IlanDetailsFirstColumns = [
+    {
+      title: "Başlık",
+      dataIndex: "baslik",
+      key: "baslik",
+    },
+    {
+      title: "Açıklama",
+      dataIndex: "ilan_aciklama",
+      key: "ilan_aciklama",
+    },
+    {
+      title: "Ücret",
+      dataIndex: "ucret",
+      key: "ucret",
+    },
+    {
+      title: "_id",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
+      title: "Kayıt Tarihi",
+      dataIndex: "ilan_tarihi",
+      key: "ilan_tarihi",
+    },
+    {
+      title: "egitmen_sayisi",
+      dataIndex: "egitmen_sayisi",
+      key: "egitmen_sayisi",
+    },
+  ];
+  const IlanDetailsSecondColumns = [
+    {
+      title: "kategori ",
+      dataIndex: "kategori",
+      key: "kategori",
+    },
+    {
+      title: "kurs_baslama_tarihi",
+      dataIndex: "kurs_baslama_tarihi",
+      key: "kurs_baslama_tarihi",
+    },
+    {
+      title: "kurs_bitirme_tarihi",
+      dataIndex: "kurs_bitirme_tarihi",
+      key: "kurs_bitirme_tarihi",
+    },
+    {
+      title: "taksit_imkani",
+      dataIndex: "taksit_imkani",
+      key: "taksit_imkani",
+    },
+    {
+      title: "sertifika",
+      dataIndex: "sertifika",
+      key: "sertifika",
+    },
+    {
+      title: "İl",
+      dataIndex: "konum_il",
+      key: "konum_il",
+    },
+    {
+      title: "İlçe",
+      dataIndex: "konum_ilce",
+      key: "konum_ilce",
+    },
+  ];
   const UserDetailsTable = () => {
     return (
       <>
@@ -573,6 +627,39 @@ export default function AdminProfile() {
                 }}
               />
             )}
+
+            <Button>Düzenle</Button>
+          </>
+        )}
+      </>
+    );
+  };
+  const IlanDetailsTable = () => {
+    return (
+      <>
+        {selectedIlanIdDetails && (
+          <>
+            <h2>Ilanın Detayları</h2>
+
+            <Table
+              dataSource={selectedIlanDetails}
+              columns={IlanDetailsFirstColumns}
+              rowKey="_id"
+              pagination={false}
+              locale={{
+                emptyText: "Veri bulunamadı",
+              }}
+            />
+
+            <Table
+              dataSource={selectedIlanDetails}
+              columns={IlanDetailsSecondColumns}
+              rowKey="_id"
+              pagination={false}
+              locale={{
+                emptyText: "Veri bulunamadı",
+              }}
+            />
 
             <Button>Düzenle</Button>
           </>
@@ -609,10 +696,12 @@ export default function AdminProfile() {
           </Menu>
           <input
             type="text"
-            placeholder="Kullanıcı ara"
+            placeholder=" Kelimeyle Kullanıcı ARA"
             value={userSearch}
             onChange={(e) => setUserSearch(e.target.value)}
           />
+
+          <button onClick={fetchUsers}>Ara</button>
         </>
       )}
 
@@ -633,6 +722,7 @@ export default function AdminProfile() {
             value={ilanlarSearch}
             onChange={(e) => setIlanlarSearch(e.target.value)}
           />
+          <button onClick={fetchUsers}>Ara</button>
         </>
       )}
       {menuKey === "users" && (
@@ -703,6 +793,7 @@ export default function AdminProfile() {
         <p>Kullanıcıyı silmek istediğinize emin misiniz?</p>
       </Modal>
       <UserDetailsTable />
+      <IlanDetailsTable />
     </div>
   );
 }

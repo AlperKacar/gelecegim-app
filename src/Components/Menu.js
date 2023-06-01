@@ -4,23 +4,40 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { KullaniciMenu } from "./ComponentCss/MenuCss";
 import { setLogout } from "../store/userInformation";
 import { BiChevronDown } from "react-icons/bi";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function Menu() {
   const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+  const { token } = useSelector((state) => state.userInformation);
 
-  const { name, surname } = useSelector((state) =>
-    isLoggedIn ? state.userInformation.user.data.existingUser : ""
-  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const fullName = `${name} ${surname}`;
+  const [fullName, setFullName] = useState("");
+
   const logoutHandle = () => {
     dispatch(setLogout());
     navigate(location.state?.return_url || "/", {
       replace: true,
     });
   };
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const user = response.data;
+        setFullName(`${user.name} ${user.surname}`);
+      } catch (error) {}
+    };
+
+    fetchUserProfile();
+  }, [token]);
+
   const items = [
     {
       label: <Link to="/user/profile">Profili Görüntüle</Link>,
