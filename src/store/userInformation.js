@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userSlice = createSlice({
+const userInformation = createSlice({
   name: "userInformation",
   initialState: {
     mode: "light",
@@ -15,13 +15,11 @@ const userSlice = createSlice({
       state.mode = state.mode === "light" ? "dark" : "light";
     },
     setLogin: (state, { payload }) => {
-      state.user = payload;
       state.token = payload;
       state.isLoggedIn = true;
     },
-    setProfile: (state, { payload }) => {
+    setUser: (state, { payload }) => {
       state.user = payload;
-      state.token = payload;
     },
     setActivaitiona: (state, { payload }) => {
       state.control = true;
@@ -66,6 +64,7 @@ export const {
   setPosts,
   setActivation,
   setActivaitiona,
-} = userSlice.actions; // functions dışarıya aktarılması
+  setUser,
+} = userInformation.actions; // functions dışarıya aktarılması
 
-export default userSlice.reducer;
+export default userInformation.reducer;

@@ -4,7 +4,7 @@ import SelectValidation from "../../Components/SelectValidation";
 import { useEffect, useState } from "react";
 import logosrc from "../../images/revize3.png";
 import { BusinessSignupDiv } from "./BusinessSignupcss";
-import { Button, Form, Checkbox, Radio, message } from "antd";
+import { Button, Form, Checkbox, Radio } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";

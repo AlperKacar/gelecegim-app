@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 const RequireAuth = memo(({ children }) => {
   const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
   const location = useLocation();
-  const { hesapTuru } = useSelector((state) =>
-    isLoggedIn ? state.userInformation.user.data.existingUser : ""
+  const hesapTuru = useSelector((state) =>
+    isLoggedIn ? state.userInformation.user : ""
   );
   if (!isLoggedIn || hesapTuru === "Bireysel") {
     return (

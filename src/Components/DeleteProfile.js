@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Form, Button } from "antd";
 import InputValidation from "../Components/InputValidation";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +11,7 @@ import { Profile } from "./ComponentCss/EditProfilecss";
 
 function DeleteProfile() {
   const [form] = Form.useForm();
-  const user = useSelector(
-    (state) => state.userInformation.user.data.existingUser
-  );
+  const token = useSelector((state) => state.userInformation);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -23,12 +21,17 @@ function DeleteProfile() {
     e.preventDefault();
 
     try {
-      await axios.delete(`http://localhost:3001/profile/userDelete`, {
-        data: {
+      await axios.delete(
+        `http://localhost:3001/profile/userDelete`,
+        {
           password,
-          user,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       dispatch(setLogout());
       toast.success("Hesap silme Başarılı");

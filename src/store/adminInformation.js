@@ -11,9 +11,8 @@ const adminSlice = createSlice({
     setMode: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
     },
-
     setAdminLogin: (state, { payload }) => {
-      state.admin = payload.admin;
+      state.admin = payload;
       state.isLoggedInAdmin = true;
     },
     setAdminLogout: (state) => {
