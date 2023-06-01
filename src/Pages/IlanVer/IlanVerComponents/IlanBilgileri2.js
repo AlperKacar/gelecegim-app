@@ -3,7 +3,7 @@ import InputValidation from "../../../Components/InputValidation";
 import SelectValidation from "../../../Components/SelectValidation";
 import { useState } from "react";
 import { Container } from "../IlanVerComponentCss/IlanBilgileriCss";
-import { Button, Form, Radio, Input, DatePicker, Select } from "antd";
+import { Button, Form, Radio, Input, DatePicker } from "antd";
 import FileBase64 from "react-file-base64";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -13,11 +13,9 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../../store/userInformation";
 function IlanBilgileri({ secilen }) {
-
-  const posturl = "http://localhost:3001/ilanver/yeni";
-
   const { token } = useSelector((state) => state.userInformation);
-  
+
+  const [disabled, setDisabled] = useState(false);
   const [form] = Form.useForm();
   const [baslik, setBaslik] = useState("");
   const [brans, setBrans] = useState("");
@@ -28,19 +26,18 @@ function IlanBilgileri({ secilen }) {
   const [sertifika, setSertifika] = useState("");
   const [kursBaslama, setkursBaslama] = useState([]);
   const [kursBitis, setkursBitis] = useState([]);
-  const [ilanSure,setİlanSure]=useState("")
   const [il, setIl] = useState("");
   const [ilce, setIlce] = useState("");
-  const [images, setImages] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { TextArea } = Input;
   const { RangePicker } = DatePicker;
-  const data = new FormData();
   const disablePastDates = (current) => {
     return current && current < dayjs().endOf("day");
   };
+  const [images, setImages] = useState([]);
+
   const handleFileUpload = (files) => {
     const imageFiles = files.map((file) => file.file);
 
@@ -66,11 +63,10 @@ function IlanBilgileri({ secilen }) {
     formData.append("kursBitis", dayjs(kursBitis).format("DD/MM/YYYY"));
     formData.append("il", il);
     formData.append("ilce", ilce);
-    formData.append("ilanSure",ilanSure)
     console.log(formData);
     try {
       const res = await axios.post(
-        posturl,
+        "http://localhost:3001/ilanver/yeni",
         formData,
         {
           headers: {
@@ -107,7 +103,7 @@ function IlanBilgileri({ secilen }) {
             <div className="registration-corporate">
               <Form
                 // autoComplete="off"
-                
+
                 form={form}
                 name="dynamic_rule"
               >
@@ -267,26 +263,6 @@ function IlanBilgileri({ secilen }) {
                     <Radio value={"Hayır"}>Hayır</Radio>
                   </Radio.Group>
 
-                  <label className="labels">İlan Yayın Süresi</label>
-                  <Form.Item>
-                  <Select
-                    
-                    defaultValue="seçiniz"
-                    size="large"
-                    style={{width:240}}
-                    value={ilanSure}
-                    onChange={(o) => setİlanSure(o)}
-                    options={[
-                      { value: 30, label: "1 Ay" },
-                      { value: 90, label: "3 Ay" },
-                      { value: 180, label: "6 Ay" },
-                      { value: 365, label: "1 Yıl" },
-                      { value: 1095, label: "3 Yıl" },
-                      { value: 1825, label: "5 Yıl" },
-                      
-                    ]}
-                  />
-                  </Form.Item>
                   <label className="labels">
                     Kurs
                     Başlangıç&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitiş
