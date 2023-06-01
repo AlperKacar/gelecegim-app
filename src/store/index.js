@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import userInformation from "./userInformation";
 import adminInformation from "./adminInformation";
+import tokenExpirationMiddleware from "./tokenExpirationMiddleware";
 
 const persistConfig = { key: "root", storage, version: 1 };
 const persistConfigAdmin = {
@@ -34,8 +35,9 @@ const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: ["userInformation.posts.headers"],
       },
-    }),
+    }).concat(tokenExpirationMiddleware),
 });
 
 export const persistor = persistStore(store);

@@ -62,8 +62,8 @@ function IlanBilgileri({ secilen }) {
     formData.append("taksit", taksit);
     formData.append("egitmenSayisi", egitmenSayisi);
     formData.append("sertifika", sertifika);
-    formData.append("kursBaslama", dayjs(kursBaslama).format("DD/MM/YYYY"));
-    formData.append("kursBitis", dayjs(kursBitis).format("DD/MM/YYYY"));
+    formData.append("kursBaslama", kursBaslama);
+    formData.append("kursBitis",kursBitis);
     formData.append("il", il);
     formData.append("ilce", ilce);
     formData.append("ilanSure",ilanSure)
