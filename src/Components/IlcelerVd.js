@@ -27,8 +27,8 @@ function IlcelerVd({ il, label, getir, ...props }) {
         disabled={!ilceler.length}
       >
         {ilceler.map((ilce) => (
-          <Option key={ilce.name} value={ilce.name}>
-            {ilce.name}
+          <Option className="taşanları-gizle" key={ilce.name} value={ilce.name}>
+            <p className="taşanları-gizle">{ilce.name}</p>
           </Option>
         ))}
       </Select>

@@ -12,6 +12,12 @@ export const BusinessSignupDiv = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  .taşanları-gizle {
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .header-container-without-background {
     display: flex;
     justify-content: space-between;

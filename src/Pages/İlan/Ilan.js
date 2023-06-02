@@ -7,23 +7,24 @@ import { Link } from "react-router-dom";
 import { ImStarFull, ImPrinter } from "react-icons/im";
 import IlanBilgileri from "./Ilan-Components/IlanBilgileri";
 import IlanSahibi from "./Ilan-Components/IlanSahibi";
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import IlanAciklama from "./Ilan-Components/IlanAciklama";
-const Ilan= () => {
-  const { ilan_no } = useParams();
+const Ilan = () => {
+  const { ilan_baslik, ilan_no } = useParams();
   const [ilanDetay, setIlanDetay] = useState(null);
 
   useEffect(() => {
     const IlanGetir = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/ilanver/singleIlan/${ilan_no}`);
+        const response = await axios.get(
+          `http://localhost:3001/ilanver/singleIlan/${ilan_baslik}=${ilan_no}`
+        );
         setIlanDetay(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-    
 
     IlanGetir();
   }, [ilan_no]);
@@ -32,18 +33,12 @@ const Ilan= () => {
     return <div>Loading...</div>;
   }
 
-
-
-
-
-
-
   return (
     <IlanMain>
       <Helmet>
         <title>İlan</title>
       </Helmet>
-      <KategoriFav ilanDetay={ilanDetay}/>
+      <KategoriFav ilanDetay={ilanDetay} />
       <div className="container">
         <div className="baslik-div">
           <h1 className="baslik">{ilanDetay.baslik}</h1>
@@ -74,10 +69,10 @@ const Ilan= () => {
           <IlanSahibi ilanDetay={ilanDetay} />
         </div>
         <div className="aciklama-div">
-          <IlanAciklama ilanDetay={ilanDetay}/>
+          <IlanAciklama ilanDetay={ilanDetay} />
         </div>
       </div>
     </IlanMain>
   );
-}
+};
 export default Ilan;
