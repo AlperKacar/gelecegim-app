@@ -23,19 +23,21 @@ export function Menu() {
     });
   };
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const user = response.data;
-        setFullName(`${user.name} ${user.surname}`);
-      } catch (error) {}
-    };
+    if (token) {
+      const fetchUserProfile = async () => {
+        try {
+          const response = await axios.get("http://localhost:3001/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const user = response.data;
+          setFullName(`${user.name} ${user.surname}`);
+        } catch (error) {}
+      };
 
-    fetchUserProfile();
+      fetchUserProfile();
+    }
   }, [token]);
 
   const items = [

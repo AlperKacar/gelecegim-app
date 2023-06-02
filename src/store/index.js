@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import userInformation from "./userInformation";
+import userInformation, { setLogin } from "./userInformation";
 import adminInformation from "./adminInformation";
 import tokenExpirationMiddleware from "./tokenExpirationMiddleware";
 
@@ -39,6 +39,9 @@ const store = configureStore({
       },
     }).concat(tokenExpirationMiddleware),
 });
+const expirationTime = 300; // Örnek olarak 5 dakika (300 saniye)
 
+// Oturum süresini kontrol etmek için başlatıcı eylemi tetikleyelim
+store.dispatch(setLogin(expirationTime));
 export const persistor = persistStore(store);
 export default store;

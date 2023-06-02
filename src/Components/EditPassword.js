@@ -7,11 +7,11 @@ import InputValidation from "../Components/InputValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../store/userInformation";
 import { toast } from "react-toastify";
-import { Profile } from "./ComponentCss/EditProfilecss";
+import { Profile } from "./ComponentCss/Profilecss";
 
 function ResetPassword() {
   const [form] = Form.useForm();
-  const token = useSelector((state) => state.userInformation);
+  const { token } = useSelector((state) => state.userInformation);
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -85,6 +85,7 @@ function ResetPassword() {
               ]}
             >
               <InputValidation
+                min={6}
                 className="form-edit-input"
                 type="password"
                 name="password"
@@ -97,11 +98,16 @@ function ResetPassword() {
               rules={[
                 {
                   required: true,
-                  message: "Yeni şifrenizi girin!",
+                  message: "Lütfen şifrenizi girin!",
                 },
                 {
                   whitespace: true,
-                  message: "Şifre Boşluk içeremez!",
+                  message: "Boşluk içeremez!",
+                },
+                {
+                  min: 6,
+                  max: 30,
+                  message: "Şifre en az 6 en fazla 30 karakter olmalıdır.",
                 },
               ]}
             >

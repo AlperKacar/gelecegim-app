@@ -1,7 +1,7 @@
 import { useEffect, useState, memo } from "react";
 import { Input } from "antd";
 import { Link } from "react-router-dom";
-function InputValidation({ max, label, type = "", ...props }) {
+function InputValidation({ min, max, label, type = "", ...props }) {
   const [show, setShow] = useState(false);
   const [inputType, setInputType] = useState(type);
   useEffect(() => {
@@ -14,7 +14,7 @@ function InputValidation({ max, label, type = "", ...props }) {
 
   return (
     <>
-      <Input type={inputType} {...props} maxLength={max} />
+      <Input type={inputType} {...props} maxLength={max} minLength={min} />
       {type == "password" && (
         <div
           type="button"
