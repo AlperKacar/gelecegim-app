@@ -71,7 +71,7 @@ const Ilan= () => {
         <div className="foto-bilgi-hizala">
           <Photo ilanDetay={ilanDetay} />
           <IlanBilgileri ilanDetay={ilanDetay} />
-          <IlanSahibi />
+          <IlanSahibi ilanDetay={ilanDetay} />
         </div>
         <div className="aciklama-div">
           <IlanAciklama ilanDetay={ilanDetay}/>
