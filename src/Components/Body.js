@@ -1,24 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SingleUser from "./SingleUser";
+import SingleIlan from "./SingleIlan";
 const Body = React.memo(() => {
-  const [state, setState] = useState([]);
-  /* 
+  const [ilans, setIlans] = useState([]);
+
   const fetchUsers = async () => {
-    const response = await axios.get(`http://localhost:3001/iller/`);
-    setState(response.data);
+    const response = await axios.get(`http://localhost:3001/home/ilan`);
+    setIlans(response.data.Ilans);
   };
   useEffect(() => {
     fetchUsers();
-  }, []); */
-
+  }, []);
   return (
     <div>
       <ul>
-        {/*  {state.map((state, index) => (
-          <SingleUser state={state} key={index} /> 
-        ))} */}
+        {ilans.map((ilan, index) => (
+          <SingleIlan ilan={ilan} key={index} />
+        ))}
       </ul>
     </div>
   );

@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { Form, Upload, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import {
-  FormItemButton,
   FormDisplayColumn,
   UploadContainer,
   StyledButton,
@@ -74,7 +73,6 @@ const EditProfile = () => {
             },
           ]);
         }
-
         setHesapTuru(user.hesapTuru);
         form.setFieldsValue({
           name: user.name,
@@ -94,6 +92,7 @@ const EditProfile = () => {
     };
     fetchUserProfile();
   }, [token, form]);
+
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
@@ -133,23 +132,9 @@ const EditProfile = () => {
   const handleCancel = () => {
     setEditMode(false);
   };
-  const handleRemoveImage = async () => {
-    try {
-      await axios.delete("http://localhost:3001/profile/delete", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
 
-      // Resmi başarıyla sildiğinizde yapılması gereken işlemler
-      setFileList([]);
-      toast.success("Resim başarıyla silindi.");
-    } catch (error) {
-      toast.error(error);
-    }
-  };
   if (loading) {
-    return;
+    return <div></div>;
   }
 
   return (
@@ -234,7 +219,6 @@ const EditProfile = () => {
               fileList={fileList}
               onPreview={handlePreview}
               onChange={handleChange}
-              onRemove={handleRemoveImage}
               showUploadList={{
                 showRemoveIcon: editMode,
               }}
@@ -263,7 +247,7 @@ const EditProfile = () => {
           </UploadContainer>
         </FormDisplayFlex>
         {editMode ? (
-          <FormItemButton>
+          <FormItemContainer>
             <StyledButton
               type="primary"
               htmlType="submit"
@@ -272,11 +256,11 @@ const EditProfile = () => {
               Kaydet
             </StyledButton>
             <StyledButton onClick={handleCancel}>İptal</StyledButton>
-          </FormItemButton>
+          </FormItemContainer>
         ) : (
-          <FormItemButton>
+          <FormItemContainer>
             <StyledButton onClick={handleEdit}>Düzenle</StyledButton>
-          </FormItemButton>
+          </FormItemContainer>
         )}
       </Form>
     </EditProfileContainer>

@@ -13,11 +13,10 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../../store/userInformation";
 function IlanBilgileri({ secilen }) {
-
   const posturl = "http://localhost:3001/ilanver/yeni";
 
   const { token } = useSelector((state) => state.userInformation);
-  
+
   const [form] = Form.useForm();
   const [baslik, setBaslik] = useState("");
   const [brans, setBrans] = useState("");
@@ -28,7 +27,7 @@ function IlanBilgileri({ secilen }) {
   const [sertifika, setSertifika] = useState("");
   const [kursBaslama, setkursBaslama] = useState([]);
   const [kursBitis, setkursBitis] = useState([]);
-  const [ilanSure,setİlanSure]=useState("")
+  const [ilanSure, setİlanSure] = useState("");
   const [il, setIl] = useState("");
   const [ilce, setIlce] = useState("");
   const [images, setImages] = useState([]);
@@ -37,7 +36,6 @@ function IlanBilgileri({ secilen }) {
   const dispatch = useDispatch();
   const { TextArea } = Input;
   const { RangePicker } = DatePicker;
- 
   const disablePastDates = (current) => {
     return current && current < dayjs().endOf("day");
   };
@@ -63,21 +61,17 @@ function IlanBilgileri({ secilen }) {
     formData.append("egitmenSayisi", egitmenSayisi);
     formData.append("sertifika", sertifika);
     formData.append("kursBaslama", kursBaslama);
-    formData.append("kursBitis",kursBitis);
+    formData.append("kursBitis", kursBitis);
     formData.append("il", il);
     formData.append("ilce", ilce);
-    formData.append("ilanSure",ilanSure)
+    formData.append("ilanSure", ilanSure);
     console.log(formData);
     try {
-      const res = await axios.post(
-        posturl,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.post(posturl, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       toast.success("İlan Başarıyla oluşturuldu.");
 
@@ -107,7 +101,7 @@ function IlanBilgileri({ secilen }) {
             <div className="registration-corporate">
               <Form
                 // autoComplete="off"
-                
+
                 form={form}
                 name="dynamic_rule"
               >
@@ -269,23 +263,21 @@ function IlanBilgileri({ secilen }) {
 
                   <label className="labels">İlan Yayın Süresi</label>
                   <Form.Item>
-                  <Select
-                    
-                    defaultValue="seçiniz"
-                    size="large"
-                    style={{width:240}}
-                    value={ilanSure}
-                    onChange={(o) => setİlanSure(o)}
-                    options={[
-                      { value: 30, label: "1 Ay" },
-                      { value: 90, label: "3 Ay" },
-                      { value: 180, label: "6 Ay" },
-                      { value: 365, label: "1 Yıl" },
-                      { value: 1095, label: "3 Yıl" },
-                      { value: 1825, label: "5 Yıl" },
-                      
-                    ]}
-                  />
+                    <Select
+                      defaultValue="seçiniz"
+                      size="large"
+                      style={{ width: 240 }}
+                      value={ilanSure}
+                      onChange={(o) => setİlanSure(o)}
+                      options={[
+                        { value: 30, label: "1 Ay" },
+                        { value: 90, label: "3 Ay" },
+                        { value: 180, label: "6 Ay" },
+                        { value: 365, label: "1 Yıl" },
+                        { value: 1095, label: "3 Yıl" },
+                        { value: 1825, label: "5 Yıl" },
+                      ]}
+                    />
                   </Form.Item>
                   <label className="labels">
                     Kurs

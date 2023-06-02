@@ -7,11 +7,11 @@ import InputValidation from "../Components/InputValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../store/userInformation";
 import { toast } from "react-toastify";
-import { Profile } from "./ComponentCss/EditProfilecss";
+import { Profile } from "./ComponentCss/Profilecss";
 
 function DeleteProfile() {
   const [form] = Form.useForm();
-  const token = useSelector((state) => state.userInformation);
+  const { token } = useSelector((state) => state.userInformation);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function DeleteProfile() {
     e.preventDefault();
 
     try {
-      await axios.delete(
+      await axios.post(
         `http://localhost:3001/profile/userDelete`,
         {
           password,
