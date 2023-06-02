@@ -72,4 +72,7 @@ export const IlanMain = styled.div`
     display: flex;
     width: 100%;
   }
+  .aciklama-div{
+    
+  }
 `;

@@ -3,7 +3,6 @@ import IlanKategori from './IlanVerComponents/IlanKategori'
 import { Container } from './IlanVerCss'
 import IlanVerStepBar from './IlanVerComponents/IlanVerStepBar'
 import IlanBilgileri from './IlanVerComponents/IlanBilgileri'
-import ImageUploader from './IlanVerComponents/ImageUploader'
 function IlanVer() {
   const [secilen, setSecilen] = useState();
   const [show,setShow]=useState(true);
@@ -21,14 +20,14 @@ function IlanVer() {
     (
     <>    
     <h3 className='kategori-sec-baslik'>Adım Adım Kategori Seç </h3>
-    <IlanKategori secilen={secilen} setSecilen={setSecilen} show={show} setShow={setShow}/>
+    <IlanKategori setSecilen={setSecilen} setShow={setShow}/>
     </>
 
     ):
     <>
     <h3 className="kategori-sec-baslik">İlan Detayları</h3>
     <IlanBilgileri secilen={secilen}/>
-   {/*  <ImageUploader/> */}
+  
     </>
     }
     

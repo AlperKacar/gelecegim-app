@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Photo from "./Ilan-Components/Photo";
 import { IlanMain } from "./IlanCss.js";
 import KategoriFav from "./Ilan-Components/KategoriFav";
@@ -7,17 +7,46 @@ import { Link } from "react-router-dom";
 import { ImStarFull, ImPrinter } from "react-icons/im";
 import IlanBilgileri from "./Ilan-Components/IlanBilgileri";
 import IlanSahibi from "./Ilan-Components/IlanSahibi";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import IlanAciklama from "./Ilan-Components/IlanAciklama";
+const Ilan= () => {
+  const { ilan_no } = useParams();
+  const [ilanDetay, setIlanDetay] = useState(null);
 
-function Ilan() {
+  useEffect(() => {
+    const IlanGetir = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/ilanver/singleIlan/${ilan_no}`);
+        setIlanDetay(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+
+    IlanGetir();
+  }, [ilan_no]);
+
+  if (!ilanDetay) {
+    return <div>Loading...</div>;
+  }
+
+
+
+
+
+
+
   return (
     <IlanMain>
       <Helmet>
         <title>İlan</title>
       </Helmet>
-      <KategoriFav />
+      <KategoriFav ilanDetay={ilanDetay}/>
       <div className="container">
         <div className="baslik-div">
-          <h1 className="baslik">34131</h1>
+          <h1 className="baslik">{ilanDetay.baslik}</h1>
           <ul className="baslik-yani">
             <li className="fav-ekle">
               <Link to="/" className="ilan-link">
@@ -40,9 +69,12 @@ function Ilan() {
           </ul>
         </div>
         <div className="foto-bilgi-hizala">
-          <Photo />
-          <IlanBilgileri />
+          <Photo ilanDetay={ilanDetay} />
+          <IlanBilgileri ilanDetay={ilanDetay} />
           <IlanSahibi />
+        </div>
+        <div className="aciklama-div">
+          <IlanAciklama ilanDetay={ilanDetay}/>
         </div>
       </div>
     </IlanMain>

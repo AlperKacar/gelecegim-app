@@ -8,17 +8,25 @@ export const PhotoDiv = styled.div`
   .frame-main {
     width: 528px;
     height: 396px;
-    border: 3px solid black;
+   
   }
-
+  .main-img{
+    width: 525px;
+    height: 390px;
+  }
+  .side-img{
+    width: 100px;
+    height:75px;
+  }
   .frame-side {
     width: 100px;
     height: 75px;
-    margin-right: 1px;
+    margin-right: 5px;
     background-color: #d7d7d7;
   }
   .frame-side:focus {
-    border: 2px solid black;
+    border: 1px solid #417abb;
+
   }
 
   .buyuk-video-buton {
@@ -73,6 +81,7 @@ export const PhotoDiv = styled.div`
   .side-container {
     border: 1px solid black;
     width: 528px;
+    height: 90px;
     display: flex;
     flex-direction: row;
     padding: 3px;

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "../IlanVerComponentCss/IlanKategoriCss";
 import { Link } from "react-router-dom";
 import { IoBasketballSharp } from "react-icons/io5";
 import { BsPaletteFill } from "react-icons/bs";
 import { IoBookSharp } from "react-icons/io5";
-import { useState } from "react";
+
 function IlanKategori(props) {
   
   

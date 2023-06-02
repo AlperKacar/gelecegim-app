@@ -37,7 +37,7 @@ function IlanBilgileri({ secilen }) {
   const dispatch = useDispatch();
   const { TextArea } = Input;
   const { RangePicker } = DatePicker;
-  const data = new FormData();
+ 
   const disablePastDates = (current) => {
     return current && current < dayjs().endOf("day");
   };

@@ -3,6 +3,9 @@ import { IlanSahibiDiv } from "../Ilan-ComponentCss/IlanSahibiCss";
 import { Link } from "react-router-dom";
 import { HiShieldCheck } from "react-icons/hi";
 function IlanSahibi() {
+
+
+  
   return (
     <IlanSahibiDiv>
       <div className="main">
