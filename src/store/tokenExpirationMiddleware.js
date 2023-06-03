@@ -6,7 +6,7 @@ let timeoutVar;
 const history = createBrowserHistory();
 
 const tokenExpirationMiddleware = (store) => (next) => (action) => {
-  if (action.type === "userInformation/setLogin") {
+  if (action.type === "userInformation/setTime") {
     clearTimeout(timeoutVar);
     const expirationTime = 3600; // 1 saatlik oturum süresi
     timeoutVar = setTimeout(() => {

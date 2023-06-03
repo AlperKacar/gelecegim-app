@@ -6,9 +6,10 @@ const userInformation = createSlice({
     mode: "light",
     user: null,
     token: null,
+    time: null,
     posts: [],
     isLoggedIn: false,
-    control: true,
+    control: false,
   },
   reducers: {
     setMode: (state) => {
@@ -20,6 +21,9 @@ const userInformation = createSlice({
     },
     setUser: (state, { payload }) => {
       state.user = payload;
+    },
+    setTime: (state, { payload }) => {
+      state.time = payload;
     },
     setActivaitiona: (state, { payload }) => {
       state.control = true;
@@ -65,6 +69,7 @@ export const {
   setActivation,
   setActivaitiona,
   setUser,
+  setTime,
 } = userInformation.actions; // functions dışarıya aktarılması
 
 export default userInformation.reducer;

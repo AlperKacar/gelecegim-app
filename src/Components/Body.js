@@ -7,21 +7,15 @@ import BodyMenu from "./BodyMenu";
 import BodyMainContainer from "./BodyMainContainer";
 function Body() {
   return (
-    
     <Container>
-      
-    <div className="ust-div">
-    <ReklamAlani/>
-    </div>
+      <div className="ust-div">
+        <ReklamAlani />
+      </div>
 
-    <div className="menu-main-hizala">
-    <BodyMenu/>
-    <BodyMainContainer/>
-
-    </div>
-
-
-   
+      <div className="menu-main-hizala">
+        <BodyMenu />
+        <BodyMainContainer />
+      </div>
     </Container>
   );
 }

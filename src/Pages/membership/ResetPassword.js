@@ -10,12 +10,11 @@ import { Body } from "./resetpasswordcss";
 function ResetPassword() {
   const { id, token } = useParams();
   const [form] = Form.useForm();
-  const control = useSelector((state) => state.control);
+  const control = useSelector((state) => state.userInformation.control);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
-
   useEffect(() => {
     userValid();
   }, []);
