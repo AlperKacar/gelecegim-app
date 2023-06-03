@@ -81,9 +81,10 @@ export const PhotoDiv = styled.div`
   .side-container {
     border: 1px solid black;
     width: 528px;
-    height: 90px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     padding: 3px;
+    overflow-x: auto;
   }
 `;

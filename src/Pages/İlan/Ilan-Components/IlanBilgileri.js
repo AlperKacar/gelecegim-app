@@ -13,7 +13,7 @@ const ilce=props.ilanDetay.konum_ilce.charAt(0).toUpperCase()+ props.ilanDetay.k
   return (
     <Container>
       <div className="main-div">
-        <h3 className="fiyat">{props.ilanDetay.ucret} TL Aylık</h3>
+        <h3 className="fiyat">{props.ilanDetay.ucret} TL</h3>
         <h4 className="konum">
           <span className="il">{props.ilanDetay.konum_il} &nbsp;&nbsp;/</span>
           <span className="ilce">{ilce}</span>

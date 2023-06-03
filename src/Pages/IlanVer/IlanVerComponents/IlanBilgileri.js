@@ -84,7 +84,7 @@ function IlanBilgileri({ secilen }) {
       }, 1500);
     } catch (error) {
       toast.error("İlan Oluşturulamadı.");
-      console.error(error.response);
+      console.error(error);
     } finally {
     }
   };
@@ -140,7 +140,7 @@ function IlanBilgileri({ secilen }) {
                       className="text-area"
                       value={aciklama}
                       showCount
-                      maxLength={750}
+                      maxLength={1400}
                       style={{ height: 120, marginBottom: 24 }}
                       onChange={(e) => setAciklama(e.target.value)}
                     />

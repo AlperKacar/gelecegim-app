@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export function Menu() {
   const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
   const { token } = useSelector((state) => state.userInformation);
-
+  const yetki=useSelector((state)=>state.userInformation.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +42,7 @@ export function Menu() {
 
   const items = [
     {
-      label: <Link to="/user/profile">Profili Görüntüle</Link>,
+      label: <Link to="/user/profile">Profili Görüntüle </Link>,
       key: "0",
     },
     /* {
@@ -67,15 +67,22 @@ export function Menu() {
 
   return (
     <KullaniciMenu>
-      {isLoggedIn ? (
+      {isLoggedIn ? (<>
         <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
           <Link onClick={(e) => e.preventDefault()}>
             <Space className="namesurname">
-              {fullName}
+              {fullName} 
               <BiChevronDown className="down-arrow" />
             </Space>
           </Link>
         </Dropdown>
+        {yetki!=="Bireysel"&& ( <Link to="/ilanver">
+            <button className="kurum-kayit" name="Kurum Kaydı">
+              Ücretsiz İlan Ver  
+            </button>
+          </Link>
+          )}
+        </>
       ) : (
         <div className="ul-div">
           <ul>

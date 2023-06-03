@@ -55,7 +55,7 @@ function Photo(props) {
           />
           </div>
         ))}
-        
+        <button id="sayfa-ileri" className="sayfa-ileri">İkinci Sayfa</button>
         
       </div>
       </div>

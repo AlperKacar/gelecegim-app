@@ -77,6 +77,9 @@ function BodyMenu() {
           <li className="spor-li">
             <Link className="li-link">Jimnastik</Link>
           </li>
+          <li className="spor-li">
+            <Link className="li-link">Yaz Okulları</Link>
+          </li>
         </ul>
         <ul className="sanat-ul">
           <Link className="ana-kategori">

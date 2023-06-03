@@ -7,6 +7,6 @@ export const Container=styled.div`
     background-color: #ffffff;
     padding: 20px;
     margin: 0 auto;
-    height: 250px;
+    height: 200px;
 
 `
