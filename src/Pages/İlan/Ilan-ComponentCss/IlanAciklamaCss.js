@@ -87,15 +87,16 @@ list-style: none;
     font-weight: bold;
 }
 .description{
-    min-height: 350px;
+    min-height: 120px;
     word-wrap: break-word;
     line-height: 1.3em;
     font-size: 14px;
     padding: 15px;
+    padding-bottom: 20px;
     color: #000;
     background-color: #fff;
     font-family:"Lucida Grande","Lucida Sans","Lucida Sans Unicode",Roboto,sans-serif;
-    font-size: 12px;
+    
     
 }
 `

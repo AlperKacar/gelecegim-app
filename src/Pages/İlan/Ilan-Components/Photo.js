@@ -5,15 +5,15 @@ import { PhotoDiv } from "../Ilan-ComponentCss/PhotoCss";
 import { BiSearchAlt2, BiPlayCircle } from "react-icons/bi";
 
 function Photo(props) {
-  const resimler=props.ilanDetay.images
-  const [updateURL,setUpdateURL]=useState(resimler[0].replace("upload/",`upload/c_fit,h_396,w_528/`))
+  const resimler=props.ilanDetay.images     
+  const [updateURL,setUpdateURL]=useState(resimler[0].replace("upload/",`upload/c_pad,g_center,h_396,q_90,w_528,x_0,y_0/`))
   const [seciliResim, setSeciliResim] = useState(resimler[0]);
   useEffect(() => {
     
     let url= seciliResim
     const uploadPath = "upload/";
-    const newUploadPath = "c_fit,h_396,w_528";
-
+    const newUploadPath = "c_pad,g_center,h_396,q_90,w_528,x_0,y_0";
+    
     setUpdateURL(url.replace(uploadPath, `${uploadPath}${newUploadPath}/`));
     
   
