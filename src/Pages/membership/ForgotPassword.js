@@ -26,7 +26,7 @@ function ForgotPassword() {
       })
       .catch((err) => {
         setTimeout(() => {}, 1000);
-        toast.error(`${email} Adresi zaten kayıtlı.`);
+        toast.error(`${email} Adresi  kayıtlı değildir.`);
       });
   };
   return (
@@ -37,16 +37,19 @@ function ForgotPassword() {
       <Form className="Form-boyut" form={form}>
         <div className="Forgot">
           <div className="Login-boyut">
-          <ForgotDiv>
-            <span className="lock-img"></span>
+            <ForgotDiv>
+              <span className="lock-img"></span>
             </ForgotDiv>
             <ForgotDiv>
-              <span className="baslik">Giriş Yaparken Sorun mu Yaşıyorsun?</span>
+              <span className="baslik">
+                Giriş Yaparken Sorun mu Yaşıyorsun?
+              </span>
             </ForgotDiv>
             <div className="text-div">
-              <span className="text">Kayıt olurken kullandığın e-posta adresini gir 
-              ve hesabına yeniden ulaşabilmen için sana bir bağlantı
-              gönderelim.</span>
+              <span className="text">
+                Kayıt olurken kullandığın e-posta adresini gir ve hesabına
+                yeniden ulaşabilmen için sana bir bağlantı gönderelim.
+              </span>
             </div>
             <div className="Input-div">
               <Form.Item
@@ -85,19 +88,18 @@ function ForgotPassword() {
                     <p>Giriş bağlantısı Gönder</p>
                   </Button>
                 )}
-                
               </Form.Item>
               <div>
-              <p className="or-divider">&nbsp;&nbsp;YA DA&nbsp;&nbsp;</p>
-              <Link className="forgot-link" to="/auth/signup">
-              Hesap Aç
-            </Link>
-            </div>
-            <div className="forgot-giris-div">
-              <Link className="forgot-giris-link" to="/auth/login">
-              Giriş Ekranına Dön
-            </Link>
-            </div>
+                <p className="or-divider">&nbsp;&nbsp;YA DA&nbsp;&nbsp;</p>
+                <Link className="forgot-link" to="/auth/signup">
+                  Hesap Aç
+                </Link>
+              </div>
+              <div className="forgot-giris-div">
+                <Link className="forgot-giris-link" to="/auth/login">
+                  Giriş Ekranına Dön
+                </Link>
+              </div>
             </div>
           </div>
         </div>

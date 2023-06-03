@@ -9,7 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { setLogin, setUser } from "../../store/userInformation";
+import { setLogin, setUser, setTime } from "../../store/userInformation";
 
 function Login() {
   const [form] = Form.useForm();
@@ -61,6 +61,7 @@ function Login() {
       setTimeout(() => {
         dispatch(setLogin(token));
         dispatch(setUser(user));
+        dispatch(setTime());
         navigate(location.state?.return_url || "/", {
           replace: true,
         });

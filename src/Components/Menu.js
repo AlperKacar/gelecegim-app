@@ -26,11 +26,14 @@ export function Menu() {
     if (token) {
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get("http://localhost:3001/profile", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const response = await axios.get(
+            "http://localhost:3001/profile/menu",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           const user = response.data;
           setFullName(`${user.name} ${user.surname}`);
         } catch (error) {}
