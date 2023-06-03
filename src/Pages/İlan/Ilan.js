@@ -10,6 +10,9 @@ import IlanSahibi from "./Ilan-Components/IlanSahibi";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import IlanAciklama from "./Ilan-Components/IlanAciklama";
+import LoadingTruck from "../../Shared/commonComponents/loading/LoadingTruck";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 const Ilan = () => {
   const { ilan_baslik, ilan_no } = useParams();
   const [ilanDetay, setIlanDetay] = useState(null);
@@ -30,49 +33,53 @@ const Ilan = () => {
   }, [ilan_no]);
 
   if (!ilanDetay) {
-    return <div>Loading...</div>;
+    return <LoadingTruck />;
   }
-
   return (
-    <IlanMain>
-      <Helmet>
-        <title>İlan</title>
-      </Helmet>
-      <KategoriFav ilanDetay={ilanDetay} />
-      <div className="container">
-        <div className="baslik-div">
-          <h1 className="baslik">{ilanDetay.baslik}</h1>
-          <ul className="baslik-yani">
-            <li className="fav-ekle">
-              <Link to="/" className="ilan-link">
-                <ImStarFull className="yildiz-icon" />
-                Favorilerime Ekle
-              </Link>
-              {/*  <Link to="/" className="ilan-link-disabled">Favorilerimden Çıkar</Link>*/}
-            </li>
-            <li className="yazdir">
-              <Link to="/" className="ilan-link">
-                <ImPrinter className="yazdir-icon" />
-                Yazdır
-              </Link>
-            </li>
-            <li className="sosyal-medya">
-              <Link to="/" className="ilan-link">
-                Paylaş
-              </Link>
-            </li>
-          </ul>
+    <>
+      <Header />
+      <IlanMain>
+        <Helmet>
+          <title>İlan</title>
+        </Helmet>
+        <KategoriFav ilanDetay={ilanDetay} />
+        <div className="container">
+          <div className="baslik-div">
+            <h1 className="baslik">{ilanDetay.baslik}</h1>
+            <ul className="baslik-yani">
+              <li className="fav-ekle">
+                <Link to="/" className="ilan-link">
+                  <ImStarFull className="yildiz-icon" />
+                  Favorilerime Ekle
+                </Link>
+                {/*  <Link to="/" className="ilan-link-disabled">Favorilerimden Çıkar</Link>*/}
+              </li>
+              <li className="yazdir">
+                <Link to="/" className="ilan-link">
+                  <ImPrinter className="yazdir-icon" />
+                  Yazdır
+                </Link>
+              </li>
+              <li className="sosyal-medya">
+                <Link to="/" className="ilan-link">
+                  Paylaş
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="foto-bilgi-hizala">
+            <Photo ilanDetay={ilanDetay} />
+            <IlanBilgileri ilanDetay={ilanDetay} />
+            <IlanSahibi ilanDetay={ilanDetay} />
+          </div>
+          <div className="aciklama-div">
+            <IlanAciklama ilanDetay={ilanDetay} />
+          </div>
         </div>
-        <div className="foto-bilgi-hizala">
-          <Photo ilanDetay={ilanDetay} />
-          <IlanBilgileri ilanDetay={ilanDetay} />
-          <IlanSahibi ilanDetay={ilanDetay} />
-        </div>
-        <div className="aciklama-div">
-          <IlanAciklama ilanDetay={ilanDetay} />
-        </div>
-      </div>
-    </IlanMain>
+      </IlanMain>
+      <Footer />
+    </>
   );
 };
+
 export default Ilan;

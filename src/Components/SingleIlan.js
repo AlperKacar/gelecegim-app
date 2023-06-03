@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { VitrinList } from "./ComponentCss/SingleIlancss";
 
-const SingleUser = ({ ilan }) => {
+const SingleIlan = ({ ilan }) => {
   const encodedBaslik = encodeURIComponent(ilan.baslik);
   const formattedBaslik = encodedBaslik.replace(/%20/g, "-");
-
   return (
     <>
       <VitrinList>
@@ -40,4 +39,4 @@ const SingleUser = ({ ilan }) => {
   );
 };
 
-export default SingleUser;
+export default SingleIlan;

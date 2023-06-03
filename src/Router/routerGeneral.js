@@ -16,14 +16,15 @@ const RouterGeneral = () => {
   return (
     <Suspense fallback={<LoadingTruck />}>
       <Routes>
-        <Route element={<LayoutGeneral />}>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<LayoutGeneral />}>
+          <Route index element={<Home />} />
           <Route path="kurum" element={<Kurum />} />
           <Route path="isilani" element={<IsIlani />} />
           <Route path="ozelders" element={<OzelDers />} />
-          <Route path="ilan/:ilan_baslik=:ilan_no/detay" element={<Ilan />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
+        <Route path="ilan/:ilan_baslik=:ilan_no/detay" element={<Ilan />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

@@ -15,8 +15,8 @@ export const Vitrin = styled.div`
   align-items: center;
   border-bottom: 1px solid #e6e6e6;
   .link {
+    font-size: 14px;
     text-decoration: none !important; /* Altı çizgiyi kaldır */
-    color: inherit !important; /* Varsayılan metin rengini kullan */
   }
   .link:hover {
     text-decoration: underline !important; /* Fare üzerine gelindiğinde altı çizgi ekle */

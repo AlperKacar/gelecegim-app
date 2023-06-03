@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const VitrinList = styled.div`
-  width: 208px;
+  width: 164px;
   height: 80px;
   background-color: white;
   margin: 5px;
@@ -33,12 +33,12 @@ export const VitrinList = styled.div`
 
   .VitrinList-Baslik {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 5px;
   }
 
   .taşanları-gizle {
-    width: 115px;
+    width: 70px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
