@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: stretch;
   align-content: flex-start;
   width: 873px;
+  margin-bottom: 30px;
 `;
 export const Vitrin = styled.div`
   display: flex;

@@ -36,6 +36,7 @@ const Kurum = lazy(() => import("../Pages/Kategori/Kurum"));
 const IsIlani = lazy(() => import("../Pages/Kategori/IsIlani"));
 const OzelDers = lazy(() => import("../Pages/Kategori/OzelDers"));
 const Ilan = lazy(() => import("../Pages/İlan/Ilan"));
+const KategoriHome=lazy(()=>import("../Pages/Kategori/KategoriHome"))
 //
 const RouterIlan = lazy(() => import("./routerIlan"));
 const IlanVer = lazy(() => import("../Pages/IlanVer/IlanVer"));
@@ -61,7 +62,7 @@ export {
   Home,
   Ilan,
   IlanVer,
-
+  KategoriHome,
   //private
   RouterPrivate,
   Profile,

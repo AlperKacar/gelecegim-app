@@ -11,14 +11,15 @@ export const PhotoDiv = styled.div`
    
   }
   .main-img{
-    width: 525px;
-    height: 390px;
+    width: 528px;
+    height: 396px;
   }
   .side-img{
     width: 100px;
     height:75px;
   }
   .frame-side {
+    display: flex;
     width: 100px;
     height: 75px;
     margin-right: 5px;
@@ -79,12 +80,47 @@ export const PhotoDiv = styled.div`
     height: 17px;
   }
   .side-container {
-    border: 1px solid black;
+    border: 1px solid #dbdbdb;
+    border-top:none;
     width: 528px;
-    height: 100px;
+    height: 120px;
     display: flex;
     flex-direction: row;
     padding: 3px;
     overflow-x: auto;
+    overflow: hidden;
+  }
+  .alt-satir{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .buttons{
+    width: 100px;
+    display:inline;
+    position: relative;
+    left: 229px;
+    bottom: 35px;
+  }
+  .sayfa-geri{
+    width: 28px;
+    height:28px;
+    border: 2px solid #a3a0a0;
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+  .sayfa-ileri{
+    width: 28px;
+    height:28px;
+    border: 2px solid #a3a0a0;
+    border-radius: 8px;
+    margin-left:10px
+  }
+  .button-icons{
+    font-size: 18px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    
   }
 `;

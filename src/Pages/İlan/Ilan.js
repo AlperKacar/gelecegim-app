@@ -33,7 +33,7 @@ const Ilan = () => {
   }, [ilan_no]);
 
   if (!ilanDetay) {
-    return <LoadingTruck />;
+    return <LoadingTruck/>;
   }
   return (
     <>
