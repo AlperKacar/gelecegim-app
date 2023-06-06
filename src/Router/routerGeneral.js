@@ -21,9 +21,8 @@ const RouterGeneral = () => {
           <Route path="kurum" element={<Kurum />} />
           <Route path="isilani" element={<IsIlani />} />
           <Route path="ozelders" element={<OzelDers />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="ilan/:ilan_baslik=:ilan_no/detay" element={<Ilan />} />
         </Route>
-        <Route path="ilan/:ilan_baslik=:ilan_no/detay" element={<Ilan />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>

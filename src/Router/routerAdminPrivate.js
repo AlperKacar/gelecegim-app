@@ -17,8 +17,8 @@ const RouterAdminPrivate = () => {
           }
         >
           <Route path="login" element={<AdminLogin />} />
-          <Route path="*" element={<PageNotFound />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

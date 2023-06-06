@@ -31,6 +31,7 @@ function Login() {
       toast.success("Giriş Başarılı!");
       setTimeout(() => {
         dispatch(setLogin(token));
+        dispatch(setTime());
         dispatch(setUser(user)); // Dispatch your login action with the token
         navigate(location.state?.return_url || "/", {
           replace: true,
@@ -60,8 +61,8 @@ function Login() {
       toast.success("Giriş Başarılı!");
       setTimeout(() => {
         dispatch(setLogin(token));
-        dispatch(setUser(user));
         dispatch(setTime());
+        dispatch(setUser(user));
         navigate(location.state?.return_url || "/", {
           replace: true,
         });

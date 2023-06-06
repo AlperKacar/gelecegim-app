@@ -18,8 +18,8 @@ const RouterMembership = () => {
           }
         >
           <Route path="controller" element={<AdminProfile />} />
-          <Route path="*" element={<PageNotFound />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

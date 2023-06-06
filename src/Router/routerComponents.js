@@ -3,6 +3,9 @@ import { lazy } from "react";
 //private
 const RouterPrivate = lazy(() => import("./routerPrivate"));
 const Profile = lazy(() => import("../Pages/memberprofile/Profile"));
+const IlanController = lazy(() =>
+  import("../Pages/memberprofile/IlanController")
+);
 const ChangePassword = lazy(() =>
   import("../Pages/memberprofile/ChangePassword")
 );
@@ -66,6 +69,7 @@ export {
   RouterPrivate,
   Profile,
   ChangePassword,
+  IlanController,
   DeleteAccount,
   //Ilan
   RouterIlan,
