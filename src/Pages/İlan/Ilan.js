@@ -11,11 +11,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import IlanAciklama from "./Ilan-Components/IlanAciklama";
 import LoadingTruck from "../../Shared/commonComponents/loading/LoadingTruck";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
 const Ilan = () => {
   const { ilan_baslik, ilan_no } = useParams();
   const [ilanDetay, setIlanDetay] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const IlanGetir = async () => {
@@ -24,20 +23,25 @@ const Ilan = () => {
           `http://localhost:3001/ilanver/singleIlan/${ilan_baslik}=${ilan_no}`
         );
         setIlanDetay(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
 
     IlanGetir();
-  }, [ilan_no]);
+  }, [ilan_no, ilan_baslik]);
+
+  if (loading) {
+    return <LoadingTruck />;
+  }
 
   if (!ilanDetay) {
-    return <LoadingTruck/>;
+    return <div>İlan bulunamadı.</div>;
   }
   return (
     <>
-      <Header />
       <IlanMain>
         <Helmet>
           <title>İlan</title>
@@ -77,7 +81,6 @@ const Ilan = () => {
           </div>
         </div>
       </IlanMain>
-      <Footer />
     </>
   );
 };

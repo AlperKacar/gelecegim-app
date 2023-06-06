@@ -17,8 +17,8 @@ const RouterPrivate = () => {
           }
         >
           <Route path="/" element={<IlanVer />} />
-          <Route path="*" element={<PageNotFound />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

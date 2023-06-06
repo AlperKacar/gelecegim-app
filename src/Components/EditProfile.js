@@ -25,7 +25,7 @@ const getBase64 = (file) => {
   });
 };
 const EditProfile = () => {
-  const { token } = useSelector((state) => state.userInformation);
+  const { token, user } = useSelector((state) => state.userInformation);
   const [form] = Form.useForm();
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -98,7 +98,6 @@ const EditProfile = () => {
     try {
       const values = await form.validateFields();
       const { name, surname } = values;
-
       // Create a new FormData object
       const formData = new FormData();
       formData.append("name", name.charAt(0).toUpperCase() + name.slice(1));
@@ -174,7 +173,7 @@ const EditProfile = () => {
                 <StyledInput className="form-input" disabled />
               </Form.Item>
             </FormItemContainer>
-            {hesapTuru !== "Bireysel" && (
+            {user !== "Bireysel" && (
               <>
                 <FormItemContainer>
                   <FormLabel>Vergi Dairesi:</FormLabel>
@@ -211,7 +210,7 @@ const EditProfile = () => {
                   <Form.Item name="business">
                     <StyledInput className="form-input" disabled />
                   </Form.Item>
-                  {hesapTuru !== "Şahıs Şirketi" && (
+                  {user !== "Şahıs Şirketi" && (
                     <>
                       <FormLabel>TC Kimlik No:</FormLabel>
                       <Form.Item name="tcno">

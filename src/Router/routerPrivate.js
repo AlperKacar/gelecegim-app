@@ -5,6 +5,7 @@ import {
   Profile,
   ChangePassword,
   DeleteAccount,
+  IlanController,
 } from "./routerComponents";
 import LoadingTruck from "../Shared/commonComponents/loading/LoadingTruck";
 import RequireAuth from "../Shared/auth/RequireAuth";
@@ -24,8 +25,9 @@ const RouterPrivate = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="change-password" element={<ChangePassword />} />
           <Route path="delete-account" element={<DeleteAccount />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="ilan-controller" element={<IlanController />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );

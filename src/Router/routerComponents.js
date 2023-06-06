@@ -3,6 +3,9 @@ import { lazy } from "react";
 //private
 const RouterPrivate = lazy(() => import("./routerPrivate"));
 const Profile = lazy(() => import("../Pages/memberprofile/Profile"));
+const IlanController = lazy(() =>
+  import("../Pages/memberprofile/IlanController")
+);
 const ChangePassword = lazy(() =>
   import("../Pages/memberprofile/ChangePassword")
 );
@@ -32,15 +35,11 @@ const SignUpDeleteControl = lazy(() =>
 //general
 const RouterGeneral = lazy(() => import("./routerGeneral"));
 const Home = lazy(() => import("../Pages/Home"));
-const Kurum = lazy(() => import("../Pages/Kategori/Kurum"));
-const IsIlani = lazy(() => import("../Pages/Kategori/IsIlani"));
-const OzelDers = lazy(() => import("../Pages/Kategori/OzelDers"));
 const Ilan = lazy(() => import("../Pages/İlan/Ilan"));
 const KategoriHome=lazy(()=>import("../Pages/Kategori/KategoriHome"))
-//
+//ilan
 const RouterIlan = lazy(() => import("./routerIlan"));
 const IlanVer = lazy(() => import("../Pages/IlanVer/IlanVer"));
-
 //notFound
 const PageNotFound = lazy(() => import("../Pages/PageNotFound"));
 
@@ -56,9 +55,6 @@ export {
   SignUpDeleteControl,
   //general
   RouterGeneral,
-  OzelDers,
-  IsIlani,
-  Kurum,
   Home,
   Ilan,
   IlanVer,
@@ -67,6 +63,7 @@ export {
   RouterPrivate,
   Profile,
   ChangePassword,
+  IlanController,
   DeleteAccount,
   //Ilan
   RouterIlan,
