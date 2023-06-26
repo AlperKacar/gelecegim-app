@@ -6,26 +6,28 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.userInformation.isLogged);
   const [isOnline, setIsOnline] = useState(true);
 
-  useEffect(() => {
-    if (isOnline) {
-      const socket = new WebSocket("ws://localhost:3001/error");
+  // useEffect(() => {
+  //   if (isOnline) {
+  //     const socket = new WebSocket(
+  //       "ws://https://gelecegimserver.netlify.app/error"
+  //     );
 
-      socket.onopen = () => {
-        setIsOnline(true);
-      };
+  //     socket.onopen = () => {
+  //       setIsOnline(true);
+  //     };
 
-      socket.onclose = () => {
-        setIsOnline(false);
-      };
+  //     socket.onclose = () => {
+  //       setIsOnline(false);
+  //     };
 
-      return () => {
-        socket.close();
-      };
-    }
-  }, [isOnline]);
+  //     return () => {
+  //       socket.close();
+  //     };
+  //   }
+  // }, [isOnline]);
 
   if (isLoggedIn) {
     return <LoadingTruck />;
