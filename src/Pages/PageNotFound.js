@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../images/revize3.png";
+
 const Icon = styled.div`
   position: fixed;
   background-image: url(https://media.beinconnect.com.tr/Assets/BC/images/_error-page/bg-image.jpg);
@@ -11,6 +12,7 @@ const Icon = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
 const Header = styled.div`
   height: 50px;
   width: 100%;
@@ -24,12 +26,14 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  .logo {
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    width: 135px;
-    height: 34px;
-  }
 `;
+
+const Logo = styled.img`
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  width: 135px;
+  height: 34px;
+`;
+
 const ContentWrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -40,10 +44,11 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  .notFound {
-    width: 1150px;
-    margin: 0 auto;
-  }
+`;
+
+const NotFoundContainer = styled.div`
+  width: 1150px;
+  margin: 0 auto;
 `;
 
 const Title = styled.h1`
@@ -70,6 +75,7 @@ const HomeLink = styled(Link)`
   text-decoration: none;
   outline: none;
   cursor: pointer;
+
   &:hover {
     background-color: #8b176d;
   }
@@ -80,11 +86,11 @@ function PageNotFound() {
     <div>
       <Helmet>Sayfa Bulunamadı</Helmet>
       <Header>
-        <img className="logo" src={logo} alt="Geleceğim logo" />
+        <Logo src={logo} />
       </Header>
       <Icon>
         <ContentWrapper>
-          <div className="notFound">
+          <NotFoundContainer>
             <Title>404</Title>
             <Message>
               Üzgünüz, aradığınız sayfayı bulamadık.
@@ -92,7 +98,7 @@ function PageNotFound() {
               Ana sayfaya dönerek diğer içeriklere ulaşabilirsiniz.
             </Message>
             <HomeLink to="/">Ana Sayfa</HomeLink>
-          </div>
+          </NotFoundContainer>
         </ContentWrapper>
       </Icon>
     </div>

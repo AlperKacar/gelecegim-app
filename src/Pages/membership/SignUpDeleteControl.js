@@ -16,7 +16,7 @@ function SignUpDeleteControl() {
   const userValid = async () => {
     if (id && token) {
       await axios
-        .delete(`http://localhost:3001/auth/signup/delete/${id}/${token}`)
+        .delete(`/auth/signup/delete/${id}/${token}`)
         .then((res) => {
           toast.success("hesap başarıyla silindi.");
           dispatch(setLogout());

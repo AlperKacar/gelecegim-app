@@ -32,7 +32,7 @@ export default function AdminProfile() {
   const fetchUsers = async () => {
     try {
       if (menuKey === "ilanlar") {
-        const response = await axios.get("http://localhost:3001/admin/ilans", {
+        const response = await axios.get("/admin/ilans", {
           params: {
             isVerified: isVerified,
             search: ilanlarSearch,
@@ -40,7 +40,7 @@ export default function AdminProfile() {
         });
         setIlans(response.data.Ilans);
       } else {
-        const response = await axios.get("http://localhost:3001/admin/users", {
+        const response = await axios.get("/admin/users", {
           params: {
             hesapTuru: hesapTuru,
             search: userSearch,
@@ -66,9 +66,7 @@ export default function AdminProfile() {
         return;
       }
 
-      const response = await axios.get(
-        `http://localhost:3001/admin/users/ilanlar/${userId}`
-      );
+      const response = await axios.get(`/admin/users/ilanlar/${userId}`);
 
       setSelectedUserId(userId);
       setIlanlar(response.data.Ilans);
@@ -95,7 +93,7 @@ export default function AdminProfile() {
   };
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3001/admin/users/delete/${userId}`);
+      await axios.delete(`/admin/users/delete/${userId}`);
 
       setDeleteModalVisibleUser(false);
 
@@ -113,9 +111,7 @@ export default function AdminProfile() {
         return;
       }
 
-      const response = await axios.get(
-        `http://localhost:3001/admin/users/details/${userId}`
-      );
+      const response = await axios.get(`/admin/users/details/${userId}`);
 
       setSelectedUserIdDetails(userId);
       setSelectedUserDetails(response.data);
@@ -131,9 +127,7 @@ export default function AdminProfile() {
         return;
       }
 
-      const response = await axios.get(
-        `http://localhost:3001/admin/ilans/details/${userId}`
-      );
+      const response = await axios.get(`/admin/ilans/details/${userId}`);
 
       setSelectedIlanIdDetails(userId);
       setSelectedIlanDetails(response.data);
@@ -145,9 +139,7 @@ export default function AdminProfile() {
   const handleDeleteIlan = async (userId) => {
     try {
       // Make the delete request using axios or your preferred HTTP library
-      await axios.delete(
-        `http://localhost:3001/admin/ilanlar/delete/${userId}`
-      );
+      await axios.delete(`/admin/ilanlar/delete/${userId}`);
 
       // Close the delete confirmation modal
       setDeleteModalVisibleIlan(false);
@@ -160,9 +152,7 @@ export default function AdminProfile() {
   };
   const handleisVerifiedIlan = async (userId) => {
     try {
-      await axios.get(
-        `http://localhost:3001/admin/ilanlar/isVerified/${userId}`
-      );
+      await axios.get(`/admin/ilanlar/isVerified/${userId}`);
     } catch (error) {
       console.error("İlan doğrulama hatası:", error);
     }

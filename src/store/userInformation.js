@@ -7,8 +7,7 @@ const userInformation = createSlice({
     user: null,
     token: null,
     time: null,
-    posts: [],
-    isLoggedIn: false,
+    isLogged: false,
     control: false,
   },
   reducers: {
@@ -17,7 +16,7 @@ const userInformation = createSlice({
     },
     setLogin: (state, { payload }) => {
       state.token = payload;
-      state.isLoggedIn = true;
+      state.isLogged = true;
     },
     setUser: (state, { payload }) => {
       state.user = payload;
@@ -31,24 +30,7 @@ const userInformation = createSlice({
     setLogout: (state, { payload }) => {
       state.token = null;
       state.user = null;
-      state.isLoggedIn = false;
-    },
-    // setFriends: (state, action) => {
-    //   if (state.user) {
-    //     state.user.friends = action.payload.friends;
-    //   } else {
-    //     console.error("kullacının arkadaşları yok");
-    //   }
-    // },
-    setPosts: (state, { payload }) => {
-      state.posts = payload;
-    },
-    setPost: (state, action) => {
-      const updatedPosts = state.posts.map((post) => {
-        if (post._id === action.payload.post_id) return action.payload.post;
-        return post;
-      });
-      state.posts = updatedPosts;
+      state.isLogged = false;
     },
     setActivation: (state, { payload }) => {
       state.control = false;
@@ -64,8 +46,6 @@ export const {
   setLogin,
   setLogout,
   setMode,
-  setPost,
-  setPosts,
   setActivation,
   setActivaitiona,
   setUser,

@@ -8,9 +8,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export function Menu() {
-  const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.userInformation.isLogged);
   const { token } = useSelector((state) => state.userInformation);
-  const yetki=useSelector((state)=>state.userInformation.user)
+  const yetki = useSelector((state) => state.userInformation.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,14 +26,11 @@ export function Menu() {
     if (token) {
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get(
-            "http://localhost:3001/profile/menu",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const response = await axios.get("/profile/menu", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           const user = response.data;
           setFullName(`${user.name} ${user.surname}`);
         } catch (error) {}
@@ -70,20 +67,22 @@ export function Menu() {
 
   return (
     <KullaniciMenu>
-      {isLoggedIn ? (<>
-        <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
-          <Link onClick={(e) => e.preventDefault()}>
-            <Space className="namesurname">
-              {fullName} 
-              <BiChevronDown className="down-arrow" />
-            </Space>
-          </Link>
-        </Dropdown>
-        {yetki!=="Bireysel"&& ( <Link to="/ilanver">
-            <button className="kurum-kayit" name="Kurum Kaydı">
-              Ücretsiz İlan Ver  
-            </button>
-          </Link>
+      {isLoggedIn ? (
+        <>
+          <Dropdown className="alt-li" menu={{ items }} trigger={["click"]}>
+            <Link onClick={(e) => e.preventDefault()}>
+              <Space className="namesurname">
+                {fullName}
+                <BiChevronDown className="down-arrow" />
+              </Space>
+            </Link>
+          </Dropdown>
+          {yetki !== "Bireysel" && (
+            <Link to="/ilanver">
+              <button className="kurum-kayit" name="Kurum Kaydı">
+                Ücretsiz İlan Ver
+              </button>
+            </Link>
           )}
         </>
       ) : (

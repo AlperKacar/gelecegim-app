@@ -20,7 +20,7 @@ const Ilan = () => {
     const IlanGetir = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/ilanver/singleIlan/${ilan_baslik}=${ilan_no}`
+          `/ilanver/singleIlan/${ilan_baslik}=${ilan_no}`
         );
         setIlanDetay(response.data);
         setLoading(false);

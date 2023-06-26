@@ -22,7 +22,7 @@ function AdminLogin() {
     e.preventDefault();
 
     await axios
-      .post("http://localhost:3001/admin/auth/login", {
+      .post("/admin/auth/login", {
         email,
         password,
       })

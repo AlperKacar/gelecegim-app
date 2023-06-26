@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation, Navigate } from "react-router-dom";
 
 const MembershipAuth = memo(({ children }) => {
-  const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.userInformation.isLogged);
   let location = useLocation();
 
   if (isLoggedIn) {

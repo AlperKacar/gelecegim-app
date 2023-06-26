@@ -6,7 +6,7 @@ function SelectValidation({ label, getir, ...props }) {
   const [options, setOptions] = useState([]);
 
   const fetchOptions = useCallback(async () => {
-    const response = await axios.get(`http://localhost:3001/select/${getir}`);
+    const response = await axios.get(`/select/${getir}`);
     setOptions(response.data);
   }, [getir]);
 

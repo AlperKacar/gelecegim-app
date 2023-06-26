@@ -20,14 +20,14 @@ function ResetPassword() {
   }, []);
   const userValid = async () => {
     await axios
-      .get(`http://localhost:3001/auth/forgotPassword/${id}/${token}`)
+      .get(`/auth/forgotPassword/${id}/${token}`)
       .then((res) => {})
       .catch((err) => {});
   };
   const sendpassword = async (e) => {
     e.preventDefault();
     await axios
-      .post(`http://localhost:3001/auth/${id}/${token}`, {
+      .post(`/auth/${id}/${token}`, {
         password,
       })
       .then((res) => {

@@ -38,7 +38,7 @@ function BusinessSignup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:3001/auth/signup", {
+      .post("/auth/signup", {
         email,
         password,
         name: name.charAt(0).toUpperCase() + name.slice(1),

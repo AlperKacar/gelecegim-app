@@ -9,7 +9,7 @@ export const LoginDiv = styled.div`
   background-color: #081229;
 
   .Login {
-    width: 350px;
+    width: 370px;
     max-height: 455px;
     background-color: #fff;
     border: 1px solid #dbdbdb;
@@ -205,7 +205,7 @@ export const LoginDiv = styled.div`
   .Sign-up-boyut {
     border-radius: 10px;
     margin-top: 20px;
-    width: 350px;
+    width: 370px;
     height: 60px;
     background-color: #fff;
     border: 1px solid #dbdbdb;

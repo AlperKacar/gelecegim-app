@@ -51,7 +51,7 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/profile", {
+        const response = await axios.get("/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -7,23 +7,38 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.userInformation.isLoggedIn);
-  const [redirect, setRedirect] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
-    let timeout = setTimeout(() => {
-      setRedirect(true);
-    }, 1000);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+    if (isOnline) {
+      const socket = new WebSocket("ws://localhost:3001/error");
 
-  if (isLoggedIn && !redirect) {
+      socket.onopen = () => {
+        setIsOnline(true);
+      };
+
+      socket.onclose = () => {
+        setIsOnline(false);
+      };
+
+      return () => {
+        socket.close();
+      };
+    }
+  }, [isOnline]);
+
+  if (isLoggedIn) {
     return <LoadingTruck />;
   }
 
   return (
     <>
+      {!isOnline && (
+        <div>
+          <h1>İnternet bağlantısı yok!</h1>
+          <p>Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.</p>
+        </div>
+      )}
       <ToastContainer />
       <Router />
     </>

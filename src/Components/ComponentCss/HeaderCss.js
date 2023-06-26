@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
 export const Head = styled.div`
+  background-color: #3f475f;
 
-  
-background-color: #3f475f;
-  
   .reslog {
     display: none;
   }
 
   .Navbar {
-    
     width: 1150px;
     height: 57.9px;
     display: flex;
@@ -48,7 +45,7 @@ background-color: #3f475f;
       position: absolute;
       left: 8px;
       top: 11px;
-      
+
       border-radius: 5px;
     }
   }

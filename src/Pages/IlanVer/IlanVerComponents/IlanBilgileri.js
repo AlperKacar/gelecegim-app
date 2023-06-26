@@ -77,7 +77,6 @@ function IlanBilgileri({ secilen }) {
 
       setTimeout(() => {
         // İlan oluşturulduktan sonra yapılacak işlemler
-        dispatch(setPosts(res));
         navigate(location.state?.return_url || "/", {
           replace: true,
         });
