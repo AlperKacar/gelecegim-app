@@ -7,25 +7,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.userInformation.isLogged);
-  const [isOnline, setIsOnline] = useState(true);
+  // const [isOnline, setIsOnline] = useState(true);
 
-  useEffect(() => {
-    if (isOnline) {
-      const socket = new WebSocket("ws://gelecegimserver.netlify.app/error");
+  // useEffect(() => {
+  //   if (isOnline) {
+  //     const socket = new WebSocket("ws://gelecegimserver.netlify.app/error");
 
-      socket.onopen = () => {
-        setIsOnline(true);
-      };
+  //     socket.onopen = () => {
+  //       setIsOnline(true);
+  //     };
 
-      socket.onclose = () => {
-        setIsOnline(false);
-      };
+  //     socket.onclose = () => {
+  //       setIsOnline(false);
+  //     };
 
-      return () => {
-        socket.close();
-      };
-    }
-  }, [isOnline]);
+  //     return () => {
+  //       socket.close();
+  //     };
+  //   }
+  // }, [isOnline]);
 
   if (isLoggedIn) {
     return <LoadingTruck />;
@@ -33,12 +33,12 @@ function App() {
 
   return (
     <>
-      {!isOnline && (
+      {/* {!isOnline && (
         <div>
           <h1>İnternet bağlantısı yok!</h1>
           <p>Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.</p>
         </div>
-      )}
+      )} */}
       <ToastContainer />
       <Router />
     </>
