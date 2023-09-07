@@ -12,7 +12,7 @@ function SignUpControl() {
   const userValid = async () => {
     if (id && token) {
       await axios
-        .get(`/auth/signup/${id}/${token}`)
+        .get(`http://localhost:3001/auth/signup/${id}/${token}`)
         .then((res) => {
           navigate(location.state?.return_url || "/auth/login", {
             replace: true,

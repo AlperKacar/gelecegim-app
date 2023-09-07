@@ -26,7 +26,7 @@ export function Menu() {
     if (token) {
       const fetchUserProfile = async () => {
         try {
-          const response = await axios.get("/profile/menu", {
+          const response = await axios.get("http://localhost:3001/profile/menu", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

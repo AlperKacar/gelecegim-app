@@ -7,7 +7,7 @@ const userInformation = createSlice({
     user: null,
     token: null,
     time: null,
-    isLogged: false,
+    isLoggedin: false,
     control: false,
   },
   reducers: {
@@ -16,7 +16,7 @@ const userInformation = createSlice({
     },
     setLogin: (state, { payload }) => {
       state.token = payload;
-      state.isLogged = true;
+      state.isLoggedin = true;
     },
     setUser: (state, { payload }) => {
       state.user = payload;
@@ -30,7 +30,7 @@ const userInformation = createSlice({
     setLogout: (state, { payload }) => {
       state.token = null;
       state.user = null;
-      state.isLogged = false;
+      state.isLoggedin = false;
     },
     setActivation: (state, { payload }) => {
       state.control = false;

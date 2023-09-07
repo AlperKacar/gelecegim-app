@@ -17,7 +17,7 @@ function ForgotPassword() {
   const activationSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("/auth/activation/forgotPassword", {
+      .post("http://localhost:3001/auth/activation/forgotPassword", {
         email,
       })
       .then((res) => {

@@ -9,7 +9,7 @@ const BodyMainContainer = React.memo(() => {
   const { kategori, alt_kategori } = useParams();
   const [ilans, setIlans] = useState([]);
 
-  let url = "/home/";
+  let url = "http://localhost:3001/home/";
   const fetchUsers = async () => {
     if (kategori) {
       const kategori_gonder =

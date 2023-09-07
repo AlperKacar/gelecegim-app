@@ -20,7 +20,7 @@ function ResetPassword() {
   }, []);
   const userValid = async () => {
     await axios
-      .get(`/auth/forgotPassword/${id}/${token}`)
+      .get(`http://localhost:3001/auth/forgotPassword/${id}/${token}`)
       .then((res) => {})
       .catch((err) => {});
   };
